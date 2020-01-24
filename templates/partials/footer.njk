@@ -1,0 +1,108 @@
+<!-- Footer -->
+
+
+<footer class="site-footer border-top">
+  <div class="container">
+    <div class="row">
+      <div class="col mb-5">
+        <div class="block-7">
+          <form action="#" method="post">
+            <label for="email_subscribe" class="footer-heading">Subscribe to stay informed of upcoming deals</label>
+            <div class="form-group">
+              <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email" />
+              <input type="submit" class="btn btn-sm btn-primary" value="Send" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 mb-5 mb-lg-0">
+        <div class="row">
+          <div class="col-md-12">
+            <h3 class="footer-heading mb-4">About Us</h3>
+          </div>
+          <div class="col-md-10">
+            <p>{{mission}}</p>
+            <!-- <ul class="list-unstyled">
+              <li><a href="#">Promotions</a></li>
+              <li><a href="#">Clearance</a></li>
+              <li><a href="#">Best Sellers</a></li>
+            </ul> -->
+          </div>
+          <!-- <div class="col-md-6 col-lg-4">
+            <ul class="list-unstyled">
+              <li><a href="#">Login/Register</a></li>
+              <li><a href="#">Order Tracking</a></li>
+              <li><a href="#">Shopping cart</a></li>
+            </ul>
+          </div> -->
+          
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3 mb-4 mb-lg-0">
+        <!-- <h3 class="footer-heading mb-4">Promotion</h3>
+          <a href="#" class="block-6">
+            <img src="images/products/glasses_1.jpg" alt="Image placeholder" class="img-fluid rounded mb-4">
+            <h3 class="font-weight-light  mb-0">Finding Your Perfect Glasses</h3>
+            <p>Promo from  nuary 15 &mdash; 25, 2019</p>
+          </a> -->
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="block-5 mb-5">
+          <h3 class="footer-heading mb-4">Contact Info</h3>
+          <ul class="list-unstyled">
+            <li class="address">{{company_address}}</li>
+            <li class="phone"><a href="tel://23923929210">{{telephone}}</a></li>
+            <li class="email">{{company_email}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="row pt-5 mt-5 text-center">
+      <div class="col-md-12">
+        <p>
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+          Copyright &copy; {{site_title}},
+          <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+          <script>
+            (function () {
+              var stripe = Stripe('pk_live_HEnlS2Pd3aY9uYctGiws23fs');
+
+              var checkoutButton = document.getElementById('checkout-button-sku_GZ2BWHOxgx2TSg');
+              checkoutButton.addEventListener('click', function () {
+                // When the customer clicks on the button, redirect
+                // them to Checkout.
+                stripe.redirectToCheckout({
+                  items: [{ sku: 'sku_GZ2BWHOxgx2TSg', quantity: 1 }],
+
+                  // Do not rely on the redirect to the successUrl for fulfilling
+                  // purchases, customers may not always reach the success_url after
+                  // a successful payment.
+                  // Instead use one of the strategies described in
+                  // https://stripe.com/docs/payments/checkout/fulfillment
+                  successUrl: 'https://sunniesbyrichie.netlify.com/success.html',
+                  cancelUrl: 'https://sunniesbyrichie.netlify.com/cancelled.html',
+                })
+                  .then(function (result) {
+                    if (result.error) {
+                      // If `redirectToCheckout` fails due to a browser or network
+                      // error, display the localized error message to your customer.
+                      var displayError = document.getElementById('error-message');
+                      displayError.textContent = result.error.message;
+                    }
+                  });
+              });
+            })();
+          </script>
+          All rights reserved
+          <!-- This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a> -->
+          <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

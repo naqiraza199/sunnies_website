@@ -1,87 +1,84 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
     {% include "partials/header.html" %}
+
     <body>
 
+        {% set founder_name = siteinfo[0].bioname %}
+        {% set founder_bio = siteinfo[0].bio %}
+        {% set founder_photo = siteinfo[0].biophoto %}
         {% set mission = siteinfo[0].mission %}
+        {% set vision = siteinfo[0].vision %}
+        {% set description = siteinfo[0].description %}
         {% set telephone = siteinfo[0].telephone %}
+        {% set company_email = siteinfo[0].email %}
+        {% set company_address = siteinfo[0].address %}
         {% set logo = siteinfo[0].logo %}
         {% set facebook_url = siteinfo[0].socialmedia.facebook %}
         {% set twitter_url = siteinfo[0].socialmedia.twitter %}
         {% set instagram_url = siteinfo[0].socialmedia.instagram %}
 
-        <div class="fh5co-loader"></div>
-
-        <div id="page">
+        <div class="site-wrap">
             {% include "partials/nav.html" %}
 
             {% block content %}{% endblock %}
 
-            {% include "partials/footer.html" %}
-
+            {% include "partials/footer.njk" %}
         </div>
 
-        <div class="gototop js-top">
-            <a href="#" class="js-gotop">
-                <i class="icon-arrow-up"></i>
-            </a>
-        </div>
+        <!-- Bootstrap core JavaScript -->
 
-        <!-- jQuery -->
-        <script src="assets/js/jquery.min.js"></script>
-        <!-- jQuery Easing -->
-        <script src="assets/js/jquery.easing.1.3.js"></script>
-        <!-- Bootstrap -->
-        <script src="assets/js/bootstrap.min.js"></script>
-        <!-- Waypoints -->
-        <script src="assets/js/jquery.waypoints.min.js"></script>
-        <!-- Stellar Parallax -->
-        <script src="assets/js/jquery.stellar.min.js"></script>
-        <!-- Carousel -->
-        <script src="assets/js/owl.carousel.min.js"></script>
-        <!-- Flexslider -->
-        <script src="assets/js/jquery.flexslider-min.js"></script>
-        <!-- countTo -->
-        <script src="assets/js/jquery.countTo.js"></script>
-        <!-- Magnific Popup -->
-        <script src="assets/js/jquery.magnific-popup.min.js"></script>
-        <script src="assets/js/magnific-popup-options.js"></script>
-        <!-- Count Down -->
-        <script src="assets/js/simplyCountdown.js"></script>
-        <!-- Main -->
-        <script src="assets/js/main.js"></script>
+        {# <script src="/assets/js/bootstrap.bundle.min.js"></script> #}
+        <script src="/assets/js/jquery-3.3.1.min.js"></script>
+        <script src="/assets/js/jquery-ui.js"></script>
+        <script src="/assets/js/popper.min.js"></script>
+        <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/owl.carousel.min.js"></script>
+        <script src="/assets/js/jquery.magnific-popup.min.js"></script>
+        <script src="/assets/js/aos.js"></script>
+
+        <script src="/assets/js/main.js"></script>
+
         <script>
-            var d = new Date(new Date().getTime() + 1000 * 120 * 120 * 2000);
 
-            // default example
-            simplyCountdown('.simply-countdown-one', {
-                year: d.getFullYear(),
-                month: d.getMonth() + 1,
-                day: d.getDate()
+            var items = [];
+            var products = [];
+            $.getJSON("/assets/data/data.json", function (data) {
+
+                // console.log(data);
+                $.each(data, function (key, val) {
+                    items.push(data)
+                });
+
+                console.log(items)
+                products = items[0].products;
+                console.log(products)
             });
 
-            //jQuery example
-            $('#simply-countdown-losange').simplyCountdown({
-                year: d.getFullYear(),
-                month: d.getMonth() + 1,
-                day: d.getDate(),
-                enableUtc: false
+            var infoModal = $("#myModal");
+            $(".openModal").on("click", function () {
+                console.log(this.value);
+                var product_id = parseInt(this.value) - 1
+                console.log(products[product_id])
+                // htmlData = $(this)
+                //   .find(".profile")
+                //   .html();
+                infoModal
+                    .find(".modal-title")
+                    .html(products[product_id].name);
+                infoModal
+                    .find(".modal-description")
+                    .html(products[product_id].ingredients);
+                infoModal
+                    .find(".product-directions")
+                    .html(products[product_id].directions);
+                infoModal
+                    .find(".product-disclaimer")
+                    .html(products[product_id].disclaimer);
+                infoModal.modal("show");
+                return false;
             });
-        </script>
-        <script>
-            if (window.netlifyIdentity) {
-                window
-                    .netlifyIdentity
-                    .on("init", user => {
-                        if (!user) {
-                            window
-                                .netlifyIdentity
-                                .on("login", () => {
-                                    document.location.href = "/admin/";
-                                });
-                        }
-                    });
-            }
         </script>
     </body>
 </html>

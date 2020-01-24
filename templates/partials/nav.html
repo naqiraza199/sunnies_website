@@ -1,105 +1,110 @@
-<nav class="fh5co-nav" role="navigation">
-  <div class="top">
+<!-- Navigation -->
+<header class="site-navbar" role="banner">
+  <div class="site-navbar-top">
     <div class="container">
-      <div class="row">
-        <div class="col-xs-12 text-right">
-          <p class="site">www.nationallibrary.bb</p>
-          <p class="num">Call: +{{telephone}}</p>
-          <ul class="fh5co-social">
-            <li>
-              <a href="{{facebook_url}}" target="_blank">
-                <i class="icon-facebook2"></i>
-              </a>
-            </li>
-            {% if (twitter_url != 'none') %}
-            <li>
-              <a href="{{twitter_url}}" target="_blank">
-                <i class="icon-twitter2"></i>
-              </a>
-            </li>
-            {% endif %}
-            <li>
-              <a href="{{instagram_url}}" target="_blank">
-                <i class="icon-instagram"></i>
-              </a>
-            </li>
-          </ul>
+      <div class="row align-items-center">
+        <div class="col-6 col-md-4 order-2 order-md-1 site-search-icon text-left">
+          <!-- <form action="" class="site-block-top-search">
+            <span class="icon icon-search2"></span>
+            <input type="text" class="form-control border-0" placeholder="Search" />
+          </form> -->
+          <a href="{{facebook_url}}" target="_blank"><span class="icon icon-facebook"></span></a>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="top-menu">
-    <div class="container">
-      <div class="row">
-        <div class="col-xs-2">
-          <div id="fh5co-logo">
-            <a href="index.html">
-              <img src="{{logo}}" height="50" />
-              </a>
+
+        <div class="col-12 mb-3 mb-md-0 col-md-4 order-1 order-md-2 text-center">
+          <img src="/assets/images/logo/logo_large.jpg" height="200px" />
+        </div>
+
+        <div class="col-6 col-md-4 order-3 order-md-3 text-right">
+          <div class="site-top-icons">
+            <ul>
+              <!-- <li>
+                <a href="{{facebook_url}}" target="_blank"><span class="icon icon-facebook"></span></a>
+              </li> -->
+              <!-- <li><a href="#"><span class="icon icon-heart-o"></span></a></li> -->
+              <li>
+                <a href="{{instagram_url}}" class="site-cart" target="_blank">
+                  <span class="icon icon-instagram"></span>
+                  <!-- <span class="count">2</span> -->
+                </a>
+              </li>
+              <li class="d-inline-block d-md-none ml-md-0">
+                <a href="#" class="site-menu-toggle js-menu-toggle"><span class="icon-menu"></span></a>
+              </li>
+            </ul>
           </div>
         </div>
-        <div class="col-xs-10 text-right menu-1">
-          <ul>
-            <li class="active">
-              <a href="index.html">Home</a>
-            </li>
-            <li>
-              <a href="branches.html">Branches</a>
-            </li>
-
-            <li class="has-dropdown">
-              <a href="about.html">About</a>
-              <ul class="dropdown">
-                <li>
-                  <a href="about.html">About Us</a>
-                </li>
-                <li>
-                  <a href="staff.html">Our Staff</a>
-                </li>
-                {# <li>
-                  <a href="#">Branding</a>
-                </li>
-                <li>
-                  <a href="#">API</a>
-                </li> #}
-              </ul>
-            </li>
-            {# <li>
-              <a href="membership.html">Membership</a>
-            </li> #}
-            <li>
-              <a href="events.html">Events</a>
-            </li>
-            <li>
-              <a href="news.html">News</a>
-            </li>
-            {# <li class="has-dropdown">
-              <a href="news.html">News</a>
-              <ul class="dropdown">
-                <li>
-                  <a href="events.html">Events</a>
-                </li>
-                <li>
-                  <a href="promotions.html">Promotions</a>
-                </li>
-                
-              </ul>
-            </li> #}
-            <li>
-              <a href="contact.html">Contact</a>
-            </li>
-            {# <li class="btn-cta">
-              <a href="#">
-                <span>Login</span></a>
-            </li> #}
-            {# <li class="btn-cta">
-              <a href="#">
-                <span>Create a Course</span></a>
-            </li> #}
-          </ul>
-        </div>
       </div>
-
     </div>
   </div>
-</nav>
+  <nav class="site-navigation text-right text-md-center" role="navigation">
+    <div class="container">
+      <ul class="site-menu js-clone-nav d-none d-md-block">
+        <!-- <li class="has-children active">
+            <a href="index.html">Home</a>
+            <ul class="dropdown">
+              <li><a href="#">Menu One</a></li>
+              <li><a href="#">Menu Two</a></li>
+              <li><a href="#">Menu Three</a></li>
+              <li class="has-children">
+                <a href="#">Sub Menu</a>
+                <ul class="dropdown">
+                  <li><a href="#">Menu One</a></li>
+                  <li><a href="#">Menu Two</a></li>
+                  <li><a href="#">Menu Three</a></li>
+                </ul>
+              </li>
+            </ul>
+          </li> -->
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <!-- <li class="has-children">
+            <a href="about.html">About</a>
+            <ul class="dropdown">
+              <li><a href="#">Menu One</a></li>
+              <li><a href="#">Menu Two</a></li>
+              <li><a href="#">Menu Three</a></li>
+            </ul>
+          </li> -->
+        <!-- <li class="has-children">
+          <a href="index.html">Eyeglasses</a>
+          <ul class="dropdown">
+            <li class="has-children">
+              <a href="#">Women</a>
+              <ul class="dropdown">
+                <li><a href="#">Ruby</a></li>
+                <li><a href="#">Cindy</a></li>
+                <li><a href="#">Laura</a></li>
+                <li><a href="#">Arielle</a></li>
+                <li><a href="#">Shaunelle</a></li>
+                <li><a href="#">Kylie</a></li>
+                <li><a href="#">Wisdom</a></li>
+                <li><a href="#">Muse X Richieann</a></li>
+                <li><a href="#">Andrea</a></li>
+                <li><a href="#">Kris</a></li>
+              </ul>
+            </li>
+            <li class="has-children">
+              <a href="#">Men</a>
+              <ul class="dropdown">
+                <li><a href="#">Port</a></li>
+                <li><a href="#">Kerry</a></li>
+                <li><a href="#">Skip</a></li>
+              </ul>
+            </li>
+            <li class="has-children">
+              <a href="#">Children</a>
+              <ul class="dropdown">
+                <li><a href="#">Brice</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li> -->
+        <li><a href="shop.html">Shop</a></li>
+        <!-- <li><a href="#">Catalogue</a></li> -->
+        <!-- <li><a href="#">New Arrivals</a></li> -->
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>

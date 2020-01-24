@@ -1,12 +1,22 @@
 backend:
-  name: test-repo
+  name: github
   # name: git-gateway
-  #repo: sajclarke/nationallibrary
+  repo: sajclarke/sunnies_website
 
 media_folder: assets/img/uploads
 
 collections:
-  
+  - name: featured_products
+    label: Features
+    folder: featured_products
+    identifier_field: title
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title, widget: string}
+      - { name: description, label: Description, widget: text}
+      - { name: photo, label: Photo, widget: image }
   - name: products
     label: Products
     folder: products
@@ -27,6 +37,7 @@ collections:
       - { name: color, label: Color, widget: string }
       - { name: shipping, label: Shipping, widget: text }
       - { name: photo, label: Photo, widget: image, required: false }
+      - { name: special, label: "On Special?", widget: select, default: ["None"], options: ["None", "Clearance", "Best Seller"] }
   - name: post
     label: Post
     folder: posts
@@ -52,7 +63,10 @@ collections:
       - { label: Mission, name: mission, widget: text }
       - { label: Vision, name: vision, widget: text }
       - { label: Description, name: description, widget: text }
-      - { label: "Logo", name: "logo", widget: "image" }
+      - { label: "Owner Name", name: bioname, widget: string }
+      - { label: "About Owner", name: bio, widget: text }
+      - { label: "Owner Photo", name: biophoto, widget: image }
+      - { label: "Company Logo", name: "logo", widget: "image" }
       - label: "Social Media Links"
         name: "socialmedia"
         widget: "object"
@@ -60,17 +74,3 @@ collections:
           - { label: "Facebook", name: "facebook", widget: "string" }
           - { label: "Twitter", name: "twitter", widget: "string" }
           - { label: "Instagram", name: "instagram", widget: "string" }
-  - label: "Pages"
-    name: "pages"
-    files:
-      - label: "Info"
-        name: "siteinfo"
-        file: "content/test.json"
-        extension: json
-        fields:
-          - { label: Mission, name: mission, widget: text }
-          - { label: Vision, name: vision, widget: text }
-          - { label: Description, name: description, widget: text }
-          - { label: Telephone, name: telephone, widget: string }
-          - { name: photo, label: Photo, widget: image }
-          - { label: Background, name: background, widget: text }

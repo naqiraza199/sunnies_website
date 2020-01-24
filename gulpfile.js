@@ -49,11 +49,11 @@ gulp.task("render_content", function (cb) {
     .pipe(
       data(function () {
         var contents = {
-          articles: findFiles("./posts"),
+          products: findFiles("./products"),
           branches: findFiles("./branches"),
           categories: findFiles("./categories"),
           events: findFiles("./events"),
-          featured_products: findFiles("./featured_products"),
+          featured_products: findFiles("./features"),
           siteinfo: findFiles("./site"),
           staff: findFiles("./staff")
         };
@@ -65,7 +65,7 @@ gulp.task("render_content", function (cb) {
         path: ["templates/"], // String or Array
         data: {
           // content_entry: { item: "one", entry: "two" },
-          site_title: "National Library",
+          site_title: "Sunnies By Richie",
           instagram_username: "",
           contact_form_url:
             "https://docs.google.com/forms/d/1DOxT0tkNRE35pucLyZMH_eght_Enhr0RcofOX-8C3xs/formResponse"

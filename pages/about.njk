@@ -3,27 +3,98 @@
 
 {% block content %}
 
-  <div id="fh5co-about">
-    <div class="container">
-      <div class="col-md-6 animate-box">
+    <!-- Page Content -->
+    <!-- Page Content -->
+    <div class="site-section border-bottom" data-aos="fade">
+        <div class="container">
+            <div class="row mb-5">
+                <div class="col-md-6">
+                    <div class="block-16">
+                        <figure>
+                            <img src="{{logo}}" alt="Image placeholder" class="img-fluid rounded">
+                            {# <a href="https://vimeo.com/channels/staffpicks/93951774" class="play-button popup-vimeo">
+                                <span class="ion-md-play"></span></a> #}
 
-        <span>Welcome to the National Library Of Barbados</span>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
 
-        <h2>Our Mission</h2>
-        <p>The mission of the National Library Service is to serve the Barbadian community as a ready source of dynamic information products and services</p>
+                    <div class="site-section-heading pt-3 mb-4">
+                        <h2 class="text-black">About Us</h2>
+                    </div>
+                    <p>{{mission}}</p>
+                    <p>{{vision}}</p>
+                    <p>{{description}}</p>
 
-        <h2>Our History</h2>
-        <p>The Public Library Act was passed on the 21st October 1847, and a Board of Trustees was appointed to preserve and manage the library. This Act predates a similar Act in the UK by nearly three years. In October 1849, a collection of books was made accessible to the public. This collection consisted of books of the Literary Society (founded in 1777), the Library Association of Barbados (founded in 1853) and gifts from Friends of the Library. </p>
-
-      </div>
-      <div class="col-md-6">
-        <p>In January 1906 a permanent home for the island's Free Public Library was finally opened at Coleridge Street, Bridgetown. Sir Frederic Hodgson, Governor of Barbados in 1900, was committed to the idea of an efficient public library service, and he enlisted the aid of American philanthropist, Andrew Carnegie to fulfill his dream. Carnegie donated 4800 pounds on the condition that the Barbados government would ensure that the library was adequately maintained and free to all. Government granted "the old parade ground" as the site. </p>
-
-        <p>The first rural branch library was opened on February 23, 1905 at Speightstown, St. Peter.  Seven other branches were opened in due course. These are located in Eagle Hall, St. Michael, Gall Hill, St. John, Holetown, St. James, Oistins, Christ Church, Six Cross Roads, St. Philip, Valley, St. George and Tamarind Hall, St. Joseph.
-Unfortunately, due to age and wear-and-tear, the Carnegie Building closed for renovations in 2006 and the collection was moved to a temporary site in Fairchild Street, Bridgetown, opposite Independence Square. The Library at this new site was opened to the public in December 2008.
-</p>
-      </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="site-section border-bottom" data-aos="fade">
+        <div class="container">
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-7 site-section-heading text-center pt-4">
+                    <h2>The Owner</h2>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+
+                    <div class="block-38 text-center">
+                        <div class="block-38-img">
+                            <div class="block-38-header">
+                                <img src="{{founder_photo}}" alt="Image placeholder" class="img-fluid">
+                                <h3 class="block-38-heading h4">{{founder_name}}</h3>
+                                {# <p class="block-38-subheading">Owner</p> #}
+                            </div>
+                            <div class="block-38-body">
+                                <p>{{founder_bio}}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="col-md-6 col-lg-3"> <div class="block-38 text-center"> <div class="block-38-img"> <div class="block-38-header"> <img src="/assets/images/person_2.jpg" alt="Image placeholder" class="mb-4"> <h3 class="block-38-heading h4">Jennifer Greive</h3> <p class="block-38-subheading">Co-Founder</p> </div> <div class="block-38-body"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p> </div> </div> </div> </div> <div class="col-md-6 col-lg-3"> <div class="block-38 text-center"> <div class="block-38-img"> <div class="block-38-header"> <img src="/assets/images/person_3.jpg" alt="Image placeholder" class="mb-4"> <h3 class="block-38-heading h4">Patrick Marx</h3> <p class="block-38-subheading">Marketing</p> </div> <div class="block-38-body"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p> </div> </div> </div> </div> <div class="col-md-6 col-lg-3"> <div class="block-38 text-center"> <div class="block-38-img"> <div class="block-38-header"> <img src="/assets/images/person_4.jpg" alt="Image placeholder" class="mb-4"> <h3 class="block-38-heading h4">Mike Coolbert</h3> <p class="block-38-subheading">Sales Manager</p> </div> <div class="block-38-body"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p> </div> </div> </div> </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="site-section site-section-sm site-blocks-1 border-0" data-aos="fade">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
+                    <div class="icon mr-4 align-self-start">
+                        <span class="icon-truck"></span>
+                    </div>
+                    <div class="text">
+                        <h2 class="text-uppercase">Free Shipping</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="icon mr-4 align-self-start">
+                        <span class="icon-refresh2"></span>
+                    </div>
+                    <div class="text">
+                        <h2 class="text-uppercase">Free Returns</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="icon mr-4 align-self-start">
+                        <span class="icon-help"></span>
+                    </div>
+                    <div class="text">
+                        <h2 class="text-uppercase">Customer Support</h2>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.container -->
 
 {% endblock %}

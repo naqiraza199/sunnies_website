@@ -3,289 +3,299 @@
 
 {% block content %}
 
-				{# {% include "partials/hero.html" %} #}
+  {% include "partials/hero.njk" %}
 
-				<aside id="fh5co-hero">
-								<div class="flexslider">
-												<ul class="slides">
-																{% for item in featured_products %}
-																<li style="background-image: url({{item.photo}});">
-																	<div class="overlay-gradient"></div>
-																	<div class="container">
-																		<div class="row">
-																			<div class="col-md-8 col-md-offset-2 text-center slider-text">
-																				<div class="slider-text-inner">
-																					<h1>{{item.title}}</h1>
-																					<h2>{{item.description}}</h2>
-																					<p>
-																						<a class="btn btn-primary btn-lg" href="#">Find A Book!</a>
-																					</p>
-																				</div>
-																			</div>
-																		</div>
-																	</div>
-																</li>
-																{% endfor %}
-																{# <li style="background-image: url(assets/images/img_bg_2.jpg);">
-																				<div class="overlay-gradient"></div>
-																				<div class="container">
-																								<div class="row">
-																												<div class="col-md-8 col-md-offset-2 text-center slider-text">
-																																<div class="slider-text-inner">
-																																				<h1>Welcome to Our New Website!</h1>
-																																				<h2>The Great Aim of Education is not Knowledge, But Action</h2>
+  <!-- Page Content -->
+  <div class="site-section site-section-sm site-blocks-1">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-7 site-section-heading text-center pt-4 mb-5">
+          <h2>Why shop with us?</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
+          <div class="icon mr-4 align-self-start">
+            <span class="icon-truck"></span>
+          </div>
+          <div class="text">
+            <h2 class="text-uppercase">Free Shipping</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon mr-4 align-self-start">
+            <span class="icon-refresh2"></span>
+          </div>
+          <div class="text">
+            <h2 class="text-uppercase">Free Returns</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon mr-4 align-self-start">
+            <span class="icon-help"></span>
+          </div>
+          <div class="text">
+            <h2 class="text-uppercase">Customer Support</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-																																				<p>
-																																								<a class="btn btn-primary btn-lg btn-learn" href="#">Find A Book!</a>
-																																				</p>
-																																</div>
-																												</div>
-																								</div>
-																				</div>
-																</li>
-																<li style="background-image: url(assets/images/img_bg_3.jpg);">
-																				<div class="overlay-gradient"></div>
-																				<div class="container">
-																								<div class="row">
-																												<div class="col-md-8 col-md-offset-2 text-center slider-text">
-																																<div class="slider-text-inner">
-																																				<h1>Welcome to Our New Website!</h1>
-																																				<h2>We Help You to Learn New Things</h2>
+  <div class="site-section block-3 site-blocks-2 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-7 site-section-heading text-center pt-4">
+          <h2>Clearance</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="nonloop-block-3 owl-carousel">
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_1.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect one</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_2.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect one</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_3.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect one</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_4.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect one</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_5.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-																																				<p>
-																																					<a class="btn btn-primary btn-lg btn-learn" href="#">Find A Book!</a>
-																																				</p>
-																																</div>
-																												</div>
-																								</div>
-																				</div>
-																</li> #}
-												</ul>
-								</div>
-				</aside>
+  <div class="site-section block-8">
+    <div class="container">
+      <div class="row justify-content-center  mb-5">
+        <div class="col-md-7 site-section-heading text-center pt-4">
+          <h2>Big Sale!</h2>
+        </div>
+      </div>
+      <div class="row align-items-center">
+        <div class="col-md-12 col-lg-7 mb-5">
+          <a href="#"><img src="/assets/images/products/collection_1.jpg" alt="Image placeholder" class="img-fluid rounded"></a>
+        </div>
+        <div class="col-md-12 col-lg-5 text-center pl-md-5">
+          <h2>
+            <a href="#">50% less in all items</a>
+          </h2>
+          <p class="post-meta mb-4">By
+            <a href="#">Richieann</a>
+            <span class="block-8-sep">&bullet;</span>
+            September 3, 2018</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam iste dolor accusantium facere corporis ipsum animi deleniti fugiat. Ex, veniam?</p>
+          <p>
+            <a href="shop.html" class="btn btn-primary btn-sm">Shop Now</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
 
-				<div id="fh5co-course-categories">
-								<div class="container">
-												<div class="row animate-box">
-																<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-																				<h2>Categories</h2>
-																				{# <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> #}
-																				<p>{{site_title}}</p>
-																				{# <p>{{content_entry.item}}</p> #}
-																				
-																</div>
-												</div>
-												<div class="row">
-																{% for item in categories %}
-																				<div class="col-md-3 col-sm-6 text-center animate-box">
-																								<div class="services">
-																												<span class="icon">
-																																<i class="icon-shop"></i>
-																												</span>
-																												<div class="desc">
-																																<h3>
-																																				<a href="#">{{item.title}}</a>
-																																</h3>
-																																<p>{{item.description}}</p>
-																												</div>
-																								</div>
-																				</div>
-																{% endfor %}
-												</div>
-								</div>
-				</div>
+  <div class="site-section site-blocks-2">
+    <div class="container">
 
-				{% include "partials/promotion.html" %}
+      <div class="row justify-content-center">
+        <div class="col-md-7 site-section-heading text-center py-4">
+          <h2>Signature Collections</h2>
+        </div>
+      </div>
 
-				{# <div id="fh5co-counter" class="fh5co-counters" style="background-image: url(assets/images/img_bg_4.jpg);" data-stellar-background-ratio="0.5">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="row">
-						<div class="col-md-3 col-sm-6 text-center animate-box">
-							<span class="icon">
-								<i class="icon-world"></i>
-							</span>
-							<span class="fh5co-counter js-counter" data-from="0" data-to="3297" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="fh5co-counter-label">Foreign Followers</span>
-						</div>
-						<div class="col-md-3 col-sm-6 text-center animate-box">
-							<span class="icon">
-								<i class="icon-study"></i>
-							</span>
-							<span class="fh5co-counter js-counter" data-from="0" data-to="3700" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="fh5co-counter-label">Students Enrolled</span>
-						</div>
-						<div class="col-md-3 col-sm-6 text-center animate-box">
-							<span class="icon">
-								<i class="icon-bulb"></i>
-							</span>
-							<span class="fh5co-counter js-counter" data-from="0" data-to="5034" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="fh5co-counter-label">Classes Complete</span>
-						</div>
-						<div class="col-md-3 col-sm-6 text-center animate-box">
-							<span class="icon">
-								<i class="icon-head"></i>
-							</span>
-							<span class="fh5co-counter js-counter" data-from="0" data-to="1080" data-speed="5000" data-refresh-interval="50"></span>
-							<span class="fh5co-counter-label">Certified Teachers</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> #}
+      <div class="row">
+        <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
+          <a class="block-2-item" href="#">
+            <figure class="image">
+              <img src="/assets/images/women.jpg" alt="" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="text-uppercase">Collections</span>
+              <h3>Hot Girl Summer</h3>
+            </div>
+          </a>
+        </div>
 
-				<div id="fh5co-course">
-								<div class="container">
-												<div class="row animate-box">
-																<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-																				<h2>News</h2>
-																				{# <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> #}
-																</div>
-												</div>
-												<div class="row">
-																{% for item in articles %}
-																				<div class="col-md-6 animate-box">
-																								<div class="course">
-																												<a href="#" class="course-img" style="background-image: url(assets/images/project-1.jpg);"></a>
-																												<div class="desc">
-																																<h3>
-																																				<a href="#">{{item.title}}</a>
-																																</h3>
-																																<p>{{item.body}}</p>
-																																<span>
-																																				<a href="#" class="btn btn-primary btn-sm btn-course">Read More</a>
-																																</span>
-																												</div>
-																								</div>
-																				</div>
-																{% endfor %}
-												</div>
-								</div>
-				</div>
+        <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
+          <a class="block-2-item" href="#">
+            <figure class="image">
+              <img src="/assets/images/men.jpg" alt="" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="text-uppercase">Collections</span>
+              <h3>City Boy Summer</h3>
+            </div>
+          </a>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
+          <a class="block-2-item" href="#">
+            <figure class="image">
+              <img src="/assets/images/children.jpg" alt="" class="img-fluid">
+            </figure>
+            <div class="text">
+              <span class="text-uppercase">Collections</span>
+              <h3>XMas Collection</h3>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 
-				{# <div id="fh5co-testimonial" style="background-image: url(assets/images/school.jpg);">
-		<div class="overlay"></div>
-		<div class="container">
-			<div class="row animate-box">
-				<div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
-					<h2>
-						<span>Testimonials</span></h2>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<div class="row animate-box">
-						<div class="owl-carousel owl-carousel-fullwidth">
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<div class="user" style="background-image: url(assets/images/person1.jpg);"></div>
-									<span>Mary Walker<br>
-										<small>Students</small>
-									</span>
-									<blockquote>
-										<p>&ldquo;Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-									</blockquote>
-								</div>
-							</div>
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<div class="user" style="background-image: url(assets/images/person2.jpg);"></div>
-									<span>Mike Smith<br>
-										<small>Students</small>
-									</span>
-									<blockquote>
-										<p>&ldquo;Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-									</blockquote>
-								</div>
-							</div>
-							<div class="item">
-								<div class="testimony-slide active text-center">
-									<div class="user" style="background-image: url(assets/images/person3.jpg);"></div>
-									<span>Rita Jones<br>
-										<small>Teacher</small>
-									</span>
-									<blockquote>
-										<p>&ldquo;Far from the countries Vokalia and Consonantia, there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.&rdquo;</p>
-									</blockquote>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div> #}
+  <div class="site-section block-3 site-blocks-2 bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-7 site-section-heading text-center pt-4">
+          <h2>Best Sellers</h2>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="nonloop-block-3 owl-carousel">
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_1.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect one</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_2.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect one</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_3.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect one</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_4.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect one</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+            <div class="item">
+              <div class="block-4 text-center">
+                <figure class="block-4-image">
+                  <img src="/assets/images/products/glasses_5.jpg" alt="Image placeholder" class="img-fluid">
+                </figure>
+                <div class="block-4-text p-4">
+                  <h3>
+                    <a href="#">Glasses</a>
+                  </h3>
+                  <p class="mb-0">Finding perfect products</p>
+                  <p class="text-primary font-weight-bold">$50</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-				<div id="fh5co-blog">
-								<div class="container">
-												<div class="row animate-box">
-																<div class="col-md-8 col-md-offset-2 text-center fh5co-heading">
-																				<h2>Events</h2>
-																				{# <p>Dignissimos asperiores vitae velit veniam totam fuga molestias accusamus alias autem provident. Odit ab aliquam dolor eius.</p> #}
-																</div>
-												</div>
-												<div class="row row-padded-mb">
-																{% for item in events %}
-																				<div class="col-md-4 animate-box">
-																								<div class="fh5co-event">
-																												<div class="date text-center">
-																																<span>{{item.start}}</span></div>
-																												<h3>
-																																<a href="#">{{item.title}}</a>
-																												</h3>
-																												<p>{{item.description}}</p>
-																												<p>
-																																<a href="#">Read More</a>
-																												</p>
-																								</div>
-																				</div>
-
-																{% endfor %}
-
-												</div>
-												<div class="row">
-																{% for item in events %}
-																				<div class="col-lg-4 col-md-4">
-																								<div class="fh5co-blog animate-box">
-																												<a href="#" class="blog-img-holder" style="background-image: url(assets/images/project-1.jpg);"></a>
-																												<div class="blog-text">
-																																<h3>
-																																				<a href="#">{{item.title}}</a>
-																																</h3>
-																																<span class="posted_on">{{item.start}}</span>
-																																<!-- <span class="comment"> <a href="">21<i class="icon-speech-bubble"></i> </a> </span> -->
-																																<p>{{item.description}}</p>
-																												</div>
-																								</div>
-																				</div>
-																{% endfor %}
-
-												</div>
-								</div>
-				</div>
-
-				<div id="fh5co-gallery" class="fh5co-bg-section">
-								<div class="row text-center">
-												<h2>
-																<span>Our Gallery</span></h2>
-								</div>
-								<div class="row">
-												<div class="col-md-3 col-padded">
-																<a href="#" class="gallery" style="background-image: url(assets/images/project-5.jpg);"></a>
-												</div>
-												<div class="col-md-3 col-padded">
-																<a href="#" class="gallery" style="background-image: url(assets/images/project-2.jpg);"></a>
-												</div>
-												<div class="col-md-3 col-padded">
-																<a href="#" class="gallery" style="background-image: url(assets/images/project-3.jpg);"></a>
-												</div>
-												<div class="col-md-3 col-padded">
-																<a href="#" class="gallery" style="background-image: url(assets/images/project-4.jpg);"></a>
-												</div>
-								</div>
-				</div>
+  {# {% include "partials/contactform.html" %} #}
+  <!-- /.row -->
+</div>
+<!-- /.container -->
 
 {% endblock %}

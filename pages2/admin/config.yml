@@ -1,0 +1,76 @@
+backend:
+  name: github
+  # name: git-gateway
+  repo: sajclarke/sunnies_website
+
+media_folder: assets/img/uploads
+
+collections:
+  
+  - name: products
+    label: Products
+    folder: products
+    identifier_field: id
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: id, label: Id }
+      - { name: stripe_sku, label: Stripe SKU, widget: string , required: false}
+      - { name: category, label: Category Name, widget: select, options: ["Women", "Women Best Sellers", "Unisex", "Unisex Best Sellers", "Mens", "Mens Best Sellers"] }
+      - { name: title, label: Title }
+      - { name: description, label: Description, widget: string }
+      - { name: material, label: Material, widget: string }
+      - { name: price, label: Price, widget: number }
+      - { name: currency, label: Currency, widget: select, options: ['BDS','USD'] }
+      - { name: measurement, label: Measurement, widget: string }
+      - { name: color, label: Color, widget: string }
+      - { name: shipping, label: Shipping, widget: text }
+      - { name: photo, label: Photo, widget: image, required: false }
+  - name: post
+    label: Post
+    folder: posts
+    identifier_field: title
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: title, label: Title }
+      - { name: body, label: Body, widget: text }
+      - { name: photo, label: Photo, widget: image }
+  - label: "Site Info"
+    name: "siteinfo"
+    folder: "site"
+    widget: "list"
+    extension: json
+    create: true
+    fields:
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Telephone", name: "telephone", widget: "string" }
+      - { label: "Contact Email", name: "email", widget: "string" }
+      - { label: "Address", name: "address", widget: "string" }
+      - { label: Mission, name: mission, widget: text }
+      - { label: Vision, name: vision, widget: text }
+      - { label: Description, name: description, widget: text }
+      - { label: "Logo", name: "logo", widget: "image" }
+      - label: "Social Media Links"
+        name: "socialmedia"
+        widget: "object"
+        fields:
+          - { label: "Facebook", name: "facebook", widget: "string" }
+          - { label: "Twitter", name: "twitter", widget: "string" }
+          - { label: "Instagram", name: "instagram", widget: "string" }
+  - label: "Pages"
+    name: "pages"
+    files:
+      - label: "Info"
+        name: "siteinfo"
+        file: "content/test.json"
+        extension: json
+        fields:
+          - { label: Mission, name: mission, widget: text }
+          - { label: Vision, name: vision, widget: text }
+          - { label: Description, name: description, widget: text }
+          - { label: Telephone, name: telephone, widget: string }
+          - { name: photo, label: Photo, widget: image }
+          - { label: Background, name: background, widget: text }
