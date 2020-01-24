@@ -39,7 +39,21 @@
         <script src="/assets/js/aos.js"></script>
 
         <script src="/assets/js/main.js"></script>
-
+        <script>
+            if (window.netlifyIdentity) {
+                window
+                    .netlifyIdentity
+                    .on("init", user => {
+                        if (!user) {
+                            window
+                                .netlifyIdentity
+                                .on("login", () => {
+                                    document.location.href = "/admin/";
+                                });
+                        }
+                    });
+            }
+        </script>
         <script>
 
             var items = [];
