@@ -1,0 +1,41 @@
+<!-- index.nunjucks -->
+{% extends "layout.njk" %}
+
+{% block content %}
+
+    <section id="work-wrap" style="padding-top:100px">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section-heading">
+                        <h1>
+                            We aim to provide excellent customer service, and consistent high quality products while providing healthy and delicious yet easy ways to prepare O's foods.</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="work" class="section-bottom">
+        <div class="container">
+            <div class="row">
+                {% for item in products %}
+                    <div class="col-lg-4 col-md-6 p-0">
+                        <div class="work-block">
+                            <img src="{{item.photo}}" alt="work-img" class="img-fluid">
+                            <div class="overlay-content-block">
+                                <h4>{{item.title}}</h4>
+                                {# <p>Web Development</p>
+                                <a href="single-project.html">
+                                    <i class="fa fa-link"></i>
+                                </a> #}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor%}
+
+                </div>
+            </div>
+        </section>
+    {% endblock %}

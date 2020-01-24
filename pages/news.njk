@@ -1,0 +1,33 @@
+<!-- index.nunjucks -->
+{% extends "layout.njk" %}
+
+{% block content %}
+    <div id="fh5co-course">
+        <div class="container">
+            <div class="row animate-box">
+                <div class="col-md-6 col-md-offset-3 text-center fh5co-heading">
+                    <h2>News</h2>
+                    <p></p>
+                </div>
+            </div>
+            <div class="row">
+                {% for item in articles %}
+                    <div class="col-md-6 animate-box">
+                        <div class="course">
+                            <a href="#" class="course-img" style="background-image: url(assets/images/project-1.jpg);"></a>
+                            <div class="desc">
+                                <h3>
+                                    <a href="#">{{item.title}}</a>
+                                </h3>
+                                <p>{{item.body}}</p>
+                                <span>
+                                    <a href="#" class="btn btn-primary btn-sm btn-course">Read More</a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
