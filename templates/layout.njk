@@ -99,7 +99,9 @@
         <script>
             (function () {
               //var stripe = Stripe('pk_test_ujOhdb12UPkmWbya4ghecbTW');
-              var stripe = Stripe('pk_live_HEnlS2Pd3aY9uYctGiws23fs');
+              //var stripe = Stripe('pk_live_HEnlS2Pd3aY9uYctGiws23fs');
+              // Richieann
+              var stripe = Stripe('pk_live_6JxSfq1ltlJKfDJfMj2cTGNn00fmKxrq3i');
 
               var checkoutButton = document.getElementById('checkout-button-sku_GZ2BWHOxgx2TSg');
               checkoutButton.addEventListener('click', function () {
@@ -108,8 +110,9 @@
                 stripe.redirectToCheckout({
                   
                   //live items
-                  items: [{ sku: 'sku_GZ2BWHOxgx2TSg', quantity: 1 }],
-                  
+                  //items: [{ sku: 'sku_GZ2BWHOxgx2TSg', quantity: 1 }],
+                  //Richieann
+                  items: [{ sku: 'sku_GZ5MJ23DUG6rCH', quantity: 1 }],
                   //test items
                   //items: [{ sku: 'sku_GeHtCV10DKJRZn', quantity: 1 },{sku: 'sku_GeINSvjcP8C0ck', quantity: 1}],
 
