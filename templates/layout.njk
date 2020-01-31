@@ -29,7 +29,7 @@
 
         <!-- Bootstrap core JavaScript -->
 
-        {# <script src="/assets/js/bootstrap.bundle.min.js"></script> #}
+        
         <script src="/assets/js/jquery-3.3.1.min.js"></script>
         <script src="/assets/js/jquery-ui.js"></script>
         <script src="/assets/js/popper.min.js"></script>
@@ -94,5 +94,43 @@
                 return false;
             });
         </script>
+        <!-- Load Stripe.js on your website. -->
+        <script src="http://js.stripe.com/v3"></script>
+        <script>
+            (function () {
+              //var stripe = Stripe('pk_test_ujOhdb12UPkmWbya4ghecbTW');
+              var stripe = Stripe('pk_live_HEnlS2Pd3aY9uYctGiws23fs');
+
+              var checkoutButton = document.getElementById('checkout-button-sku_GZ2BWHOxgx2TSg');
+              checkoutButton.addEventListener('click', function () {
+                // When the customer clicks on the button, redirect
+                // them to Checkout.
+                stripe.redirectToCheckout({
+                  
+                  //live items
+                  items: [{ sku: 'sku_GZ2BWHOxgx2TSg', quantity: 1 }]
+                  
+                  //test items
+                  //items: [{ sku: 'sku_GeHtCV10DKJRZn', quantity: 1 },{sku: 'sku_GeINSvjcP8C0ck', quantity: 1}],
+
+                  // Do not rely on the redirect to the successUrl for fulfilling
+                  // purchases, customers may not always reach the success_url after
+                  // a successful payment.
+                  // Instead use one of the strategies described in
+                  // https://stripe.com/docs/payments/checkout/fulfillment
+                  successUrl: 'https://sunniesbyrichie.netlify.com/success.html',
+                  cancelUrl: 'https://sunniesbyrichie.netlify.com/cancelled.html',
+                })
+                  .then(function (result) {
+                    if (result.error) {
+                      // If `redirectToCheckout` fails due to a browser or network
+                      // error, display the localized error message to your customer.
+                      var displayError = document.getElementById('error-message');
+                      displayError.textContent = result.error.message;
+                    }
+                  });
+              });
+            })();
+          </script>
     </body>
 </html>

@@ -64,40 +64,11 @@
         <p>
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
           Copyright &copy; {{site_title}},
-          <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+          
           <script>
             document.write(new Date().getFullYear());
           </script>
-          <script>
-            (function () {
-              var stripe = Stripe('pk_live_HEnlS2Pd3aY9uYctGiws23fs');
-
-              var checkoutButton = document.getElementById('checkout-button-sku_GZ2BWHOxgx2TSg');
-              checkoutButton.addEventListener('click', function () {
-                // When the customer clicks on the button, redirect
-                // them to Checkout.
-                stripe.redirectToCheckout({
-                  items: [{ sku: 'sku_GZ2BWHOxgx2TSg', quantity: 1 }],
-
-                  // Do not rely on the redirect to the successUrl for fulfilling
-                  // purchases, customers may not always reach the success_url after
-                  // a successful payment.
-                  // Instead use one of the strategies described in
-                  // https://stripe.com/docs/payments/checkout/fulfillment
-                  successUrl: 'https://sunniesbyrichie.netlify.com/success.html',
-                  cancelUrl: 'https://sunniesbyrichie.netlify.com/cancelled.html',
-                })
-                  .then(function (result) {
-                    if (result.error) {
-                      // If `redirectToCheckout` fails due to a browser or network
-                      // error, display the localized error message to your customer.
-                      var displayError = document.getElementById('error-message');
-                      displayError.textContent = result.error.message;
-                    }
-                  });
-              });
-            })();
-          </script>
+          
           All rights reserved
           <!-- This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank" class="text-primary">Colorlib</a> -->
           <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
