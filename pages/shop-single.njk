@@ -31,7 +31,8 @@
             
             <p>{{item.shipping}}</p>
             {# <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p> #}
-            <p><strong class="text-primary h4">$ {{item.price}} {{item.currency}}</strong></p>
+            <p><strong class="text-primary h4">$ <span id="item_price">{{item.price}}</span> {{item.currency}}</strong></p>
+
             <div class="mb-1 d-flex">
               <label for="option-sm" class="d-flex mr-3 mb-3">
                 <span class="d-inline-block mr-2" style="top:-2px; position: relative;"><input type="radio" id="option-sm" name="shop-sizes"></span> <span class="d-inline-block text-black">Clear</span>
@@ -46,7 +47,7 @@
               <div class="input-group-prepend">
                 <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
               </div>
-              <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
+              <input type="text" id="item_quantity" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
               <div class="input-group-append">
                 <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
               </div>
@@ -56,8 +57,8 @@
             <p>
             {# <a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a> #}
               <button style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
-                  id="checkout-button-sku_GZ2BWHOxgx2TSg" role="link">
-                  Checkout
+                  id="add-to-cart" onClick="myFunction('{{item.id}}','{{item.price}}','{{item.sku}}')" productid="{{item.id}}" role="link">
+                  Add to Cart
               </button>
             </p>
 
