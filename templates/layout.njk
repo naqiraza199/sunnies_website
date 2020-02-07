@@ -58,16 +58,17 @@
 
             var items = [];
             var products = [];
-            $.getJSON("/assets/data/data.json", function (data) {
+            $.getJSON("/assets/data/products.json", function (data) {
 
-                // console.log(data);
-                $.each(data, function (key, val) {
-                    items.push(data)
-                });
+                console.log(data);
+                localStorage.setItem('products',JSON.stringify(data))
+                //$.each(data, function (key, val) {
+                //    items.push(data)
+                //});
 
-                console.log(items)
-                products = items[0].products;
-                console.log(products)
+                //console.log(items)
+                //products = items[0].products;
+                //console.log(products)
             });
 
             var infoModal = $("#myModal");
@@ -96,11 +97,37 @@
         </script>
         <script>
 
-        function myFunction(id, price, quantity){
-            console.log('clicked something')
-            console.log(id, price, quantity)
+        function addToCart(){
+            var product_id = document.getElementById("item_id").innerHTML;
+            console.log('clicked on product with id: ', product_id)
+
+            var products = JSON.parse(localStorage.getItem('products'))
+            console.log('current product', products[product_id])
+            //return;
+            var product_info = products[product_id]
+
+            //console.log(id, name, price, sku)
             var item_quantity = document.getElementById("item_quantity").value;
             console.log(item_quantity)
+
+            var data_array = JSON.parse(localStorage.getItem("cart_items"))
+            console.log(data_array)
+
+            if(!data_array){
+                data_array = []
+            }
+
+            data_array.push({
+                id: product_info.id,
+                sku: product_info.stripe_sku,
+                image:"",
+                product: product_info.title,
+                price: product_info.price,
+                quantity: item_quantity
+            });
+
+            localStorage.setItem("cart_items",JSON.stringify(data_array))
+
         }
 
 
@@ -108,7 +135,7 @@
 
         <script>
 
-            var item_array = [
+            /*var item_array = [
                 {
                     image:"",
                     product:"Crop Top",
@@ -124,9 +151,11 @@
 
             console.log(JSON.stringify({ x: 5, y: 6 }));
 
-            localStorage.setItem("cart_items",JSON.stringify(item_array))
+            localStorage.setItem("cart_items",JSON.stringify(item_array))*/
             var data_array = JSON.parse(localStorage.getItem("cart_items"))
             console.log(data_array)
+
+            
 
             var table = document.getElementById("shopping-cart");
 

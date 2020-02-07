@@ -13,20 +13,25 @@
 
     <div class="site-section">
       <div class="container">
-      
+      {% for item in products %}
+        {% if item.id.toLowerCase() == 'rb001 c1' %}
         <div class="row">
           <div class="col-md-6">
-            <img class="img-fluid" src="assets/images/notfound.png" alt=""/>
+            {# <img src="assets/images/cloth_1.jpg" alt="Image" class="img-fluid"> #}
+            {% if item.photo.length > 0 %}
+                <img class="img-fluid" src="assets/images/products/{{item.photo}}.jpg" alt=""/>
+            {% else %}
+                <img class="img-fluid" src="assets/images/notfound.png" alt=""/>
+            {% endif %}
           </div>
           <div class="col-md-6">
-            <h2 class="text-black" id="item_title"></h2>
-            <h4 id="item_category"></h4>
-            <p><span id="item_id"></span></p>
+            <h2 class="text-black">{{item.title}}</h2>
+            <h4>{{item.category}}</h4>
+            <p>{{item.id}} | {{item.description}} | {{item.material}} | {{item.color}}</p>
             
-            <h5>Shipping Info</h5>
-            <p id="item_shipping"></p>
+            <p>{{item.shipping}}</p>
             {# <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p> #}
-            <p><strong class="text-primary h4">$ <span id="item_price"></span> <span id="item_currency"></span></strong></p>
+            <p><strong class="text-primary h4">$ <span id="item_price">{{item.price}}</span> {{item.currency}}</strong></p>
 
             {# <div class="mb-1 d-flex">
               <label for="option-sm" class="d-flex mr-3 mb-3">
@@ -52,7 +57,7 @@
             <p>
             {# <a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a> #}
               <button style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
-                  id="add-to-cart" onClick="addToCart()" role="link">
+                  id="add-to-cart" onClick="addToCart('{{item.id}}','{{item.title}}','{{item.price}}','{{item.sku}}')" productid="{{item.id}}" role="link">
                   Add to Cart
               </button>
             </p>
@@ -61,7 +66,8 @@
 
           </div>
         </div>
-        
+        {% endif %}
+      {% endfor %}
         
       </div>
     </div>
@@ -81,15 +87,8 @@
       console.log('url id',url_param)
 
       var products = JSON.parse(localStorage.getItem('products'))
-      {# console.log('stored products', products) #}
-      console.log('current product', products[url_param])
-
-      document.getElementById('item_id').innerHTML = products[url_param].id.replace(' ','-').toLowerCase()
-      document.getElementById('item_title').innerHTML = products[url_param].title
-      document.getElementById('item_category').innerHTML = products[url_param].category
-      document.getElementById('item_shipping').innerHTML = products[url_param].shipping
-      document.getElementById('item_price').innerHTML = products[url_param].price
-      document.getElementById('item_currency').innerHTML = products[url_param].currency
+      console.log('stored products', products)
+      console.log('selected product', products[url_param])
 
     </script>
 
