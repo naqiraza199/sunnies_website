@@ -49,6 +49,17 @@ collections:
       - { name: title, label: Title }
       - { name: body, label: Body, widget: text }
       - { name: photo, label: Photo, widget: image }
+  - name: prescriptions
+    label: Prescriptions
+    folder: prescriptions
+    identifier_field: id
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: id, label: Id }
+      - { name: title, label: Title }
+      - { name: description, label: Description, widget: text }
   - label: "Site Info"
     name: "siteinfo"
     folder: "site"
@@ -67,6 +78,7 @@ collections:
       - { label: "About Owner", name: bio, widget: text }
       - { label: "Owner Photo", name: biophoto, widget: image }
       - { label: "Company Logo", name: "logo", widget: "image" }
+      - { label: "Shipping", name: "shipping", widget: "text" }
       - label: "Social Media Links"
         name: "socialmedia"
         widget: "object"
