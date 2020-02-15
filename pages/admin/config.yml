@@ -52,12 +52,11 @@ collections:
   - name: prescriptions
     label: Prescriptions
     folder: prescriptions
-    identifier_field: id
+    identifier_field: title
     extension: json
     widget: "list"
     create: true
     fields:
-      - { name: id, label: Id }
       - { name: title, label: Title }
       - { name: description, label: Description, widget: text }
   - label: "Site Info"
