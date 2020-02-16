@@ -54,7 +54,7 @@
                       <a href="shop-single.html">
                       
                       {% if item.photo.length > 0 %}
-                          <img class="img-fluid" src="assets/images/products/{{item.photo}}.jpg" alt=""/>
+                          <img class="img-fluid" src="{{item.photo}}" alt=""/>
                       {% else %}
                           <img class="img-fluid" src="assets/images/notfound.png" alt=""/>
                       {% endif %}

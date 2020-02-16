@@ -19,7 +19,7 @@
           <div class="col-md-6">
             {# <img src="assets/images/cloth_1.jpg" alt="Image" class="img-fluid"> #}
             {% if item.photo.length > 0 %}
-                <img class="img-fluid" src="assets/images/products/{{item.photo}}.jpg" alt=""/>
+                <img class="img-fluid" src="{{item.photo}}" alt=""/>
             {% else %}
                 <img class="img-fluid" src="assets/images/notfound.png" alt=""/>
             {% endif %}
