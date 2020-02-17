@@ -60,7 +60,7 @@
             var products = [];
             $.getJSON("/assets/data/products.json", function (data) {
 
-                console.log(data);
+                console.log('json data',data);
                 localStorage.setItem('products',JSON.stringify(data))
                 //$.each(data, function (key, val) {
                 //    items.push(data)

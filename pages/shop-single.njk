@@ -16,12 +16,7 @@
       
         <div class="row">
           <div class="col-md-6">
-            {# <img src="assets/images/cloth_1.jpg" alt="Image" class="img-fluid"> #}
-            {% if item.photo.length > 0 %}
-                <img class="img-fluid" src="{{item.photo}}" alt=""/>
-            {% else %}
-                <img class="img-fluid" src="assets/images/notfound.png" alt=""/>
-            {% endif %}
+            <img class="img-fluid" id="item_image" src="assets/images/notfound.png" alt=""/>
           </div>
           <div class="col-md-6">
             <h2 class="text-black" id="item_title"></h2>
@@ -95,6 +90,7 @@
       document.getElementById('item_shipping').innerHTML = products[url_param].shipping
       document.getElementById('item_price').innerHTML = products[url_param].price
       document.getElementById('item_currency').innerHTML = products[url_param].currency
+      document.getElementById('item_image').src = products[url_param].photo
 
     </script>
 
