@@ -69,11 +69,11 @@
         <div class="col-md-6">
           <div class="row mb-5">
             <div class="col-md-6 mb-3 mb-md-0">
-              <button class="btn btn-primary btn-sm btn-block">Add Delivery ($20)</button>
+              <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#shippingModal">Add Delivery ($20)</button>
             </div>
-            <div class="col-md-6">
+            {# <div class="col-md-6">
               <a href="shop.html" class="btn btn-outline-primary btn-sm btn-block">Add Prescription</a>
-            </div>
+            </div> #}
             {# <div class="col-md-6">
               <a href="shop.html" class="btn btn-outline-primary btn-sm btn-block">Back to Shopping</a>
             </div> #}
@@ -122,6 +122,77 @@
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipping Modal -->
+      <div class="modal fade" id="shippingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Shipping Information</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form onsubmit='return saveShippingInfo(this)'>
+
+                        <div class="p-3">
+                            <div class="form-group row">
+                                <div class="col-md-6">
+                                    <label for="c_fname" class="text-black">First Name
+                                        <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_fname" name="c_fname">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="c_lname" class="text-black">Last Name
+                                        <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" id="c_lname" name="c_lname">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_email" class="text-black">Email
+                                        <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" id="c_email" name="c_email" placeholder="">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_subject" class="text-black">Telephone
+                                    </label>
+                                    <input type="text" class="form-control" id="c_telephone" name="c_telephone">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_subject" class="text-black">Mailing Address
+                                    </label>
+                                    <input type="text" class="form-control" id="c_address" name="c_address">
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_message" class="text-black">Additional Information
+                                    </label>
+                                    <textarea name="c_message" id="c_message" cols="30" rows="7" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-12">
+                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+            {# <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save</button>
+            </div> #}
           </div>
         </div>
       </div>

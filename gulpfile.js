@@ -138,4 +138,4 @@ function watchFiles(done) {
 gulp.task("default", gulp.parallel("render_content", "merge_json", "render_images"));
 
 // dev task
-gulp.task("dev", gulp.parallel("render_content", "merge_json", watchFiles, browserSync));
+gulp.task("dev", gulp.parallel("render_content", watchFiles, browserSync));

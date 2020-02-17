@@ -34,6 +34,7 @@
         <script src="/assets/js/jquery-ui.js"></script>
         <script src="/assets/js/popper.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>
+        <script src="/assets/js/bootstrap-input-spinner.js"></script>
         <script src="/assets/js/owl.carousel.min.js"></script>
         <script src="/assets/js/jquery.magnific-popup.min.js"></script>
         <script src="/assets/js/aos.js"></script>
@@ -96,6 +97,33 @@
             });
         </script>
         <script>
+
+            function getFormData(form){
+                var unindexed_array = $(form).serializeArray();
+                var indexed_array = {};
+
+                $.map(unindexed_array, function(n, i){
+                    indexed_array[n['name']] = n['value'];
+                });
+
+                return indexed_array;
+            }
+
+            function savePrescriptionInfo(form){
+                //var data = JSON.stringify($(form).serializeArray()); //  <-----------
+                var prescription_data = getFormData(form)
+                console.log(prescription_data)
+                //console.log(JSON.parse(data));
+                return false; //don't submit
+            }
+
+            function saveShippingInfo(form){
+                //var data = JSON.stringify($(form).serializeArray()); //  <-----------
+
+                var shipping_data = getFormData(form)
+                console.log(shipping_data);
+                return false; //don't submit
+            }
 
             function addToCart(){
                 var product_id = document.getElementById("item_id").innerHTML;
@@ -205,10 +233,10 @@
               var checkoutButton = document.getElementById('checkout-button');
               checkoutButton.addEventListener('click', function () {
 
-                  var cart_items = JSON.parse(localStorage.getItem("cart_items"))
-                    var checkout_array = []
-                    cart_items.map(item=>checkout_array.push({sku:item.sku, quantity: parseInt(item.quantity)}))
-                    console.log('checkout',checkout_array)
+                var cart_items = JSON.parse(localStorage.getItem("cart_items"))
+                var checkout_array = []
+                cart_items.map(item=>checkout_array.push({sku:item.sku, quantity: parseInt(item.quantity)}))
+                console.log('checkout',checkout_array)
                     //return
                 // When the customer clicks on the button, redirect
                 // them to Checkout.

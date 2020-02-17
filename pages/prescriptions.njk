@@ -1,0 +1,163 @@
+<!-- index.nunjucks -->
+{% extends "layout.njk" %}
+
+{% block content %}
+
+  <div class="bg-light py-3">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 mb-0">
+          <a href="index.html">Home</a>
+          <span class="mx-2 mb-0">/</span>
+          <strong class="text-black">Choose Lens</strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="site-section block-3 site-blocks-2 bg-light">
+    <div class="container">
+     
+     <div class="row">
+      <div class="col-md-12">
+        <div class="p-4">
+          <h4>What type of glasses do you need?</h4>
+        </div>
+        {# <div id="checkboxes">
+            <input type="radio" name="rGroup" value="1" id="r1" checked="checked" />
+            <label class="whatever" for="r1">r1</label>
+            <input type="radio" name="rGroup" value="2" id="r2" />
+            <label class="whatever" for="r2">r2</label>
+            <input type="radio" name="rGroup" value="3" id="r3" />
+            <label class="whatever" for="r3">r3</label>
+        </div> #}
+
+        <form onsubmit='return savePrescriptionInfo(this)'>
+        <div class="select_row">
+            <input type="radio" name="glassType" value="sv" id="sv" checked="checked" />
+            <label class="whatever" for="sv">
+              <div class="select_item text-center">
+                <h4>Single Vision</h4>
+                <p class="mb-0">Distance</p>
+              </div>
+            </label>
+            <input type="radio" name="glassType" value="nv" id="nv"/>
+            <label class="whatever" for="nv">
+                <div class="select_item text-center">
+                <h4>Near Vision</h4>
+                <p class="mb-0">Reading</p>
+              </div>
+            </label>
+            <input type="radio" name="glassType" value="pr" id="pr" />
+            <label class="whatever" for="pr">
+                <div class="select_item text-center">
+                <h4>Progressive</h4>
+                <p class="mb-0">Distance & Reading</p>
+              </div>
+            </label>
+            <input type="radio" name="glassType" value="bf" id="bf" />
+            <label class="whatever" for="bf">
+                <div class="select_item text-center">
+                <h4>Bi-Focal</h4>
+                <p class="mb-0">Distance & Reading</p>
+              </div>
+            </label>
+            <input type="radio" name="glassType" value="np" id="np" />
+            <label class="whatever" for="np">
+                <div class="select_item text-center">
+                <h4>Fashion</h4>
+                <p class="mb-0">Non-Prescription</p>
+              </div>
+            </label>
+        </div>
+        
+        <div class="p-4">
+          <h4>Enter your Prescription</h4>
+        </div>
+        <div class="col-md-12">
+                  
+            <div class="p-3 p-lg-5 border">
+                <div class="form-group row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3"><h4>Sphere (SPH)</h4></div>
+                <div class="col-md-3"><h4>Cylinder (CYL)</h4></div>
+                <div class="col-md-3"><h4>Axis (AXI)</h4></div>
+                  <div class="col-md-3">
+                    <p>Right (OD)</p>
+                  </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="od_sph" name="od_sph" value="3.00" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="od_cyl" name="od_cyl" value="4.30" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00" required>
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="od_axis" name="od_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-3">
+                    <p>Left (OS)</p>
+                  </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="os_sph" name="os_sph" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="os_cyl" name="os_cyl" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                    </div>
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" id="os_axis" name="os_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-md-3">
+                    <p>PD</p>
+                  </div>
+                    <div class="col-md-3">
+                        <input type="number" class="form-control" id="pd" name="pd" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="ml-5">
+                        <input type="checkbox" class="form-check-input" id="prism" name="prism">
+                        <label for="prism">Do you have Prism?</label>
+                    </div>
+                    
+                </div>
+            </div>
+                    
+        </div>
+        <div class="p-4">
+          <h4>Choose your Lens Type</h4>
+        </div>
+        <div class="select_row">
+            <input type="radio" name="lensType" value="1" id="lens-clear" checked="checked" />
+            <label class="whatever" for="lens-clear">
+              <div class="select_item text-center">
+                <h4>Standard</h4>
+                <p class="mb-0">Clear Lens</p>
+              </div>
+            </label>
+            <input type="radio" name="lensType" value="1" id="lens-bl"/>
+            <label class="whatever" for="lens-bl">
+                <div class="select_item text-center">
+                <h4>Premium</h4>
+                <p class="mb-0">Blue Light, Transitions & A R C</p>
+              </div>
+            </label>
+            
+            
+        </div>
+        <div class="form-group row">
+          <input type="submit" class="btn btn-lg btn-block btn-primary mt-3" value="Add Lens to Order" />
+        </div>
+        </form>
+      </div>
+      {# <div class="col-md-3">
+        <div>Product</div>
+      </div> #}
+     </div>
+      
+    </div>
+  </div>
+
+{% endblock %}
