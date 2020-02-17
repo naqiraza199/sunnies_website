@@ -58,16 +58,17 @@
 
             var items = [];
             var products = [];
-            $.getJSON("/assets/data/data.json", function (data) {
+            $.getJSON("/assets/data/products.json", function (data) {
 
-                // console.log(data);
-                $.each(data, function (key, val) {
-                    items.push(data)
-                });
+                console.log(data);
+                localStorage.setItem('products',JSON.stringify(data))
+                //$.each(data, function (key, val) {
+                //    items.push(data)
+                //});
 
-                console.log(items)
-                products = items[0].products;
-                console.log(products)
+                //console.log(items)
+                //products = items[0].products;
+                //console.log(products)
             });
 
             var infoModal = $("#myModal");
@@ -94,17 +95,121 @@
                 return false;
             });
         </script>
+        <script>
+
+            function addToCart(){
+                var product_id = document.getElementById("item_id").innerHTML;
+                console.log('clicked on product with id: ', product_id)
+
+                var products = JSON.parse(localStorage.getItem('products'))
+                console.log('current product', products[product_id])
+                //return;
+                var product_info = products[product_id]
+
+                //console.log(id, name, price, sku)
+                var item_quantity = document.getElementById("item_quantity").value;
+                console.log(item_quantity)
+
+                var data_array = JSON.parse(localStorage.getItem("cart_items"))
+                console.log(data_array)
+
+                if(!data_array){
+                    data_array = []
+                }
+
+                data_array.push({
+                    id: product_info.id,
+                    sku: product_info.stripe_sku,
+                    image:"",
+                    product: product_info.title,
+                    price: product_info.price,
+                    quantity: item_quantity
+                });
+                console.log(data_array)
+                //return
+                localStorage.setItem("cart_items",JSON.stringify(data_array))
+
+                window.location = 'cart.html'
+
+            }
+
+            function deleteRow(el, item_id) {
+                console.log('delete row',el.parentNode)
+                // while there are parents, keep going until reach TR 
+                while (el.parentNode && el.tagName.toLowerCase() != 'tr') {
+                    el = el.parentNode;
+                }
+
+                // If el has a parentNode it must be a TR, so delete it
+                // Don't delte if only 3 rows left in table
+                if (el.parentNode) {
+                    el.parentNode.removeChild(el);
+                }
+
+                var cart_items = JSON.parse(localStorage.getItem("cart_items"))
+                var new_items = cart_items.filter((item) => item.id !== item_id)
+                console.log(new_items)
+
+                localStorage.setItem("cart_items",JSON.stringify(new_items))
+            }
+
+
+        </script>
+
+        <script>
+
+            var data_array = JSON.parse(localStorage.getItem("cart_items"))
+            console.log(data_array)
+
+            var table = document.getElementById("shopping-cart");
+            var total_cost = 0;
+
+            for(var i=0; i<data_array.length; i++){
+
+                // Create an empty <tr> element and add it to the 1st position of the table:
+                var row = table.insertRow(-1);
+
+                // Insert new cells (<td> elements) at the 1st and 2nd position of the "new" <tr> element:
+                var cell1 = row.insertCell(0);
+                var cell2 = row.insertCell(1);
+                var cell3 = row.insertCell(2);
+                var cell4 = row.insertCell(3);
+
+                // Add some text to the new cells:
+                cell1.innerHTML = "<a href='shop-single.html?id="+data_array[i].id+"'>"+data_array[i].product+"</a>";
+                cell2.innerHTML = "$ "+parseFloat(data_array[i].price).toFixed(2);
+                cell3.innerHTML = data_array[i].quantity;
+                cell4.innerHTML = "<button type='button' product_id='"+data_array[i].id+"' class='btn btn-primary btn-sm' onclick=\"deleteRow(this,'"+data_array[i].id+"')\">X</button>";
+
+                total_cost += parseFloat(data_array[i].price)*parseFloat(data_array[i].quantity)
+            }
+
+            console.log(total_cost)
+
+            document.getElementById('sub_total').innerHTML = "$ "+parseFloat(total_cost).toFixed(2)
+            document.getElementById('final_total').innerHTML = "$ "+parseFloat(total_cost).toFixed(2)
+
+            
+        </script>
+
         <!-- Load Stripe.js on your website. -->
         <script src="https://js.stripe.com/v3"></script>
+        
         <script>
             (function () {
-              //var stripe = Stripe('pk_test_ujOhdb12UPkmWbya4ghecbTW');
+              var stripe = Stripe('pk_test_ujOhdb12UPkmWbya4ghecbTW');
               //var stripe = Stripe('pk_live_HEnlS2Pd3aY9uYctGiws23fs');
               // Richieann
-              var stripe = Stripe('pk_live_6JxSfq1ltlJKfDJfMj2cTGNn00fmKxrq3i');
+              //var stripe = Stripe('pk_live_6JxSfq1ltlJKfDJfMj2cTGNn00fmKxrq3i');
 
-              var checkoutButton = document.getElementById('checkout-button-sku_GZ2BWHOxgx2TSg');
+              var checkoutButton = document.getElementById('checkout-button');
               checkoutButton.addEventListener('click', function () {
+
+                  var cart_items = JSON.parse(localStorage.getItem("cart_items"))
+                    var checkout_array = []
+                    cart_items.map(item=>checkout_array.push({sku:item.sku, quantity: parseInt(item.quantity)}))
+                    console.log('checkout',checkout_array)
+                    //return
                 // When the customer clicks on the button, redirect
                 // them to Checkout.
                 stripe.redirectToCheckout({
@@ -112,9 +217,10 @@
                   //live items
                   //items: [{ sku: 'sku_GZ2BWHOxgx2TSg', quantity: 1 }],
                   //Richieann
-                  items: [{ sku: 'sku_GZ5MJ23DUG6rCH', quantity: 1 }],
+                  //items: [{ sku: 'sku_GZ5MJ23DUG6rCH', quantity: 1 }],
                   //test items
                   //items: [{ sku: 'sku_GeHtCV10DKJRZn', quantity: 1 },{sku: 'sku_GeINSvjcP8C0ck', quantity: 1}],
+                  items: checkout_array,
 
                   // Do not rely on the redirect to the successUrl for fulfilling
                   // purchases, customers may not always reach the success_url after
@@ -122,7 +228,7 @@
                   // Instead use one of the strategies described in
                   // https://stripe.com/docs/payments/checkout/fulfillment
                   successUrl: 'https://sunniesbyrichie.com/success.html',
-                  cancelUrl: 'https://sunniesbyrichie.com/cancelled.html',
+                  cancelUrl: 'https://sunniesbyrichie.com/cart.html',
                 })
                   .then(function (result) {
                     if (result.error) {

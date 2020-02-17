@@ -7,6 +7,7 @@ var path = require("path");
 var fs = require("fs");
 var netlify = require("gulp-netlify");
 var merge = require("gulp-merge-json");
+var jsonConcat = require('gulp-json-concat');
 
 var git = require("gulp-git");
 
@@ -86,6 +87,21 @@ gulp.task("render_images", function (cb) {
     .pipe(imagemin())
     .pipe(gulp.dest("build/assets/images"));
   cb();
+});
+
+// gulp.task("merge_json", function (cb) {
+//   gulp.src('products/*.json')
+//     .pipe(merge())
+//     .pipe(gulp.dest('./dist'));
+//   cb()
+// })
+
+gulp.task('merge_json', function () {
+  return gulp.src('products/*.json')
+    .pipe(jsonConcat('products.json', function (data) {
+      return new Buffer(JSON.stringify(data));
+    }))
+    .pipe(gulp.dest('assets/data'));
 });
 
 // BrowserSync
