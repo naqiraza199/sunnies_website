@@ -1,4 +1,3 @@
 [build]
-  command="yarn start"
   publish="dist"
   functions = "./lambda"
