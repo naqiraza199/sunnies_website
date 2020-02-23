@@ -54,7 +54,8 @@ gulp.task("render_content", function (cb) {
           branches: findFiles("./branches"),
           categories: findFiles("./categories"),
           events: findFiles("./events"),
-          featured_products: findFiles("./features"),
+          featured_products: findFiles("./featured_products"),
+          blog: findFiles("./posts"),
           siteinfo: findFiles("./site"),
           staff: findFiles("./staff")
         };
