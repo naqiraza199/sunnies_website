@@ -18,7 +18,7 @@
   ],
   "scripts": {
     "start": "gulp",
-    "start:server": "netlify-lambda serve functions",
+    "start:server": "netlify-lambda serve functions"
   },
   "dependencies": {
     "bootstrap": "^4.2.1",
