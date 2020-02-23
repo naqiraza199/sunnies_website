@@ -7,7 +7,7 @@ media_folder: assets/img/uploads
 
 collections:
   - name: featured_products
-    label: Features
+    label: "Featured Products"
     folder: featured_products
     identifier_field: title
     extension: json
@@ -39,7 +39,7 @@ collections:
       - { name: photo, label: Photo, widget: image, required: false }
       - { name: special, label: "On Special?", widget: select, default: ["None"], options: ["None", "Clearance", "Best Seller"] }
   - name: post
-    label: Post
+    label: Blog
     folder: posts
     identifier_field: title
     extension: json
