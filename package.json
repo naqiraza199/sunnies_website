@@ -17,7 +17,7 @@
     "Shannon Clarke (http://shannonclarke.com/)"
   ],
   "scripts": {
-    "start": "gulp",
+    "start": "gulp && netlify-lambda serve functions",
     "start:server": "netlify-lambda serve functions"
   },
   "dependencies": {
