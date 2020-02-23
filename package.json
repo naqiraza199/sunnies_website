@@ -17,7 +17,8 @@
     "Shannon Clarke (http://shannonclarke.com/)"
   ],
   "scripts": {
-    "start": "gulp"
+    "start": "gulp",
+    "start:server": "netlify-lambda serve functions",
   },
   "dependencies": {
     "bootstrap": "^4.2.1",
@@ -29,6 +30,7 @@
     "gulp-netlify": "^1.1.0",
     "jquery": "^3.3.1",
     "merge-json": "0.1.0-b.3",
+    "netlify-lambda": "^1.6.3",
     "path": "^0.12.7",
     "run-sequence": "^2.2.1"
   },
