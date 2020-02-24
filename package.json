@@ -25,6 +25,7 @@
   "dependencies": {
     "bootstrap": "^4.2.1",
     "dotenv": "^8.2.0",
+    "encoding": "^0.1.12",
     "fs": "0.0.1-security",
     "google-spreadsheet": "^3.0.8",
     "googleapis": "^47.0.0",
