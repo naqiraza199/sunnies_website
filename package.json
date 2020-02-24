@@ -17,10 +17,10 @@
     "Shannon Clarke (http://shannonclarke.com/)"
   ],
   "scripts": {
-    "start": "gulp && netlify-lambda serve functions",
-    "build": "gulp && netlify-lambda build functions",
-    "start:server": "netlify-lambda serve functions",
-    "build:server": "netlify-lambda build functions"
+    "start": "gulp;netlify-lambda serve functions",
+    "build": "gulp;npm run build:lambda",
+    "start:lambda": "netlify-lambda serve functions",
+    "build:lambda": "netlify-lambda build functions"
   },
   "dependencies": {
     "bootstrap": "^4.2.1",
