@@ -38,6 +38,8 @@
         <script src="/assets/js/owl.carousel.min.js"></script>
         <script src="/assets/js/jquery.magnific-popup.min.js"></script>
         <script src="/assets/js/aos.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
 
         <script src="/assets/js/main.js"></script>
         <script>
@@ -154,10 +156,24 @@
                     quantity: item_quantity
                 });
                 console.log(data_array)
+
+                if(data_array.length > 0){
+                    cart_count.innerHTML = data_array.length
+                    cart_count.style.visibility = "visible"
+                }
                 //return
                 localStorage.setItem("cart_items",JSON.stringify(data_array))
 
-                window.location = 'cart.html'
+                
+
+                //window.location = 'cart.html'
+
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Success',
+                    text: 'You have added '+item_quantity+' '+product_info.title+'(s) to your cart!',
+                    footer: '<a href="cart.html">View Items in Cart</a>'
+                    })
 
             }
 
@@ -178,6 +194,14 @@
                 var new_items = cart_items.filter((item) => item.id !== item_id)
                 console.log(new_items)
 
+                if(new_items.length > 0){
+                    cart_count.innerHTML = data_array.length
+                    //cart_count.style.visibility = "visible"
+                }else{
+                    cart_count.innerHTML = 0
+                    cart_count.style.visibility="hidden"
+                }
+
                 localStorage.setItem("cart_items",JSON.stringify(new_items))
             }
 
@@ -185,9 +209,17 @@
         </script>
 
         <script>
-
+            
+            //DISPLAY ITEMS IN CART
             var data_array = JSON.parse(localStorage.getItem("cart_items"))
             console.log(data_array)
+
+            var cart_count = document.getElementById("cart_count")
+            if(data_array.length > 0){
+                cart_count.innerHTML = data_array.length
+                cart_count.style.visibility = "visible"
+            }
+            
 
             var table = document.getElementById("shopping-cart");
             var total_cost = 0;
@@ -225,10 +257,10 @@
         
         <script>
             (function () {
-              var stripe = Stripe('pk_test_ujOhdb12UPkmWbya4ghecbTW');
+              //var stripe = Stripe('pk_test_ujOhdb12UPkmWbya4ghecbTW');
               //var stripe = Stripe('pk_live_HEnlS2Pd3aY9uYctGiws23fs');
               // Richieann
-              //var stripe = Stripe('pk_live_6JxSfq1ltlJKfDJfMj2cTGNn00fmKxrq3i');
+              var stripe = Stripe('pk_live_6JxSfq1ltlJKfDJfMj2cTGNn00fmKxrq3i');
 
               var checkoutButton = document.getElementById('checkout-button');
               checkoutButton.addEventListener('click', function () {

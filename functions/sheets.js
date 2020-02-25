@@ -62,7 +62,7 @@ var doc = new GoogleSpreadsheet(process.env.GOOGLE_SPREADSHEET_ID);
 
 exports.handler = async (event, context, callback) => {
     // console.log(event)
-    console.log(process.env.GOOGLE_PRIVATE_KEY.replace(new RegExp('\\\\n', '\g'), '\n'))
+    // console.log(process.env.GOOGLE_PRIVATE_KEY.replace(new RegExp('\\\\n', '\g'), '\n'))
     let sheetsResponse
     try {
         const parsedBody = JSON.parse(event.body)

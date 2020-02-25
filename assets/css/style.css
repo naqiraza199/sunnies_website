@@ -463,9 +463,9 @@ a {
     color: #333333;
     font-size: 20px;
     line-height: 35px; }
-  .site-blocks-cover .intro-text {
-    font-size: 16px;
-    line-height: 1.5; }
+  .site-section .intro-text {
+    font-size: 24px;
+    line-height: 1.5;}
 
 .site-blocks-1 {
   border-bottom: 1px solid #edf0f5; }
