@@ -67,8 +67,8 @@ exports.handler = async (event, context, callback) => {
     try {
         const parsedBody = JSON.parse(event.body)
         const { sheetId, name, email, address, telephone } = parsedBody
-        console.log(sheetId, name, email, address, telephone)
-
+        // console.log(sheetId, name, email, address, telephone)
+        console.log(parsedBody)
         if (!sheetId) {
             return {
                 statusCode: 500,

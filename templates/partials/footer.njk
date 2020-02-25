@@ -6,13 +6,20 @@
     <div class="row">
       <div class="col mb-5">
         <div class="block-7">
-          <form action="#" method="post">
+
+          <form  onsubmit='return saveMailingContact(this)'>
             <label for="email_subscribe" class="footer-heading">Subscribe to stay informed of upcoming deals</label>
-            <div class="form-group">
-              <input type="text" class="form-control py-4" id="email_subscribe" placeholder="Email" />
+            <div id="subscribe-success" style="display:none">
+              <div class="alert alert-success" role="alert">
+                Thanks for signing up! Stay tuned!
+              </div>
+            </div>
+            <div class="form-group" id="subscribe-form">
+              <input type="text" class="form-control py-4" id="email_subscribe" name="email_subscribe" placeholder="Please enter your email in order to receive updates" />
               <input type="submit" class="btn btn-sm btn-primary" value="Send" />
             </div>
           </form>
+        
         </div>
       </div>
     </div>

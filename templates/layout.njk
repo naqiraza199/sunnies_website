@@ -100,6 +100,15 @@
         </script>
         <script>
 
+            $("#contact-form").submit(function(e) {
+                e.preventDefault();
+                console.log('submit form')
+                var $form = $(this);
+                $.post($form.attr("action"), $form.serialize()).then(function() {
+                    alert("Thank you!");
+                });
+            });
+
             function getFormData(form){
                 var unindexed_array = $(form).serializeArray();
                 var indexed_array = {};
@@ -124,6 +133,38 @@
 
                 var shipping_data = getFormData(form)
                 console.log(shipping_data);
+                return false; //don't submit
+            }
+
+            function saveMailingContact(form){
+                var mailing_contact = getFormData(form)
+                console.log(mailing_contact);
+
+                /*$.post( "http://localhost:9000/sheets", { sheetId:"1", email:"shannon@shannonclarke.com" })
+                .done(function( data ) {
+                    alert( "Data Loaded: " + data );
+                });*/
+
+                 $.ajax({
+                    url: "http://localhost:9000/sheets",
+                    type: "POST",
+                    crossDomain: true,
+                    data: JSON.stringify({ sheetId:"1", name:'',email:mailing_contact.email_subscribe, date: new Date().toString()}),
+                    dataType: "json",
+                    success: function (response) {
+                        var resp = JSON.parse(response)
+                        alert(resp.status);
+                    },
+                    error: function (xhr, status) {
+                        console.log(xhr, status)
+                        //alert("error");
+                    }
+                });
+
+                //Show success
+                document.getElementById('subscribe-success').style.display="block"
+                //Hide input field
+                document.getElementById('subscribe-form').style.display="none"
                 return false; //don't submit
             }
 
