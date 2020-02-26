@@ -51,6 +51,7 @@ gulp.task("render_content", function (cb) {
       data(function () {
         var contents = {
           products: findFiles("./products"),
+          lens: findFiles("./lens"),
           branches: findFiles("./branches"),
           categories: findFiles("./categories"),
           events: findFiles("./events"),
@@ -97,9 +98,17 @@ gulp.task("render_images", function (cb) {
 //   cb()
 // })
 
-gulp.task('merge_json', function () {
+gulp.task('merge_products', function () {
   return gulp.src('products/*.json')
     .pipe(jsonConcat('products.json', function (data) {
+      return new Buffer(JSON.stringify(data));
+    }))
+    .pipe(gulp.dest('assets/data'));
+});
+
+gulp.task('merge_lens', function () {
+  return gulp.src('lens/*.json')
+    .pipe(jsonConcat('lens.json', function (data) {
       return new Buffer(JSON.stringify(data));
     }))
     .pipe(gulp.dest('assets/data'));
@@ -136,7 +145,7 @@ function watchFiles(done) {
   done();
 }
 
-gulp.task("default", gulp.parallel("render_content", "merge_json", "render_images"));
+gulp.task("default", gulp.parallel("render_content", "merge_products", "merge_lens", "render_images"));
 
 // dev task
-gulp.task("dev", gulp.parallel("render_content", watchFiles, browserSync));
+gulp.task("dev", gulp.parallel("render_content", "merge_products", "merge_lens", watchFiles, browserSync));

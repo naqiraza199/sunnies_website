@@ -38,6 +38,28 @@ collections:
       - { name: shipping, label: Shipping, widget: text }
       - { name: photo, label: Photo, widget: image, required: false }
       - { name: special, label: "On Special?", widget: select, default: ["None"], options: ["None", "Clearance", "Best Seller"] }
+  - name: lens
+    label: Lens
+    folder: lens
+    identifier_field: id
+    extension: json
+    widget: "list"
+    create: true
+    fields:
+      - { name: id, label: Id }
+      - { name: stripe_sku, label: Stripe SKU, widget: string , required: false}
+      - { name: category, label: Category Name, widget: select, options: ["Women", "Women Best Sellers", "Unisex", "Unisex Best Sellers", "Mens", "Mens Best Sellers", "Prescriptions Lens"] }
+      - { name: title, label: Title }
+      - { name: description, label: Description, widget: string }
+      - { name: material, label: Material, widget: string }
+      - { name: price, label: Price, widget: number }
+      - { name: currency, label: Currency, widget: select, options: ['BDS','USD'] }
+      - { name: measurement, label: Measurement, widget: string }
+      - { name: color, label: Color, widget: string }
+      - { name: shipping, label: Shipping, widget: text }
+      - { name: photo, label: Photo, widget: image, required: false }
+      - { name: special, label: "On Special?", widget: select, default: ["None"], options: ["None", "Clearance", "Best Seller"] }
+      - { name: type, label: Type, widget: text}
   - name: post
     label: Blog
     folder: posts

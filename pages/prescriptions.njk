@@ -14,13 +14,13 @@
       </div>
     </div>
   </div>
-  <div class="site-section block-3 site-blocks-2 bg-light">
+  <div class="block-3 site-blocks-2 bg-light">
     <div class="container">
      
      <div class="row">
       <div class="col-md-12">
         <div class="p-4">
-          <h4>What type of glasses do you need?</h4>
+          <h4 class="text-black">What type of glasses do you need?</h4>
         </div>
         {# <div id="checkboxes">
             <input type="radio" name="rGroup" value="1" id="r1" checked="checked" />
@@ -31,67 +31,88 @@
             <label class="whatever" for="r3">r3</label>
         </div> #}
 
-        <form onsubmit='return savePrescriptionInfo(this)'>
+        <form name="prescription-form" onsubmit='return savePrescriptionInfo(this)'>
+
+        <input type="hidden" id="product_id" name="product_id" />
+
         <div class="select_row">
-            <input type="radio" name="glassType" value="sv" id="sv" checked="checked" />
+            <input type="radio" name="glassType" value="single-vision" id="sv" checked="checked" />
             <label class="whatever" for="sv">
               <div class="select_item text-center">
-                <h4>Single Vision</h4>
+                <h4>Single Vision
+                  <a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="Single Vision lenses are the standard eyeglass prescription. These glasses are or one field of vision across the entire lens. Single vision glasses can be prescribed for distance vision, near-vision reading glasses, or computer-distance glasses. There are no lens height requirements for single vision prescriptions.\nIt is usually indicated by a (-) next to the numbers under the “sphere” category of your prescription.">  
+                    <span class="icon icon-info-circle"></span>
+                  </a>
+                </h4>
                 <p class="mb-0">Distance</p>
               </div>
             </label>
-            <input type="radio" name="glassType" value="nv" id="nv"/>
+            <input type="radio" name="glassType" value="near-vision" id="nv"/>
             <label class="whatever" for="nv">
                 <div class="select_item text-center">
-                <h4>Near Vision</h4>
+                <h4>Near Vision<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This lens is intended for seeing details at a close distance. Most commonly used for reading. It is usually indicated by a (+) next to the numbers under the “sphere” category of your prescription. You can either provide us with your exact prescription or opt by magnification strength.">  
+                        <span class="icon icon-info-circle"></span>
+                      </a></h4>
                 <p class="mb-0">Reading</p>
               </div>
             </label>
-            <input type="radio" name="glassType" value="pr" id="pr" />
+            <input type="radio" name="glassType" value="progressive-lens" id="pr" />
             <label class="whatever" for="pr">
                 <div class="select_item text-center">
-                <h4>Progressive</h4>
+                <h4>Progressive<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="Progressive lenses includes three fields of vision, without lines. In a Progressive lens, the shape of the corrected part of the lens is approximately that of a funnel or mushroom. The top portion is used for distance-vision, the middle portion (corridor) for mid-range vision, and the bottom portion for the near-vision or reading.">  
+                        <span class="icon icon-info-circle"></span>
+                      </a></h4>
                 <p class="mb-0">Distance & Reading</p>
               </div>
             </label>
-            <input type="radio" name="glassType" value="bf" id="bf" />
+            <input type="radio" name="glassType" value="bifocal" id="bf" />
             <label class="whatever" for="bf">
                 <div class="select_item text-center">
-                <h4>Bi-Focal</h4>
+                <h4>Bi-Focal<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This lens has two separate and distinct fields of vision: distance & near. A visible line separates the two.">  
+                        <span class="icon icon-info-circle"></span>
+                      </a></h4>
                 <p class="mb-0">Distance & Reading</p>
               </div>
             </label>
-            <input type="radio" name="glassType" value="np" id="np" />
+            <input type="radio" name="glassType" value="standard-lens" id="np" />
             <label class="whatever" for="np">
                 <div class="select_item text-center">
-                <h4>Fashion</h4>
+                <h4>Fashion<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This is the lens if your eyesight is perfect and you just want the frame as a fashion accessory. (Or, you’re looking to your optometrist to apply the lenses)">  
+                        <span class="icon icon-info-circle"></span>
+                      </a></h4>
                 <p class="mb-0">Non-Prescription</p>
               </div>
             </label>
         </div>
         
         <div class="p-4">
-          <h4>Enter your Prescription</h4>
+          <h4 class="text-black">Enter your Prescription</h4>
         </div>
         <div class="col-md-12">
                   
             <div class="p-3 p-lg-5 border">
                 <div class="form-group row">
                 <div class="col-md-3"></div>
-                <div class="col-md-3"><h4>Sphere (SPH)</h4></div>
-                <div class="col-md-3"><h4>Cylinder (CYL)</h4></div>
-                <div class="col-md-3"><h4>Axis (AXI)</h4></div>
+                <div class="col-md-3"><h4>Sphere (SPH)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="Indicates the strength of your prescription. Distance prescriptions usually have a (-) before the number. Reading prescriptions will usually have a (+) before the number. Below (marked in blue) is where you should find the Sphere details.">  
+                        <span class="icon icon-info-circle"></span>
+                      </a></h4></div>
+                <div class="col-md-3"><h4>Cylinder (CYL)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This indicates the amount of lens power for astigmatism. If nothing appears in this column, either you have no astigmatism, or your astigmatism is so slight that it is not really necessary to correct it with your eyeglass lenses.">  
+                        <span class="icon icon-info-circle"></span>
+                      </a></h4></div>
+                <div class="col-md-3"><h4>Axis (AXI)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This describes the lens meridian that contains no cylinder power to correct astigmatism. The axis is defined with a number from 1 to 180. The number 90 corresponds to the vertical meridian of the eye, and the number 180 corresponds to the horizontal meridian.">  
+                        <span class="icon icon-info-circle"></span>
+                      </a></h4></div>
                   <div class="col-md-3">
                     <p>Right (OD)</p>
                   </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="od_sph" name="od_sph" value="3.00" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00" required>
+                        <input type="text" class="form-control" id="od_sph" name="right_sph" value="3.00" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00" required>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="od_cyl" name="od_cyl" value="4.30" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00" required>
+                        <input type="text" class="form-control" id="od_cyl" name="right_cyl" value="4.30" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00" required>
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="od_axis" name="od_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="text" class="form-control" id="od_axis" name="right_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -99,18 +120,22 @@
                     <p>Left (OS)</p>
                   </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="os_sph" name="os_sph" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="text" class="form-control" id="os_sph" name="left_sph" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="os_cyl" name="os_cyl" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="text" class="form-control" id="os_cyl" name="left_cyl" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="os_axis" name="os_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="text" class="form-control" id="os_axis" name="left_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                 </div>
                 <div class="form-group row">
                   <div class="col-md-3">
-                    <p>PD</p>
+                    <p>PD
+                      <a href="#" data-toggle="tooltip" data-html="true" title="If your prescription does not include a PD, please leave the value at 62 for single vision. For Bi-focal and Progressive lenses, please provide the Near PD when applicable, otherwise you may choose to leave it at 59.">  
+                        <span class="icon icon-info-circle"></span>
+                      </a>
+                    </p>
                   </div>
                     <div class="col-md-3">
                         <input type="number" class="form-control" id="pd" name="pd" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
@@ -119,7 +144,11 @@
                 <div class="form-group row">
                     <div class="ml-5">
                         <input type="checkbox" class="form-check-input" id="prism" name="prism">
-                        <label for="prism">Do you have Prism?</label>
+                        <label for="prism">Do you have Prism?
+                          <a href="#" data-toggle="tooltip" data-html="true" title="Prism is prescribed to correct a muscle imbalance between the two eyes so it should help make your vision more comfortable.">  
+                          <span class="icon icon-info-circle"></span>
+                        </a>
+                        </label>
                     </div>
                     
                 </div>
@@ -127,28 +156,33 @@
                     
         </div>
         <div class="p-4">
-          <h4>Choose your Lens Type</h4>
+          <h4 class="text-black">Choose your Lens Type</h4>
         </div>
-        <div class="select_row">
-            <input type="radio" name="lensType" value="1" id="lens-clear" checked="checked" />
-            <label class="whatever" for="lens-clear">
-              <div class="select_item text-center">
-                <h4>Standard</h4>
-                <p class="mb-0">Clear Lens</p>
-              </div>
-            </label>
-            <input type="radio" name="lensType" value="1" id="lens-bl"/>
-            <label class="whatever" for="lens-bl">
+        <div class="select_row" id="lens_types">
+            
+           
+              {# <input type="radio" name="lensType" value="1" id="lens-clear" checked="checked" />
+              <label class="whatever" for="lens-clear">
                 <div class="select_item text-center">
-                <h4>Premium</h4>
-                <p class="mb-0">Blue Light, Transitions & A R C</p>
-              </div>
-            </label>
+                  <h4>Standard</h4>
+                  <p class="mb-0">Clear Lens</p>
+                </div>
+              </label>
+            
+              <input type="radio" name="lensType" value="1" id="lens-bl"/>
+              <label class="whatever" for="lens-bl">
+                  <div class="select_item text-center">
+                  <h4>Premium</h4>
+                  <p class="mb-0">Blue Light, Transitions & A R C</p>
+                </div>
+              </label> #}
+            
+            
             
             
         </div>
         <div class="form-group row">
-          <input type="submit" class="btn btn-lg btn-block btn-primary mt-3" value="Add Lens to Order" />
+          <input type="submit" class="btn btn-lg btn-block btn-primary mt-3" value="Add to Cart" />
         </div>
         </form>
       </div>
@@ -159,5 +193,82 @@
       
     </div>
   </div>
+
+  <script>
+
+        $.getJSON("/assets/data/lens.json", function (data) {
+
+            console.log('lens catalog',data);
+            localStorage.setItem("lens",JSON.stringify(data))
+
+            populateLensTypes(Object.values(data), 'single-vision')
+            
+        });
+
+            
+  
+      function getUrlVars() {
+          var vars = {};
+          var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+              vars[key] = value;
+          });
+          return vars;
+      }
+
+      function populateLensTypes(lens_array, selection){
+              var lens_html = '';
+              for (var i =0; i < lens_array.length-1; i++){
+                if(lens_array[i].type === selection){
+                  lens_html +=`<input type="radio" name="lensType" value="`+lens_array[i].id+`" id="`+lens_array[i].id+`" checked="checked" />
+                                <label class="whatever" for="`+lens_array[i].id+`">
+                                  <div class="select_item text-center">
+                                    <h4>`+lens_array[i].title+`
+                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+lens_array[i].description+`">  
+                                        <span class="icon icon-info-circle"></span>
+                                      </a>
+                                    </h4>
+                                    <p class="mb-0">`+lens_array[i].shipping+`</p>
+                                    <p class="mb-0">$ `+lens_array[i].price+`</p>
+                                  </div>
+                                </label>`
+                }
+              }
+              document.getElementById('lens_types').innerHTML = lens_html;
+      }
+
+      if(getUrlVars()['id']){
+        var url_param = getUrlVars()['id'].replace('%20','-').replace('#/','').toLowerCase()
+        console.log('product id',url_param)
+        document.getElementById('product_id').value = url_param
+      }else{
+        //alert('problem')
+        window.location = 'shop.html'
+      }
+
+      var products = JSON.parse(localStorage.getItem('products'))
+      {# console.log('stored products', products) #}
+      console.log('current product', products[url_param])
+
+      
+
+      var radios = document.forms["prescription-form"].elements["glassType"];
+      for(var i = 0, max = radios.length; i < max; i++) {
+          radios[i].onclick = function() {
+              //alert(this.value);
+              var selection = this.value;
+              console.log(selection)
+              var lens_catalog = JSON.parse(localStorage.getItem("lens"))
+              //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
+              //console.log(lens_catalog, lens_catalog.length)
+              console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
+              var lens_array = Object.values(lens_catalog)
+
+              populateLensTypes(lens_array, selection)
+
+              
+          }
+      }
+
+  </script>
 
 {% endblock %}

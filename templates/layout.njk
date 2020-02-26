@@ -30,7 +30,7 @@
         <!-- Bootstrap core JavaScript -->
 
         
-        <script src="/assets/js/jquery-3.3.1.min.js"></script>
+        
         <script src="/assets/js/jquery-ui.js"></script>
         <script src="/assets/js/popper.min.js"></script>
         <script src="/assets/js/bootstrap.min.js"></script>
@@ -39,7 +39,7 @@
         <script src="/assets/js/jquery.magnific-popup.min.js"></script>
         <script src="/assets/js/aos.js"></script>
         
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script>
+        {# <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script> #}
 
         <script src="/assets/js/main.js"></script>
         <script>
@@ -58,7 +58,7 @@
             }
         </script>
         <script>
-
+            //swal("Good job!", "You clicked the button!", "success");
             var items = [];
             var products = [];
             $.getJSON("/assets/data/products.json", function (data) {
@@ -73,6 +73,10 @@
                 //products = items[0].products;
                 //console.log(products)
             });
+
+            
+
+            $('a[data-toggle=tooltip]').tooltip();
 
             var infoModal = $("#myModal");
             $(".openModal").on("click", function () {
@@ -100,12 +104,33 @@
         </script>
         <script>
 
-            $("#contact-form").submit(function(e) {
+            {# $("#contact-form").submit(function(e) {
                 e.preventDefault();
-                console.log('submit form')
+                console.log('submit form',$form.attr("action"),$form.serialize())
                 var $form = $(this);
                 $.post($form.attr("action"), $form.serialize()).then(function() {
                     alert("Thank you!");
+                });
+            }); #}
+
+            let testForm = document.querySelector("#contact-form");
+      
+            testForm.addEventListener('submit', e => {
+                e.preventDefault();
+                console.log(testForm.getAttribute('action'))
+                const formData = new FormData(testForm);
+                fetch(testForm.getAttribute('action'), {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/x-www-form-urlencoded;charset=UTF-8',
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+                    },
+                    body: new URLSearchParams(formData).toString()
+                })
+                .then(res => {
+                    if (res) {
+                        console.log('success')
+                    }
                 });
             });
 
@@ -120,10 +145,76 @@
                 return indexed_array;
             }
 
+            function updateCartItems(product_info){
+                var data_array = JSON.parse(localStorage.getItem("cart_items"))
+                console.log(data_array)
+
+                if(!data_array){
+                    data_array = []
+                }
+
+                data_array.push({
+                    id: product_info.id,
+                    sku: product_info.stripe_sku,
+                    image:"",
+                    product: product_info.title,
+                    price: product_info.price,
+                    quantity: product_info.quantity
+                });
+                console.log(data_array)
+
+                if(data_array.length > 0){
+                    cart_count.innerHTML = data_array.length
+                    cart_count.style.visibility = "visible"
+                }
+                //return
+                localStorage.setItem("cart_items",JSON.stringify(data_array))
+            }
+
             function savePrescriptionInfo(form){
                 //var data = JSON.stringify($(form).serializeArray()); //  <-----------
                 var prescription_data = getFormData(form)
                 console.log(prescription_data)
+                localStorage.setItem('prescriptions', prescription_data)
+
+                var products = JSON.parse(localStorage.getItem('products'))
+                console.log('current product', products[prescription_data.product_id])
+                //return;
+                var product_info = products[prescription_data.product_id]
+                console.log('product info',product_info)
+
+                //console.log(id, name, price, sku)
+                
+                product_info.quantity = 1
+                product_info.title +=' ('+product_info.color+' | '+product_info.material+')'
+                
+                updateCartItems(product_info)
+
+                
+
+                var lens = JSON.parse(localStorage.getItem('lens'))
+                var lens_info = lens[prescription_data.lensType]
+                console.log('lens info',lens_info)
+
+                //return false
+
+                prescription_data.id = lens_info.id
+                prescription_data.sku = lens_info.stripe_sku
+                prescription_data.price = lens_info.price
+                prescription_data.quantity = 1
+                prescription_data.title = lens_info.title+'('+lens_info.shipping+')'
+                updateCartItems(prescription_data)
+
+                swal({
+                    title: "Added to Cart!",
+                    text: 'You have added one '+product_info.title+' as well as a lens option ('+prescription_data.title+') to your cart!',
+                    icon: "success",
+                    button: "Continue Shopping",
+                }).then((value) => {
+                    //swal(`The returned value is: ${value}`);
+                    window.location = 'shop.html'
+                });;
+
                 //console.log(JSON.parse(data));
                 return false; //don't submit
             }
@@ -132,7 +223,52 @@
                 //var data = JSON.stringify($(form).serializeArray()); //  <-----------
 
                 var shipping_data = getFormData(form)
-                console.log(shipping_data);
+                //console.log(shipping_data);
+
+                swal({
+                    title: "Confirm purchase",
+                    text: "Kindly confirm that you want to proceed with this purchase",
+                    icon: "warning",
+                    buttons: true,
+                })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        const {shippingform_fname, shippingform_lname,shippingform_address,shippingform_email, shippingform_telephone, shippingform_instructions} = shipping_data
+
+                        var form_data = {
+                            name: shippingform_fname + ' ' + shippingform_lname,
+                            address:shippingform_address,
+                            telephone:shippingform_telephone,
+                            email: shippingform_email,
+                            instructions: shippingform_instructions,
+                            sheetId:'0',
+                            date: new Date().toString()
+                        }
+
+                        console.log('shipping info', form_data)
+
+                        $.ajax({
+                            url: "http://localhost:9000/sheets",
+                            //url:"/.netlify/functions/sheets",
+                            type: "POST",
+                            crossDomain: true,
+                            data: JSON.stringify(form_data),
+                            dataType: "json",
+                            success: function (response) {
+                                var resp = JSON.parse(response)
+                                alert(resp.status);
+                            },
+                            error: function (xhr, status) {
+                                console.log(xhr, status)
+                                //alert("error");
+                            }
+                        });
+
+                    
+                    }
+                });
+
+                
                 return false; //don't submit
             }
 
@@ -146,7 +282,8 @@
                 });*/
 
                  $.ajax({
-                    url: "http://localhost:9000/sheets",
+                    //url: "http://localhost:9000/sheets",
+                    url:"/.netlify/functions/sheets",
                     type: "POST",
                     crossDomain: true,
                     data: JSON.stringify({ sheetId:"1", name:'',email:mailing_contact.email_subscribe, date: new Date().toString()}),
@@ -168,6 +305,8 @@
                 return false; //don't submit
             }
 
+            
+
             function addToCart(){
                 var product_id = document.getElementById("item_id").innerHTML;
                 console.log('clicked on product with id: ', product_id)
@@ -176,45 +315,33 @@
                 console.log('current product', products[product_id])
                 //return;
                 var product_info = products[product_id]
+                console.log('product info',product_info)
 
                 //console.log(id, name, price, sku)
                 var item_quantity = document.getElementById("item_quantity").value;
                 console.log(item_quantity)
-
-                var data_array = JSON.parse(localStorage.getItem("cart_items"))
-                console.log(data_array)
-
-                if(!data_array){
-                    data_array = []
-                }
-
-                data_array.push({
-                    id: product_info.id,
-                    sku: product_info.stripe_sku,
-                    image:"",
-                    product: product_info.title,
-                    price: product_info.price,
-                    quantity: item_quantity
-                });
-                console.log(data_array)
-
-                if(data_array.length > 0){
-                    cart_count.innerHTML = data_array.length
-                    cart_count.style.visibility = "visible"
-                }
-                //return
-                localStorage.setItem("cart_items",JSON.stringify(data_array))
-
+                product_info.quantity = item_quantity
+                product_info.title +=' ('+product_info.color+' | '+product_info.material+')'
                 
-
+                updateCartItems(product_info)
                 //window.location = 'cart.html'
 
-                Swal.fire({
+                /*Swal.fire({
                     icon: 'success',
                     title: 'Success',
                     text: 'You have added '+item_quantity+' '+product_info.title+'(s) to your cart!',
                     footer: '<a href="cart.html">View Items in Cart</a>'
-                    })
+                    })*/
+
+                swal({
+                    title: "Added to Cart!",
+                    text: 'You have added '+item_quantity+' '+product_info.title+'(s) to your cart!',
+                    icon: "success",
+                    button: "Continue Shopping",
+                }).then((value) => {
+                    //swal(`The returned value is: ${value}`);
+                    window.location = 'shop.html'
+                });;
 
             }
 
@@ -252,6 +379,7 @@
         <script>
             
             //DISPLAY ITEMS IN CART
+            console.log('display items in cart')
             var data_array = JSON.parse(localStorage.getItem("cart_items"))
             console.log(data_array)
 
@@ -263,6 +391,14 @@
             
 
             var table = document.getElementById("shopping-cart");
+
+            if(data_array.length < 1){
+                table.style.display = 'none'
+                document.getElementById('empty_cart_notice').style.display="block"
+            }else{
+                //table.style.display = 'block'
+                document.getElementById('empty_cart_notice').style.display="none"
+            }
             var total_cost = 0;
 
             for(var i=0; i<data_array.length; i++){

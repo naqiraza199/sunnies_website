@@ -1,0 +1,17 @@
+{
+  "color": "Nil",
+  "material": "Nil",
+  "price": 90,
+  "stripe_sku": "sku_GkLSYFg3dEgIdy",
+  "shipping": "Bifocals, Blue Light and A.R.C",
+  "currency": "BDS",
+  "title": "STANDARD LENS PACKAGE",
+  "special": [
+    "None"
+  ],
+  "id": "slp-2",
+  "measurement": "Nil",
+  "description": "Our Standard Lens Package includes our 2 premium coatings to give you full eye protection 365 days a year.",
+  "category": "Prescriptions Lens",
+  "type": "standard-lens"
+}

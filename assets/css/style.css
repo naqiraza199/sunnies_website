@@ -765,7 +765,7 @@ a {
 }
 
 .select_row input[type=radio]:checked + .whatever{
-    background-color: #7971ea;
+    background-color: #a09cde; /*#7971ea;*/
     color:#fff
 }
   
@@ -795,5 +795,5 @@ a {
 }
 
 #checkboxes input[type=radio]:checked + .whatever{
-    background-color: #7971ea;
+    background-color: #a09cde; /*#7971ea;*/
 }

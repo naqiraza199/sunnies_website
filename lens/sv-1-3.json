@@ -1,0 +1,17 @@
+{
+  "color": "CLEAR",
+  "material": "NIL",
+  "price": 200,
+  "stripe_sku": "sku_Gk4r6PAa4F8F7U",
+  "shipping": "Single vision plain for prescription under (+\\-)3",
+  "currency": "BDS",
+  "title": "SINGLE VISION ",
+  "special": [
+    "None"
+  ],
+  "id": "sv-1-3",
+  "measurement": "0",
+  "description": "Distance - This lens helps you see details at a distance. It is usually indicated by a (-) next to the numbers under the “sphere” category of your prescription.",
+  "category": "Prescriptions Lens",
+  "type": "single-vision"
+}
