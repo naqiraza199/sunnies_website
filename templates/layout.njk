@@ -275,8 +275,8 @@
                         console.log('shipping info', form_data)
 
                         $.ajax({
-                            url: "http://localhost:9000/sheets",
-                            //url:"/.netlify/functions/sheets",
+                            //url: "http://localhost:9000/sheets",
+                            url:"/.netlify/functions/sheets",
                             type: "POST",
                             crossDomain: true,
                             data: JSON.stringify(form_data),
@@ -352,13 +352,6 @@
                 
                 updateCartItems(product_info)
                 //window.location = 'cart.html'
-
-                /*Swal.fire({
-                    icon: 'success',
-                    title: 'Success',
-                    text: 'You have added '+item_quantity+' '+product_info.title+'(s) to your cart!',
-                    footer: '<a href="cart.html">View Items in Cart</a>'
-                    })*/
 
                 
 
@@ -578,21 +571,21 @@
                             sheetId:'0',
                             date: new Date().toString()
                         }
-                        console.log(order_info)
+                console.log(order_info)
 
-                        localStorage.setItem("order_info",JSON.stringify(order_info))
+                localStorage.setItem("order_info",JSON.stringify(order_info))
                 //return
                 // When the customer clicks on the button, redirect
                 // them to Checkout.
-                /*stripe.redirectToCheckout({
+                stripe.redirectToCheckout({
                   
                   //live items
                   //items: [{ sku: 'sku_GZ2BWHOxgx2TSg', quantity: 1 }],
                   //Richieann
                   //items: [{ sku: 'sku_GZ5MJ23DUG6rCH', quantity: 1 }],
                   //test items
-                  items: [{ sku: 'sku_GeHtCV10DKJRZn', quantity: 1 },{sku: 'sku_GeINSvjcP8C0ck', quantity: 1}],
-                  //items: checkout_array,
+                  //items: [{ sku: 'sku_GeHtCV10DKJRZn', quantity: 1 },{sku: 'sku_GeINSvjcP8C0ck', quantity: 1}],
+                  items: checkout_array,
                   //billingAddressCollection:'required',
 
                   // Do not rely on the redirect to the successUrl for fulfilling
@@ -613,7 +606,7 @@
 
                     //TODO: Send email with customer prescription info
                     console.log('send email', result)
-                  });*/
+                  });
               });
             })();
           </script>
