@@ -35,7 +35,8 @@
     //Save order info to spreadsheet
     $.ajax({
         //url: "http://localhost:9000/sheets",
-        url:"/.netlify/functions/sheets",
+        //url:"/.netlify/functions/sheets",
+        url:"{{functions_api}}",
         type: "POST",
         crossDomain: true,
         data: JSON.stringify(order_info),

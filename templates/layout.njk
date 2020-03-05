@@ -59,11 +59,10 @@
         </script>
         <script>
 
-            const arr = [ { a:2,x: 1 }, { a:2,x: 2 }, { a:2,x: 4 } ]
-            const result = arr.reduce( ( sum, { a } ) => sum + a , 0)
-            console.log( result )    
+             
 
-        
+        console.log('{{site_title}}')
+                console.log('{{stripe_key}}')
             {# swal("Good job!", "You clicked the button! {{site_title}}", "success"); #}
             var items = [];
             var products = [];
@@ -276,7 +275,8 @@
 
                         $.ajax({
                             //url: "http://localhost:9000/sheets",
-                            url:"/.netlify/functions/sheets",
+                            //url:"/.netlify/functions/sheets",
+                            url:"{{functions_api}}",
                             type: "POST",
                             crossDomain: true,
                             data: JSON.stringify(form_data),
@@ -310,7 +310,8 @@
 
                  $.ajax({
                     //url: "http://localhost:9000/sheets",
-                    url:"/.netlify/functions/sheets",
+                    //url:"/.netlify/functions/sheets",
+                    url:"{{functions_api}}",
                     type: "POST",
                     crossDomain: true,
                     data: JSON.stringify({ sheetId:"1", name:'',email:mailing_contact.email_subscribe, date: new Date().toString()}),
@@ -494,7 +495,7 @@
         
         <script>
             (function () {
-              var stripe = Stripe('pk_test_ujOhdb12UPkmWbya4ghecbTW');
+              var stripe = Stripe('{{stripe_key}}');
               //var stripe = Stripe('pk_live_HEnlS2Pd3aY9uYctGiws23fs');
               // Richieann
               //var stripe = Stripe('pk_live_6JxSfq1ltlJKfDJfMj2cTGNn00fmKxrq3i');
@@ -542,10 +543,17 @@
               var checkoutButton = document.getElementById('checkout-button');
               checkoutButton.addEventListener('click', function () {
 
-                  //console.log('{{site_title}}')
+                
+                
                 var cart_items = JSON.parse(localStorage.getItem("cart_items"))
-                var checkout_array = []
-                cart_items.map(item=>checkout_array.push({sku:item.sku, quantity: parseInt(item.quantity)}))
+
+                if("{{environment}}"==="test"){
+                    var checkout_array = [{ sku: 'sku_GeHtCV10DKJRZn', quantity: 1 },{sku: 'sku_GeINSvjcP8C0ck', quantity: 1}]
+                }else{
+                    var checkout_array = []
+                    cart_items.map(item=>checkout_array.push({sku:item.sku, quantity: parseInt(item.quantity)}))
+                }
+                
                 console.log('checkout',checkout_array)
 
                 var cart_skus = cart_items.map(item=>item.sku).join(',')
@@ -593,8 +601,8 @@
                   // a successful payment.
                   // Instead use one of the strategies described in
                   // https://stripe.com/docs/payments/checkout/fulfillment
-                  successUrl: 'https://sunniesbyrichie.com/success.html',
-                  cancelUrl: 'https://sunniesbyrichie.com/cart.html',
+                  successUrl: '{{success_url}}',
+                  cancelUrl: '{{cancel_url}}',
                 })
                   .then(function (result) {
                     if (result.error) {

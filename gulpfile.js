@@ -37,7 +37,7 @@ var findFiles = function (folder) {
   return posts;
 };
 
-gulp.task("render_content", function (cb) {
+gulp.task("render_content_dev", function (cb) {
   // Copy assets to dist folder
   gulp.src(["./assets/**/*"]).pipe(gulp.dest("./build/assets/"));
   gulp.src(["pages/**/*.yml"]).pipe(gulp.dest("./build/"));
@@ -67,11 +67,59 @@ gulp.task("render_content", function (cb) {
       nunjucksRender({
         path: ["templates/"], // String or Array
         data: {
-          // content_entry: { item: "one", entry: "two" },
-          site_title: "Sunnies By Richie",
-          instagram_username: "shannon",
-          contact_form_url:
-            "https://docs.google.com/forms/d/1DOxT0tkNRE35pucLyZMH_eght_Enhr0RcofOX-8C3xs/formResponse"
+          environment: "test",
+          site_title: "Sunnies By Richie Dev",
+          stripe_key: 'pk_test_ujOhdb12UPkmWbya4ghecbTW',
+          functions_api: "http://localhost:9000/sheets",
+          success_url: "http://localhost:3000/success.html",
+          cancel_url: "http://localhost:3000/cart.html"
+        },
+        envOptions: {
+          watch: false
+        },
+        manageEnv: manageEnvironment
+      })
+    )
+    .pipe(gulp.dest("build"));
+  cb();
+});
+
+gulp.task("render_content_prod", function (cb) {
+  // Copy assets to dist folder
+  gulp.src(["./assets/**/*"]).pipe(gulp.dest("./build/assets/"));
+  gulp.src(["pages/**/*.yml"]).pipe(gulp.dest("./build/"));
+
+  //Render nunjucks to html
+  gulp
+    .src("pages/**/*.+(html|njk)")
+    // Adding data to Nunjucks
+
+    .pipe(
+      data(function () {
+        var contents = {
+          products: findFiles("./products"),
+          lens: findFiles("./lens"),
+          branches: findFiles("./branches"),
+          categories: findFiles("./categories"),
+          events: findFiles("./events"),
+          featured_products: findFiles("./featured_products"),
+          blog: findFiles("./posts"),
+          siteinfo: findFiles("./site"),
+          staff: findFiles("./staff")
+        };
+        return contents;
+      })
+    )
+    .pipe(
+      nunjucksRender({
+        path: ["templates/"], // String or Array
+        data: {
+          environment: "production",
+          site_title: "Sunnies By Richie Prod",
+          stripe_key: 'pk_live_6JxSfq1ltlJKfDJfMj2cTGNn00fmKxrq3i',
+          functions_api: "/.netlify/functions/sheets",
+          success_url: 'https://sunniesbyrichie.com/success.html',
+          cancel_url: 'https://sunniesbyrichie.com/cart.html',
         },
         envOptions: {
           watch: false
@@ -133,19 +181,19 @@ function browserSyncReload(done) {
 
 // Watch files
 function watchFiles(done) {
-  gulp.watch("./posts/**/*", gulp.series("render_content"));
-  gulp.watch("./site/**/*", gulp.series("render_content"));
-  gulp.watch("./featured_products/**/*", gulp.series("render_content"));
-  gulp.watch("./branches/**/*", gulp.series("render_content"));
-  gulp.watch("./categories/**/*", gulp.series("render_content"));
-  gulp.watch("./assets/**/*", gulp.series("render_content"));
-  gulp.watch("./templates/**/*", gulp.series("render_content"));
-  gulp.watch("./pages/**/*", gulp.series("render_content"));
+  gulp.watch("./posts/**/*", gulp.series("render_content_dev"));
+  gulp.watch("./site/**/*", gulp.series("render_content_dev"));
+  gulp.watch("./featured_products/**/*", gulp.series("render_content_dev"));
+  gulp.watch("./branches/**/*", gulp.series("render_content_dev"));
+  gulp.watch("./categories/**/*", gulp.series("render_content_dev"));
+  gulp.watch("./assets/**/*", gulp.series("render_content_dev"));
+  gulp.watch("./templates/**/*", gulp.series("render_content_dev"));
+  gulp.watch("./pages/**/*", gulp.series("render_content_dev"));
   gulp.watch("./build/*.html", browserSyncReload);
   done();
 }
 
-gulp.task("default", gulp.parallel("render_content", "merge_products", "merge_lens", "render_images"));
+gulp.task("default", gulp.parallel("render_content_prod", "merge_products", "merge_lens", "render_images"));
 
 // dev task
-gulp.task("dev", gulp.parallel("render_content", "merge_products", "merge_lens", watchFiles, browserSync));
+gulp.task("dev", gulp.parallel("render_content_dev", "merge_products", "merge_lens", watchFiles, browserSync));
