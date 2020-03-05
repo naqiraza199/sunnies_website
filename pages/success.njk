@@ -14,11 +14,43 @@
       </div>
       <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:500px">
         <h2>Successfully Ordered!</h2>
+        <p id="order_notice"></p>
         <p>
           <a href="index.html">Back to Homepage</a>
         </p>
       </div>
     </div>
   </div>
+
+  <script>
+
+    var order_info = JSON.parse(localStorage.getItem('order_info'))
+    console.log(order_info)
+
+    //Display order id to customer
+    document.getElementById('order_notice').innerHTML = 'Your Order ID is '+order_info.orderid
+
+    //Send email to customer and to store owner
+
+    //Save order info to spreadsheet
+    $.ajax({
+        //url: "http://localhost:9000/sheets",
+        url:"/.netlify/functions/sheets",
+        type: "POST",
+        crossDomain: true,
+        data: JSON.stringify(order_info),
+        dataType: "json",
+        success: function (response) {
+            var resp = JSON.parse(response)
+            alert(resp.status);
+        },
+        error: function (xhr, status) {
+            console.log(xhr, status)
+            //alert("error");
+        }
+    });
+
+
+  </script>
 
 {% endblock %}

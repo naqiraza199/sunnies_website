@@ -69,7 +69,7 @@ gulp.task("render_content", function (cb) {
         data: {
           // content_entry: { item: "one", entry: "two" },
           site_title: "Sunnies By Richie",
-          instagram_username: "",
+          instagram_username: "shannon",
           contact_form_url:
             "https://docs.google.com/forms/d/1DOxT0tkNRE35pucLyZMH_eght_Enhr0RcofOX-8C3xs/formResponse"
         },

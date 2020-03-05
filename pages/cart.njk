@@ -26,65 +26,173 @@
               <span class="icon icon-info-circle"></span>  Your cart is empty. Please browse the <a href="shop.html">Shop</a> page to find a product that you like!
             </div>
           </div>
-
-            <table id="shopping-cart" class="table table-bordered">
-              <thead>
-                <tr>
-                  {# <th class="product-thumbnail">Image</th> #}
-                  <th class="product-name">Product</th>
-                  <th class="product-price">Price</th>
-                  <th class="product-quantity">Quantity</th>
-                  {# <th class="product-total">Total</th> #}
-                  <th class="product-remove">Remove</th>
-                </tr>
-              </thead>
-              <tbody>
-                {# <tr>
-                  <td class="product-thumbnail">
-                    <img src="/assets/images/cloth_1.jpg" alt="Image" class="img-fluid">
-                  </td>
-                  <td class="product-name">
-                    <h2 class="h5 text-black">Top Up T-Shirt</h2>
-                  </td>
-                  <td>$49.00</td>
-                  <td>
-                    <div class="input-group mb-3" style="max-width: 120px;">
-                      <div class="input-group-prepend">
-                        <button class="btn btn-outline-primary js-btn-minus" type="button">&minus;</button>
-                      </div>
-                      <input type="text" class="form-control text-center" value="1" placeholder="" aria-label="Example text with button addon" aria-describedby="button-addon1">
-                      <div class="input-group-append">
-                        <button class="btn btn-outline-primary js-btn-plus" type="button">&plus;</button>
-                      </div>
-                    </div>
-
-                  </td>
-                  <td>$49.00</td>
-                  <td>
-                    <a href="#" class="btn btn-primary btn-sm">X</a>
-                  </td>
-                </tr> #}
-
-                
-              </tbody>
-            </table>
+            {# <h2 class="h3 mb-3 text-black">Your Cart</h2> #}
+            
           </div>
         </form>
       </div>
 
       <div class="row">
-        <div class="col-md-6">
+      <div class="col-md-6">
+
+          
+
           <div class="row mb-5">
-            {# <div class="col-md-6 mb-3 mb-md-0">
-              <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#shippingModal">Add Delivery ($20)</button>
-            </div> #}
-            {# <div class="col-md-6">
-              <a href="shop.html" class="btn btn-outline-primary btn-sm btn-block">Add Prescription</a>
-            </div> #}
-            {# <div class="col-md-6">
-              <a href="shop.html" class="btn btn-outline-primary btn-sm btn-block">Back to Shopping</a>
-            </div> #}
+            <div class="col-md-12">
+              <h2 class="h3 mb-3 text-black">Your Cart</h2>
+              {# <button type="button" class="btn btn-primary btn-xs">Small button</button> #}
+              <div class="p-2 border">
+
+              <table id="shopping-cart" class="table site-block-order-table mb-5">
+                <thead>
+                  <tr>
+                    {# <th class="product-thumbnail">Image</th> #}
+                    <th class="product-name" width="60%">Product</th>
+                    <th class="product-total" width="30%">Total</th>
+                    {# <th class="product-total">Total</th> #}
+                    <th class="product-remove" width="10%">Remove</th>
+                  </tr>
+                  
+                </thead>
+                <tbody>
+                  
+                      <tr>
+                        <td class="text-black font-weight-bold">
+                          <strong>Cart Subtotal</strong>
+                        </td>
+                        <td class="text-black"><span id="sub_total" class="text-black"></span></td>
+                      </tr>
+                      <tr>
+                        <td class="text-black font-weight-bold">
+                          <strong>Order Total</strong>
+                        </td>
+                        <td class="text-black font-weight-bold">
+                          <strong id="final_total" class="text-black"></strong>
+                        </td>
+                      </tr>
+                  
+                </tbody>
+              </table>
+              
+              </div>
+            </div>
           </div>
+
+        </div>
+        <div class="col-md-6 mb-5 mb-md-0">
+          <h2 class="h3 mb-3 text-black">Billing Details</h2>
+          <div class="p-3 p-lg-5 border">
+
+          <form id="billing_form" onsubmit='return saveBillingInfo(this)'>
+
+                  <div>
+                      <div class="form-group row">
+                          <div class="col-md-6">
+                              <label for="c_fname" class="text-black">First Name
+                                  <span class="text-danger">*</span></label>
+                              <input type="text" class="form-control" id="c_fname" name="shippingform_fname" value="Shannon"  required/>
+                          </div>
+                          <div class="col-md-6">
+                              <label for="c_lname" class="text-black">Last Name
+                                  <span class="text-danger">*</span></label>
+                              <input type="text" class="form-control" id="c_lname" name="shippingform_lname" value="Clarke" required/>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-12">
+                              <label for="c_email" class="text-black">Email
+                                  <span class="text-danger">*</span></label>
+                              <input type="email" class="form-control" id="c_email" name="shippingform_email" value="email@email.com" required/>
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <div class="col-md-12">
+                              <label for="c_telephone" class="text-black">Telephone
+                              </label>
+                              <input type="text" class="form-control" id="c_telephone" name="shippingform_telephone" value="2461234567">
+                          </div>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="c_ship_different_address" class="text-black" data-toggle="collapse" href="#ship_different_address" role="button" aria-expanded="false" aria-controls="ship_different_address">
+                          <input type="checkbox" value="1" id="btn_addDelivery" />
+                          Add delivery ?</label>
+                        <div class="collapse" id="ship_different_address">
+                          <div class="py-2">
+
+                          <div class="alert alert-danger" role="alert">
+                            <span class="icon icon-info-circle"></span>  Delivery costs an additional $20
+                          </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_address" class="text-black">Mailing Address
+                                    <span class="text-danger">*</span></label></label>
+                                    {# <input type="text" class="form-control" id="c_address" name="shippingform_address" value="Turning Hall" required/> #}
+                                    <textarea id="c_address" cols="10" rows="3" class="form-control" name="shippingform_address">Go down the road</textarea>
+                                </div>
+                            </div>
+
+                            <div class="form-group row">
+                                <div class="col-md-12">
+                                    <label for="c_message" class="text-black">Additional Instructions
+                                    </label>
+                                    <textarea id="c_message" cols="30" rows="3" class="form-control" name="shippingform_instructions">Go down the road</textarea>
+                                </div>
+                            </div>
+
+                          </div>
+
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        {# <button class="btn btn-primary btn-lg py-3 btn-block" onclick="window.location='thankyou.html'">Checkout</button> #}
+                        <button type="button" class="btn btn-primary btn-lg py-3 btn-block" id="checkout-button">Checkout</button>
+                      </div>
+                      
+                      {# <div class="form-group row">
+                          <div class="col-lg-12">
+                              <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save">
+                          </div>
+                      </div> #}
+                  </div>
+              </form>
+            
+            
+            
+
+            {# <div class="form-group">
+              <label for="c_create_account" class="text-black" data-toggle="collapse" href="#create_an_account" role="button" aria-expanded="false" aria-controls="create_an_account"><input type="checkbox" value="1" id="c_create_account">
+                Create an account?</label>
+              <div class="collapse" id="create_an_account">
+                <div class="py-2">
+                  <p class="mb-3">Create an account by entering the information below. If you are a returning customer please login at the top of the page.</p>
+                  <div class="form-group">
+                    <label for="c_account_password" class="text-black">Account Password</label>
+                    <input type="email" class="form-control" id="c_account_password" name="c_account_password" placeholder="">
+                  </div>
+                </div>
+              </div>
+            </div> #}
+
+            
+
+            
+
+          </div>
+        </div>
+        
+      </div>
+
+      <div class="row">
+        <div class="col-md-6">
+          {# <div class="row mb-5">
+            <div class="col-md-6 mb-3 mb-md-0">
+              <button class="btn btn-primary btn-sm btn-block" data-toggle="modal" data-target="#shippingModal">Add Delivery ($20)</button>
+            </div>
+            
+          </div> #}
           {# <div class="row">
             <div class="col-md-12">
               <label class="text-black h4" for="coupon">Delivery Available</label>
@@ -99,37 +207,7 @@
           </div> #}
         </div>
         <div class="col-md-6 pl-5">
-          <div class="row justify-content-end">
-            <div class="col-md-7">
-              <div class="row">
-                <div class="col-md-12 text-right border-bottom mb-5">
-                  <h3 class="text-black h4 text-uppercase">Cart Totals</h3>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="col-md-6">
-                  <span class="text-black">Subtotal</span>
-                </div>
-                <div class="col-md-6 text-right">
-                  <strong id="sub_total" class="text-black"></strong>
-                </div>
-              </div>
-              <div class="row mb-5">
-                <div class="col-md-6">
-                  <span class="text-black">Total</span>
-                </div>
-                <div class="col-md-6 text-right">
-                  <strong id="final_total" class="text-black"></strong>
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-12">
-                  <button class="btn btn-primary btn-lg py-3 btn-block" id="checkout-button">Checkout</button>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </div>
 
@@ -138,64 +216,13 @@
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Shipping Information</h5>
+              <h5 class="modal-title" id="exampleModalLabel">Billing Information</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
             <div class="modal-body">
-              <form onsubmit='return saveShippingInfo(this)'>
-
-                        <div class="p-3">
-                            <div class="form-group row">
-                                <div class="col-md-6">
-                                    <label for="c_fname" class="text-black">First Name
-                                        <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_fname" name="shippingform_fname" value="Shannon"  required/>
-                                </div>
-                                <div class="col-md-6">
-                                    <label for="c_lname" class="text-black">Last Name
-                                        <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" id="c_lname" name="shippingform_lname" value="Clarke" required/>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label for="c_email" class="text-black">Email
-                                        <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" id="c_email" name="shippingform_email" value="email@email.com" required/>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label for="c_subject" class="text-black">Telephone
-                                    </label>
-                                    <input type="text" class="form-control" id="c_telephone" name="shippingform_telephone" value="2461234567">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label for="c_subject" class="text-black">Mailing Address
-                                    <span class="text-danger">*</span></label></label>
-                                    <input type="text" class="form-control" id="c_address" name="shippingform_address" value="Turning Hall" required/>
-                                </div>
-                            </div>
-
-                            <div class="form-group row">
-                                <div class="col-md-12">
-                                    <label for="c_message" class="text-black">Additional Instructions
-                                    </label>
-                                    <textarea id="c_message" cols="30" rows="7" class="form-control" name="shippingform_instructions">Go down the road</textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <div class="col-lg-12">
-                                    <input type="submit" class="btn btn-primary btn-lg btn-block" value="Save">
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-            </div>
+              </div>
             {# <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary">Save</button>
