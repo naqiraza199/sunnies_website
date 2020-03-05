@@ -27,8 +27,17 @@
     var order_info = JSON.parse(localStorage.getItem('order_info'))
     console.log(order_info)
 
+    if(!order_info){
+      window.location = 'index.html'
+    }
+
     //Display order id to customer
     document.getElementById('order_notice').innerHTML = 'Your Order ID is '+order_info.orderid
+
+    //Clear order items
+    localStorage.removeItem('order_info')
+    //Clear cart items
+    localStorage.removeItem('cart_items')
 
     //Send email to customer and to store owner
 
