@@ -543,8 +543,14 @@
               var checkoutButton = document.getElementById('checkout-button');
               checkoutButton.addEventListener('click', function () {
 
-                
-                
+                console.log(getFormData('#billing_form'))
+                var billing_form = getFormData('#billing_form')
+                const {shippingform_fname, shippingform_lname,shippingform_address,shippingform_email, shippingform_telephone, shippingform_instructions} = billing_form
+                if(shippingform_fname.length < 1 || shippingform_lname.length < 1 || shippingform_email.length < 1){
+                    swal("Please fill out all fields!", "You need to enter your billing details", "error");
+                    return
+                }
+                return; 
                 var cart_items = JSON.parse(localStorage.getItem("cart_items"))
 
                 if("{{environment}}"==="test"){
@@ -560,9 +566,8 @@
                 const cart_total = cart_items.reduce( ( sum, { price } ) => sum + price , 0)
                 console.log( cart_total )
                 //var order_info = {}
-                console.log(getFormData('#billing_form'))
-                var billing_form = getFormData('#billing_form')
-                const {shippingform_fname, shippingform_lname,shippingform_address,shippingform_email, shippingform_telephone, shippingform_instructions} = billing_form
+                
+                
                 //order_info.name=billing_form.shippingform_fname + ' ' + billing
 
                 var unique_id = alphanumeric_unique()
