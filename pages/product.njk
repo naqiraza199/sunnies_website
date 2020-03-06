@@ -21,12 +21,12 @@
           <div class="col-md-6">
             <h2 class="text-black" id="item_title"></h2>
             <h4 id="item_color"></h4>
-            <p>Size:<span id="item_size"></span></p>
+            <p>Size: <span id="item_size"></span></p>
             <p><span id="item_id"></span> (<span id="item_category"></span>)</p>
             
-            <h5>Shipping Info</h5>
-            <p id="item_shipping"></p>
+            
             {# <p class="mb-4">Ex numquam veritatis debitis minima quo error quam eos dolorum quidem perferendis. Quos repellat dignissimos minus, eveniet nam voluptatibus molestias omnis reiciendis perspiciatis illum hic magni iste, velit aperiam quis.</p> #}
+            <h5>Price</h5>
             <p><strong class="text-primary h4">$ <span id="item_price"></span> <span id="item_currency"></span></strong></p>
 
             {# <div class="mb-1 d-flex">
@@ -51,7 +51,7 @@
 
             </div>
             <p>
-            {# <a href="cart.html" class="buy-now btn btn-sm btn-primary">Add To Cart</a> #}
+              <button type="button" role="link" class="btn btn-sm btn-success" onClick="tryItOn()">Try it On</button>
               <a href="prescriptions.html" id="prescriptions-link" style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em;margin-right:12px">
                   Choose Lens
               </a>
@@ -60,6 +60,9 @@
                   Add to Cart
               </button>
             </p>
+
+            <h5>Notes</h5>
+            <p id="item_shipping"></p>
 
             <div id="error-message"></div>
 

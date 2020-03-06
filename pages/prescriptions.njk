@@ -36,7 +36,7 @@
         <input type="hidden" id="product_id" name="product_id" />
 
         <div class="select_row">
-            <input type="radio" name="glassType" value="single-vision" id="sv" checked="checked" />
+            <input type="radio" class="glassType" name="glassType" value="single-vision" id="sv" checked="checked" />
             <label class="whatever" for="sv">
               <div class="select_item text-center">
                 <h4>Single Vision
@@ -47,7 +47,7 @@
                 <p class="mb-0">Distance</p>
               </div>
             </label>
-            <input type="radio" name="glassType" value="near-vision" id="nv"/>
+            <input type="radio" class="glassType" name="glassType" value="near-vision" id="nv"/>
             <label class="whatever" for="nv">
                 <div class="select_item text-center">
                 <h4>Near Vision<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This lens is intended for seeing details at a close distance. Most commonly used for reading. It is usually indicated by a (+) next to the numbers under the “sphere” category of your prescription. You can either provide us with your exact prescription or opt by magnification strength.">  
@@ -56,7 +56,7 @@
                 <p class="mb-0">Reading</p>
               </div>
             </label>
-            <input type="radio" name="glassType" value="progressive-lens" id="pr" />
+            <input type="radio" class="glassType" name="glassType" value="progressive-lens" id="pr" />
             <label class="whatever" for="pr">
                 <div class="select_item text-center">
                 <h4>Progressive<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="Progressive lenses includes three fields of vision, without lines. In a Progressive lens, the shape of the corrected part of the lens is approximately that of a funnel or mushroom. The top portion is used for distance-vision, the middle portion (corridor) for mid-range vision, and the bottom portion for the near-vision or reading.">  
@@ -65,7 +65,7 @@
                 <p class="mb-0">Distance & Reading</p>
               </div>
             </label>
-            <input type="radio" name="glassType" value="bifocal" id="bf" />
+            <input type="radio" class="glassType" name="glassType" value="bifocal" id="bf" />
             <label class="whatever" for="bf">
                 <div class="select_item text-center">
                 <h4>Bi-Focal<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This lens has two separate and distinct fields of vision: distance & near. A visible line separates the two.">  
@@ -74,7 +74,7 @@
                 <p class="mb-0">Distance & Reading</p>
               </div>
             </label>
-            <input type="radio" name="glassType" value="standard-lens" id="np" />
+            <input type="radio" class="glassType" name="glassType" value="standard-lens" id="np" />
             <label class="whatever" for="np">
                 <div class="select_item text-center">
                 <h4>Fashion<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This is the lens if your eyesight is perfect and you just want the frame as a fashion accessory. (Or, you’re looking to your optometrist to apply the lenses)">  
@@ -106,13 +106,13 @@
                     <p>Right (OD)</p>
                   </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="od_sph" name="right_sph" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="number" class="form-control" id="od_sph" name="right_sph" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="od_cyl" name="right_cyl" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="number" class="form-control" id="od_cyl" name="right_cyl" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="od_axis" name="right_axis" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="number" class="form-control" id="od_axis" name="right_axis" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -120,13 +120,13 @@
                     <p>Left (OS)</p>
                   </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="os_sph" name="left_sph" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="number" class="form-control" id="os_sph" name="left_sph" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="os_cyl" name="left_cyl" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="number" class="form-control" id="os_cyl" name="left_cyl" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                     <div class="col-md-3">
-                        <input type="text" class="form-control" id="os_axis" name="left_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
+                        <input type="number" class="form-control" id="os_axis" name="left_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
                     </div>
                 </div>
                 <div class="form-group row">
@@ -200,13 +200,74 @@
 
             console.log('lens catalog',data);
             localStorage.setItem("lens",JSON.stringify(data))
-
-            populateLensTypes(Object.values(data), 'single-vision')
+            //console.log(Object.values(data).filter(item=>item.type === 'single-vision'))
+            populateLensTypes(Object.values(data).filter(item=>item.type === 'single-vision'),'single-vision')
             
         });
 
-            
-  
+      var high_index = false
+      var high_index_right = false
+      var high_index_left = false
+
+      function checkIfHighIndex(event) {
+        if(event){
+          console.log(event.target.value)
+        }
+        
+      }
+      {# document.getElementById('#od_sph').addEventListener('change',checkIfHighIndex())
+      document.getElementById('#od_cyl').addEventListener('change',checkIfHighIndex)
+      document.getElementById('#od_axis').addEventListener('change',checkIfHighIndex)
+      document.getElementById('#os_sph').addEventListener('change',checkIfHighIndex)
+      document.getElementById('#os_cyl').addEventListener('change',checkIfHighIndex)
+      document.getElementById('#os_axis').addEventListener('change',checkIfHighIndex) #}
+      document.querySelector('#od_sph').addEventListener('change', function(event) {
+        //handle click
+        //console.log(event.target.value)
+        if(event.target.value >= 3){
+          high_index_right = true
+
+          
+        }else{
+          high_index_right = false
+        }
+
+        var checkedValue = document.querySelector('.glassType:checked').value;
+        console.log(checkedValue)
+
+        var lens_catalog = JSON.parse(localStorage.getItem("lens"))
+        //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
+        //console.log(lens_catalog, lens_catalog.length)
+        //console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
+        var lens_array = Object.values(lens_catalog).filter(item=>item.type === checkedValue)
+
+        populateLensTypes(lens_array, checkedValue)
+        
+      })
+
+      document.querySelector('#os_sph').addEventListener('change', function(event) {
+        //handle click
+        //console.log(event.target.value)
+        if(event.target.value >= 3){
+          high_index_left = true
+
+          
+        }else{
+          high_index_left = false
+        }
+        var checkedValue = document.querySelector('.glassType:checked').value;
+
+        var lens_catalog = JSON.parse(localStorage.getItem("lens"))
+        //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
+        //console.log(lens_catalog, lens_catalog.length)
+        //console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
+        var lens_array = Object.values(lens_catalog).filter(item=>item.type === checkedValue)
+
+        populateLensTypes(lens_array, checkedValue)
+      })
+
+      {# document.querySelector('#od_sph').addEventListener('change', checkIfHighIndex(event)) #}
+
       function getUrlVars() {
           var vars = {};
           var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -217,8 +278,25 @@
 
       function populateLensTypes(lens_array, selection){
               var lens_html = '';
-              for (var i =0; i < lens_array.length-1; i++){
-                if(lens_array[i].type === selection){
+
+              var od_sph = document.getElementById('od_sph').value;
+              var os_sph = document.getElementById('os_sph').value;
+
+              console.log('values',od_sph, os_sph)
+              high_index = high_index_left || high_index_right
+              console.log('high index',high_index_left, high_index_right, high_index)
+              for (var i =0; i < lens_array.length; i++){
+                
+                  console.log(lens_array[i].id)
+                  if(high_index){
+                    if(lens_array[i].id === 'sv-1-3'){
+                      continue;
+                    }
+                  }else{
+                    if(lens_array[i].id === 'sv-3-25-14-00'){
+                      continue;
+                    }
+                  }
                   lens_html +=`<input type="radio" name="lensType" value="`+lens_array[i].id+`" id="`+lens_array[i].id+`" checked="checked" />
                                 <label class="whatever" for="`+lens_array[i].id+`">
                                   <div class="select_item text-center">
@@ -231,7 +309,7 @@
                                     <p class="mb-0">$ `+lens_array[i].price+`</p>
                                   </div>
                                 </label>`
-                }
+                
               }
               document.getElementById('lens_types').innerHTML = lens_html;
       }
@@ -261,7 +339,7 @@
               //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
               //console.log(lens_catalog, lens_catalog.length)
               console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
-              var lens_array = Object.values(lens_catalog)
+              var lens_array = Object.values(lens_catalog).filter(item=>item.type === selection)
 
               populateLensTypes(lens_array, selection)
 

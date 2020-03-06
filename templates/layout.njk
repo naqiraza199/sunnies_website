@@ -434,6 +434,10 @@
                 }).join('').substr(2,8);
             }
 
+            function tryItOn(){
+                console.log('try it on')
+            }
+
 
         </script>
 
@@ -474,7 +478,7 @@
                 //var cell4 = row.insertCell(3);
 
                 // Add some text to the new cells:
-                cell1.innerHTML = "<a href='shop-single.html?id="+data_array[i].id+"'>"+data_array[i].product+"</a> x "+data_array[i].quantity;
+                cell1.innerHTML = "<a href='product.html?id="+data_array[i].id+"'>"+data_array[i].product+"</a> x "+data_array[i].quantity;
                 cell2.innerHTML = "$ "+parseFloat(data_array[i].price*data_array[i].quantity).toFixed(2)+"      ";
                 //cell3.innerHTML = data_array[i].quantity;
                 cell3.innerHTML = "<button class='btn btn-outline-danger' product_id='"+data_array[i].id+"' onclick=\"deleteRow(this,'"+data_array[i].id+"')\">x</button>";
