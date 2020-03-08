@@ -67,10 +67,14 @@ collections:
     extension: json
     widget: "list"
     create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}"
+    # preview_path: "blog/{{year}}-{{month}}-{{day}}-{{hour}}-{{minute}}"
     fields:
       - { name: title, label: Title }
       - { name: body, label: Body, widget: text }
       - { name: photo, label: Photo, widget: image }
+      - { name: publishedOn, label: Published Date, widget: datetime, dateFormat: "YYYY-MM-DD", timeFormat: "HH:mm", format: "YYYY-MM-DD-HH-mm"}
+      # - { name: publishedDate, label: Publish Date, widget: datetime, dateFormat: "YYYY-MM-DD", timeFormat: "HH:mm", format: "YYYY-MM-DD-HH-mm"}
   - name: prescriptions
     label: Prescriptions
     folder: prescriptions

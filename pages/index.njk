@@ -225,10 +225,10 @@
                 </figure>
                 <div class="block-4-text p-4">
                   <h3>
-                    <a href="/blog.html">{{item.title}}</a>
+                    <a href="/blog.html?id={{item.publishedOn}}">{{item.title}}</a>
                   </h3>
                   <p class="mb-0">{{item.body.slice(0,100)}}</p>
-                  <p class="text-primary font-weight-bold">Read More</p>
+                  <a href="blog.html?id={{item.publishedOn}}" class="text-primary font-weight-bold">Read More</a>
                 </div>
               </div>
             </div>

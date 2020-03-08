@@ -53,7 +53,6 @@ gulp.task("render_content_dev", function (cb) {
           products: findFiles("./products"),
           lens: findFiles("./lens"),
           branches: findFiles("./branches"),
-          categories: findFiles("./categories"),
           events: findFiles("./events"),
           featured_products: findFiles("./featured_products"),
           blog: findFiles("./posts"),
@@ -100,7 +99,6 @@ gulp.task("render_content_prod", function (cb) {
           products: findFiles("./products"),
           lens: findFiles("./lens"),
           branches: findFiles("./branches"),
-          categories: findFiles("./categories"),
           events: findFiles("./events"),
           featured_products: findFiles("./featured_products"),
           blog: findFiles("./posts"),
@@ -146,6 +144,14 @@ gulp.task("render_images", function (cb) {
 //   cb()
 // })
 
+gulp.task('merge_blog', function () {
+  return gulp.src('posts/*.json')
+    .pipe(jsonConcat('posts.json', function (data) {
+      return new Buffer(JSON.stringify(data));
+    }))
+    .pipe(gulp.dest('assets/data'));
+});
+
 gulp.task('merge_products', function () {
   return gulp.src('products/*.json')
     .pipe(jsonConcat('products.json', function (data) {
@@ -185,7 +191,6 @@ function watchFiles(done) {
   gulp.watch("./site/**/*", gulp.series("render_content_dev"));
   gulp.watch("./featured_products/**/*", gulp.series("render_content_dev"));
   gulp.watch("./branches/**/*", gulp.series("render_content_dev"));
-  gulp.watch("./categories/**/*", gulp.series("render_content_dev"));
   gulp.watch("./assets/**/*", gulp.series("render_content_dev"));
   gulp.watch("./templates/**/*", gulp.series("render_content_dev"));
   gulp.watch("./pages/**/*", gulp.series("render_content_dev"));
@@ -193,7 +198,7 @@ function watchFiles(done) {
   done();
 }
 
-gulp.task("default", gulp.parallel("render_content_prod", "merge_products", "merge_lens", "render_images"));
+gulp.task("default", gulp.parallel("render_content_prod", "merge_products", "merge_lens", "merge_blog", "render_images"));
 
 // dev task
-gulp.task("dev", gulp.parallel("render_content_dev", "merge_products", "merge_lens", watchFiles, browserSync));
+gulp.task("dev", gulp.parallel("render_content_dev", "merge_products", "merge_lens", "merge_blog", watchFiles, browserSync));

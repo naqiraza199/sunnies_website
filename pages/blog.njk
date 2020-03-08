@@ -1,0 +1,101 @@
+<!-- index.nunjucks -->
+{% extends "layout.njk" %}
+
+{% block content %}
+
+<script>
+    var blog_id = "2020-03-08-08-53"
+    console.log('blog id',blog_id)
+</script>
+
+    <!-- Page Content -->
+    <!-- Page Content -->
+    <div class="site-section border-bottom" data-aos="fade">
+        <div class="container">
+            <div class="row mb-5">
+                
+                <div class="col-md-12">
+
+                    <div class="site-section-heading pt-3 mb-4 text-center">
+                        <h6 class="text-gray">Blog Post</h6>
+                        <h2 class="text-black" id="blog_title">Article</h2>
+                            <h6 id="blog_publishedDate"></h6>
+                    </div>
+                    <div class="item">
+                                <div class="block-4 text-center">
+                                    <figure class="block-4-image">
+                                        <img id="blog_photo" alt="" height="200" >
+                                    </figure>
+                                    <div class="block-4-text p-4">
+                                        
+                                        <p class="mb-0" id="blog_post"></p>
+                                    {# <p class="text-primary font-weight-bold">Read More</p> #}
+                                    </div>
+                                </div>
+                            </div>
+
+                    {# {% for item in blog %}
+                        {% if(item.publishedOn === "<script>document.write(blog_id)</script>") %}
+                            <div class="item">
+                                <div class="block-4 text-center">
+                                    <figure class="block-4-image">
+                                    <img src="{{item.photo}}" alt="" height="200" >
+                                    </figure>
+                                    <div class="block-4-text p-4">
+                                    <h3>
+                                        <a href="/blog.html">{{item.title}}</a>
+                                    </h3>
+                                    <p class="mb-0">{{item.body}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endfor %} #}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        function getUrlVars() {
+            var vars = {};
+            var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+                vars[key] = value;
+            });
+            return vars;
+        }
+
+        var blog_id = getUrlVars()['id'].replace('%20',' ').replace('#/','')
+
+         $.getJSON("/assets/data/posts.json", function (data) {
+
+                console.log('json data',data);
+                console.log(Object.values(data).filter(item=>item.publishedOn === blog_id))
+                var selected_post = Object.values(data).filter(item=>item.publishedOn === blog_id)
+                console.log(selected_post[0])
+                if(!selected_post){
+                    window.location = 'index.html'
+                    return
+                }
+
+                document.getElementById('blog_photo').src = selected_post[0].photo
+                document.getElementById('blog_title').innerHTML = selected_post[0].title
+                document.getElementById('blog_post').innerHTML = selected_post[0].body
+                document.getElementById('blog_publishedDate').innerHTML = selected_post[0].publishedOn
+
+
+                //$.each(data, function (key, val) {
+                //    items.push(data)
+                //});
+
+                //console.log(items)
+                //products = items[0].products;
+                //console.log(products)
+            });
+    </script>
+    
+    <!-- /.container -->
+
+{% endblock %}
