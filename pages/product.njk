@@ -90,13 +90,14 @@
       document.getElementById('prescriptions-link').href="prescriptions.html?id="+url_param
 
       var products = JSON.parse(localStorage.getItem('products'))
-      console.log('stored products', Object.values(products))
-      console.log('current product', products[url_param])
-      console.log(Object.values(products).find(item=>item.id === url_param || item.id === url_param.toLowerCase()))
-      var current_product = Object.values(products).find(item=>item.id === url_param || item.id === url_param.toLowerCase())
+      console.log('stored products', products, Object.values(products))
+      //console.log('current product', products[url_param])
+      //console.log(Object.values(products).find(item=>item.id === url_param || item.id === url_param.toLowerCase()))
+      var current_product = Object.values(products).find(item=>item.id.trim() === url_param || item.id.trim() === url_param.toLowerCase())
+      
       console.log('current product', current_product)
 
-      document.getElementById('item_id').innerHTML = current_product.id.replace(' ','-').toLowerCase()
+      document.getElementById('item_id').innerHTML = current_product.id.replace(' ','-')
       document.getElementById('item_title').innerHTML = current_product.title
       document.getElementById('item_color').innerHTML = current_product.color
       document.getElementById('item_category').innerHTML = current_product.category
