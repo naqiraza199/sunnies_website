@@ -83,25 +83,28 @@
           return vars;
       }
 
-      var url_param = getUrlVars()['id'].replace('%20','-').replace('#/','').toLowerCase()
+      var url_param = getUrlVars()['id'].replace('%20',' ').replace('#/','')
 
       console.log('url id',url_param)
 
       document.getElementById('prescriptions-link').href="prescriptions.html?id="+url_param
 
       var products = JSON.parse(localStorage.getItem('products'))
-      {# console.log('stored products', products) #}
+      console.log('stored products', Object.values(products))
       console.log('current product', products[url_param])
+      console.log(Object.values(products).find(item=>item.id === url_param || item.id === url_param.toLowerCase()))
+      var current_product = Object.values(products).find(item=>item.id === url_param || item.id === url_param.toLowerCase())
+      console.log('current product', current_product)
 
-      document.getElementById('item_id').innerHTML = products[url_param].id.replace(' ','-').toLowerCase()
-      document.getElementById('item_title').innerHTML = products[url_param].title
-      document.getElementById('item_color').innerHTML = products[url_param].color
-      document.getElementById('item_category').innerHTML = products[url_param].category
-      document.getElementById('item_shipping').innerHTML = products[url_param].shipping
-      document.getElementById('item_price').innerHTML = products[url_param].price
-      document.getElementById('item_currency').innerHTML = products[url_param].currency
-      document.getElementById('item_image').src = products[url_param].photo
-      document.getElementById('item_size').innerHTML = products[url_param].measurement
+      document.getElementById('item_id').innerHTML = current_product.id.replace(' ','-').toLowerCase()
+      document.getElementById('item_title').innerHTML = current_product.title
+      document.getElementById('item_color').innerHTML = current_product.color
+      document.getElementById('item_category').innerHTML = current_product.category
+      document.getElementById('item_shipping').innerHTML = current_product.shipping
+      document.getElementById('item_price').innerHTML = current_product.price
+      document.getElementById('item_currency').innerHTML = current_product.currency
+      document.getElementById('item_image').src = current_product.photo
+      document.getElementById('item_size').innerHTML = current_product.measurement
 
     </script>
 
