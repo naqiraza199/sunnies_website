@@ -156,30 +156,49 @@
                     
         </div>
         <div class="p-4">
-          <h4 class="text-black">Choose your Lens Type</h4>
+          <h4 class="text-black">Choose a Lens</h4>
         </div>
         <div class="select_row" id="lens_types">
+        
+        </div>
+        <div class="select_row" id="lens_types1">
             
            
-              {# <input type="radio" name="lensType" value="1" id="lens-clear" checked="checked" />
+              <input type="radio" name="lensType" value="1" id="lens-clear" checked="checked" />
               <label class="whatever" for="lens-clear">
                 <div class="select_item text-center">
-                  <h4>Standard</h4>
-                  <p class="mb-0">Clear Lens</p>
+                  <h4>Clear</h4>
+                  <p class="mb-0">Free</p>
                 </div>
               </label>
             
               <input type="radio" name="lensType" value="1" id="lens-bl"/>
               <label class="whatever" for="lens-bl">
                   <div class="select_item text-center">
-                  <h4>Premium</h4>
-                  <p class="mb-0">Blue Light, Transitions & A R C</p>
+                  <h4>Blue Light</h4>
+                  <p class="mb-0">+$40</p>
                 </div>
-              </label> #}
+              </label>
+
+              <input type="radio" name="lensType" value="1" id="lens-arc"/>
+              <label class="whatever" for="lens-arc">
+                  <div class="select_item text-center">
+                  <h4>A.R.C</h4>
+                  <p class="mb-0">+$40</p>
+                </div>
+              </label>
+
+              <input type="radio" name="lensType" value="1" id="lens-trans-arc"/>
+              <label class="whatever" for="lens-trans-arc">
+                  <div class="select_item text-center">
+                  <h4>Transitions & A.R.C.</h4>
+                  <p class="mb-0">+$55</p>
+                </div>
+              </label>
             
-            
-            
-            
+        </div>
+        <div class="p-4">
+          <h4 class="text-black">.... or choose a Package</h4>
         </div>
         <div class="form-group row">
           <input type="submit" class="btn btn-lg btn-block btn-primary mt-3" value="Add to Cart" />
@@ -274,6 +293,44 @@
               vars[key] = value;
           });
           return vars;
+      }
+
+      function populatePackages(lens_array, selection){
+              var lens_html = '';
+
+              var od_sph = document.getElementById('od_sph').value;
+              var os_sph = document.getElementById('os_sph').value;
+
+              console.log('values',od_sph, os_sph)
+              high_index = high_index_left || high_index_right
+              console.log('high index',high_index_left, high_index_right, high_index)
+              for (var i =0; i < lens_array.length; i++){
+                
+                  console.log(lens_array[i].id)
+                  if(high_index){
+                    if(lens_array[i].id === 'sv-1-3'){
+                      continue;
+                    }
+                  }else{
+                    if(lens_array[i].id === 'sv-3-25-14-00'){
+                      continue;
+                    }
+                  }
+                  lens_html +=`<input type="radio" name="lensType" value="`+lens_array[i].id+`" id="`+lens_array[i].id+`" checked="checked" />
+                                <label class="whatever" for="`+lens_array[i].id+`">
+                                  <div class="select_item text-center">
+                                    <h4>`+lens_array[i].title+`
+                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+lens_array[i].description+`">  
+                                        <span class="icon icon-info-circle"></span>
+                                      </a>
+                                    </h4>
+                                    <p class="mb-0">`+lens_array[i].shipping+`</p>
+                                    <p class="mb-0">$ `+lens_array[i].price+`</p>
+                                  </div>
+                                </label>`
+                
+              }
+              document.getElementById('lens_types').innerHTML = lens_html;
       }
 
       function populateLensTypes(lens_array, selection){
