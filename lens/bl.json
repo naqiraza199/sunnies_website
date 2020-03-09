@@ -9,9 +9,9 @@
   "special": [
     "None"
   ],
+  "type": "blue-light",
   "id": "bl",
   "measurement": "NIL",
   "description": "Blue Light lenses offer the best solution to deal with blue light emissions. The lenses filter the blue light emitted by digital screens, providing comfort to your eyes and protection from harmful rays.",
-  "category": "Prescriptions Lens",
-  "type": "blue-light"
+  "category": "none"
 }
