@@ -9,9 +9,9 @@
   "special": [
     "None"
   ],
+  "type": "progressive-lens",
   "id": "plp-1",
   "measurement": "Nil",
   "description": "Premium Lens Package is the ultimate optical solution with extra-thin lenses, as well as full vision and lens protection coatings.",
-  "category": "Prescriptions Lens",
-  "type": "progressive-lens"
+  "category": "progressive"
 }
