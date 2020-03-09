@@ -49,7 +49,7 @@ collections:
     fields:
       - { name: id, label: Id }
       - { name: stripe_sku, label: Stripe SKU, widget: string , required: false}
-      - { name: category, label: Category Name, widget: select, options: ["none", "progressive", "bifocal", "single-vision"] }
+      - { name: category, label: Category Name, widget: select, options: ["none", "heading","progressive", "bifocal", "single-vision"] }
       - { name: title, label: Title }
       - { name: description, label: Description, widget: string }
       - { name: material, label: Material, widget: string }
