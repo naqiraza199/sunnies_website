@@ -9,9 +9,9 @@
   "special": [
     "None"
   ],
+  "type": "standard-lens",
   "id": "slp-2",
   "measurement": "Nil",
   "description": "Our Standard Lens Package includes our 2 premium coatings to give you full eye protection 365 days a year.",
-  "category": "Prescriptions Lens",
-  "type": "standard-lens"
+  "category": "bifocal"
 }
