@@ -2,6 +2,7 @@
   "color": "TAN TORT",
   "material": "ACETATE",
   "price": 100,
+  "available": true,
   "stripe_sku": "sku_GeKn3U7FjIW1tN",
   "shipping": "$20 additional for all orders. International shipping rates depend on your destination.\nTwo weeks warranty on frames for manufactures defect ONLY.\nNO REFUNDS! Exchanges ONLY! ( Conditions apply )",
   "currency": "BDS",
