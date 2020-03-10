@@ -2,6 +2,7 @@
   "color": "LEOPARD",
   "material": "METAL",
   "price": 60,
+  "available": true,
   "stripe_sku": "sku_GeLSvMxcQWEGQm",
   "shipping": "$20 additional for all orders.  International shipping rates depend on your destination.\nTwo weeks warranty on frames for manufactures defect ONLY.\n NO REFUNDS! Exchanges ONLY! ( Conditions apply )",
   "currency": "BDS",
