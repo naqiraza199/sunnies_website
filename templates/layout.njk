@@ -59,10 +59,10 @@
         </script>
         <script>
 
-             
+            $("input[type='number']").inputSpinner();
 
-        console.log('{{site_title}}')
-                console.log('{{stripe_key}}')
+            console.log('{{site_title}}')
+            console.log('{{stripe_key}}')
             {# swal("Good job!", "You clicked the button! {{site_title}}", "success"); #}
             var items = [];
             var products = [];
@@ -109,15 +109,7 @@
         </script>
         <script>
 
-            {# $("#contact-form").submit(function(e) {
-                e.preventDefault();
-                console.log('submit form',$form.attr("action"),$form.serialize())
-                var $form = $(this);
-                $.post($form.attr("action"), $form.serialize()).then(function() {
-                    alert("Thank you!");
-                });
-            }); #}
-
+        
             let testForm = document.querySelector("#contact-form");
       
             testForm.addEventListener('submit', e => {
@@ -459,10 +451,14 @@
 
             if(data_array.length < 1){
                 table.style.display = 'none'
-                document.getElementById('empty_cart_notice').style.display="block"
+                var cart_notice = document.getElementById('empty_cart_notice')
+                if(cart_notice)
+                    cart_notice.style.display="block"
             }else{
                 //table.style.display = 'block'
-                document.getElementById('empty_cart_notice').style.display="none"
+                var cart_notice = document.getElementById('empty_cart_notice')
+                if(cart_notice)
+                    cart_notice.style.display="none"
             }
             var total_cost = 0;
 

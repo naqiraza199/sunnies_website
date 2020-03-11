@@ -3,407 +3,489 @@
 
 {% block content %}
 
-  <div class="bg-light py-3">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12 mb-0">
-          <a href="index.html">Home</a>
-          <span class="mx-2 mb-0">/</span>
-          <strong class="text-black">Choose Lens</strong>
-        </div>
+<div class="bg-light py-3">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 mb-0">
+        <a href="index.html">Home</a>
+        <span class="mx-2 mb-0">/</span>
+        <strong class="text-black">Choose Lens</strong>
       </div>
     </div>
   </div>
-  <div class="block-3 site-blocks-2 bg-light">
-    <div class="container">
-     
-     <div class="row">
+</div>
+<div class="block-3 site-blocks-2 bg-light">
+  <div class="container">
+
+    <div class="row">
       <div class="col-md-12">
         <div class="p-4">
           <h4 class="text-black">What type of glasses do you need?</h4>
         </div>
-        {# <div id="checkboxes">
-            <input type="radio" name="rGroup" value="1" id="r1" checked="checked" />
-            <label class="whatever" for="r1">r1</label>
-            <input type="radio" name="rGroup" value="2" id="r2" />
-            <label class="whatever" for="r2">r2</label>
-            <input type="radio" name="rGroup" value="3" id="r3" />
-            <label class="whatever" for="r3">r3</label>
-        </div> #}
+
 
         <form name="prescription-form" onsubmit='return savePrescriptionInfo(this)'>
 
-        <input type="hidden" id="product_id" name="product_id" />
+          <input type="hidden" id="product_id" name="product_id" />
 
-        <div class="select_row">
-            <input type="radio" class="glassType" name="glassType" value="single-vision" id="sv" checked="checked" />
-            <label class="whatever" for="sv">
-              <div class="select_item text-center">
-                <h4>Single Vision
-                  <a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="Single Vision lenses are the standard eyeglass prescription. These glasses are or one field of vision across the entire lens. Single vision glasses can be prescribed for distance vision, near-vision reading glasses, or computer-distance glasses. There are no lens height requirements for single vision prescriptions.\nIt is usually indicated by a (-) next to the numbers under the “sphere” category of your prescription.">  
-                    <span class="icon icon-info-circle"></span>
-                  </a>
-                </h4>
-                <p class="mb-0">Distance</p>
-              </div>
-            </label>
-            <input type="radio" class="glassType" name="glassType" value="near-vision" id="nv"/>
-            <label class="whatever" for="nv">
-                <div class="select_item text-center">
-                <h4>Near Vision<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This lens is intended for seeing details at a close distance. Most commonly used for reading. It is usually indicated by a (+) next to the numbers under the “sphere” category of your prescription. You can either provide us with your exact prescription or opt by magnification strength.">  
-                        <span class="icon icon-info-circle"></span>
-                      </a></h4>
-                <p class="mb-0">Reading</p>
-              </div>
-            </label>
-            <input type="radio" class="glassType" name="glassType" value="progressive-lens" id="pr" />
-            <label class="whatever" for="pr">
-                <div class="select_item text-center">
-                <h4>Progressive<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="Progressive lenses includes three fields of vision, without lines. In a Progressive lens, the shape of the corrected part of the lens is approximately that of a funnel or mushroom. The top portion is used for distance-vision, the middle portion (corridor) for mid-range vision, and the bottom portion for the near-vision or reading.">  
-                        <span class="icon icon-info-circle"></span>
-                      </a></h4>
-                <p class="mb-0">Distance & Reading</p>
-              </div>
-            </label>
-            <input type="radio" class="glassType" name="glassType" value="bifocal" id="bf" />
-            <label class="whatever" for="bf">
-                <div class="select_item text-center">
-                <h4>Bi-Focal<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This lens has two separate and distinct fields of vision: distance & near. A visible line separates the two.">  
-                        <span class="icon icon-info-circle"></span>
-                      </a></h4>
-                <p class="mb-0">Distance & Reading</p>
-              </div>
-            </label>
-            <input type="radio" class="glassType" name="glassType" value="standard-lens" id="np" />
-            <label class="whatever" for="np">
-                <div class="select_item text-center">
-                <h4>Fashion<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This is the lens if your eyesight is perfect and you just want the frame as a fashion accessory. (Or, you’re looking to your optometrist to apply the lenses)">  
-                        <span class="icon icon-info-circle"></span>
-                      </a></h4>
-                <p class="mb-0">Non-Prescription</p>
-              </div>
-            </label>
-        </div>
-        
-        <div class="p-4">
-          <h4 class="text-black">Enter your Prescription</h4>
-        </div>
-        <div class="col-md-12">
-                  
+          <div class="select_row" id="lens_heading">
+
+          </div>
+
+
+
+          <div class="p-4">
+            <h4 class="text-black">Enter your Prescription</h4>
+          </div>
+          <div class="col-md-12">
+
             <div class="p-3 p-lg-5 border">
-                <div class="form-group row">
+              <div class="form-group row">
                 <div class="col-md-3"></div>
-                <div class="col-md-3"><h4>Sphere (SPH)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="Indicates the strength of your prescription. Distance prescriptions usually have a (-) before the number. Reading prescriptions will usually have a (+) before the number. Below (marked in blue) is where you should find the Sphere details.">  
-                        <span class="icon icon-info-circle"></span>
-                      </a></h4></div>
-                <div class="col-md-3"><h4>Cylinder (CYL)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This indicates the amount of lens power for astigmatism. If nothing appears in this column, either you have no astigmatism, or your astigmatism is so slight that it is not really necessary to correct it with your eyeglass lenses.">  
-                        <span class="icon icon-info-circle"></span>
-                      </a></h4></div>
-                <div class="col-md-3"><h4>Axis (AXI)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px" title="This describes the lens meridian that contains no cylinder power to correct astigmatism. The axis is defined with a number from 1 to 180. The number 90 corresponds to the vertical meridian of the eye, and the number 180 corresponds to the horizontal meridian.">  
-                        <span class="icon icon-info-circle"></span>
-                      </a></h4></div>
-                  <div class="col-md-3">
-                    <p>Right (OD)</p>
-                  </div>
-                    <div class="col-md-3">
-                        <input type="number" class="form-control" id="od_sph" name="right_sph" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="number" class="form-control" id="od_cyl" name="right_cyl" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="number" class="form-control" id="od_axis" name="right_axis" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
-                    </div>
+                <div class="col-md-3">
+                  <h4>Sphere (SPH)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px"
+                      title="Indicates the strength of your prescription. Distance prescriptions usually have a (-) before the number. Reading prescriptions will usually have a (+) before the number. Below (marked in blue) is where you should find the Sphere details.">
+                      <span class="icon icon-info-circle"></span>
+                    </a></h4>
                 </div>
-                <div class="form-group row">
-                  <div class="col-md-3">
-                    <p>Left (OS)</p>
-                  </div>
-                    <div class="col-md-3">
-                        <input type="number" class="form-control" id="os_sph" name="left_sph" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="number" class="form-control" id="os_cyl" name="left_cyl" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
-                    </div>
-                    <div class="col-md-3">
-                        <input type="number" class="form-control" id="os_axis" name="left_axis" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
-                    </div>
+                <div class="col-md-3">
+                  <h4>Cylinder (CYL)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px"
+                      title="This indicates the amount of lens power for astigmatism. If nothing appears in this column, either you have no astigmatism, or your astigmatism is so slight that it is not really necessary to correct it with your eyeglass lenses.">
+                      <span class="icon icon-info-circle"></span>
+                    </a></h4>
                 </div>
-                <div class="form-group row">
-                  <div class="col-md-3">
-                    <p>PD
-                      <a href="#" data-toggle="tooltip" data-html="true" title="If your prescription does not include a PD, please leave the value at 62 for single vision. For Bi-focal and Progressive lenses, please provide the Near PD when applicable, otherwise you may choose to leave it at 59.">  
-                        <span class="icon icon-info-circle"></span>
-                      </a>
-                    </p>
-                  </div>
-                    <div class="col-md-3">
-                        <input type="number" class="form-control" id="pd" name="pd" value="" data-decimals="2" min="-30" max="30" step="0.1" placeholder="0.00">
-                    </div>
+                <div class="col-md-3">
+                  <h4>Axis (AXI)<a href="#" data-toggle="tooltip" data-html="true" style="font-size:14px"
+                      title="This describes the lens meridian that contains no cylinder power to correct astigmatism. The axis is defined with a number from 1 to 180. The number 90 corresponds to the vertical meridian of the eye, and the number 180 corresponds to the horizontal meridian.">
+                      <span class="icon icon-info-circle"></span>
+                    </a></h4>
                 </div>
-                <div class="form-group row">
-                    <div class="ml-5">
-                        <input type="checkbox" class="form-check-input" id="prism" name="prism">
-                        <label for="prism">Do you have Prism?
-                          <a href="#" data-toggle="tooltip" data-html="true" title="Prism is prescribed to correct a muscle imbalance between the two eyes so it should help make your vision more comfortable.">  
-                          <span class="icon icon-info-circle"></span>
-                        </a>
-                        </label>
-                    </div>
-                    
+                <div class="col-md-3">
+                  <p>Right (OD)</p>
                 </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control" id="od_sph" name="right_sph" data-decimals="2" min="-30"
+                    max="30" step="0.1" placeholder="0.00">
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control" id="od_cyl" name="right_cyl" data-decimals="2" min="-30"
+                    max="30" step="0.1" placeholder="0.00">
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control" id="od_axis" name="right_axis" data-decimals="2" min="-30"
+                    max="30" step="0.1" placeholder="0.00">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-3">
+                  <p>Left (OS)</p>
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control" id="os_sph" name="left_sph" value="" data-decimals="2"
+                    min="-30" max="30" step="0.1" placeholder="0.00">
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control" id="os_cyl" name="left_cyl" value="" data-decimals="2"
+                    min="-30" max="30" step="0.1" placeholder="0.00">
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control" id="os_axis" name="left_axis" value="" data-decimals="2"
+                    min="-30" max="30" step="0.1" placeholder="0.00">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="col-md-3">
+                  <p>PD
+                    <a href="#" data-toggle="tooltip" data-html="true"
+                      title="If your prescription does not include a PD, please leave the value at 62 for single vision. For Bi-focal and Progressive lenses, please provide the Near PD when applicable, otherwise you may choose to leave it at 59.">
+                      <span class="icon icon-info-circle"></span>
+                    </a>
+                  </p>
+                </div>
+                <div class="col-md-3">
+                  <input type="number" class="form-control" id="pd" name="pd" value="" data-decimals="2" min="-30"
+                    max="30" step="0.1" placeholder="0.00">
+                </div>
+              </div>
+              <div class="form-group row">
+                <div class="ml-5">
+                  <input type="checkbox" class="form-check-input" id="prism" name="prism">
+                  <label for="prism">Do you have Prism?
+                    <a href="#" data-toggle="tooltip" data-html="true"
+                      title="Prism is prescribed to correct a muscle imbalance between the two eyes so it should help make your vision more comfortable.">
+                      <span class="icon icon-info-circle"></span>
+                    </a>
+                  </label>
+                </div>
+
+              </div>
             </div>
-                    
-        </div>
-        <div class="p-4">
-          <h4 class="text-black">Choose a Lens</h4>
-        </div>
-        <div class="select_row" id="lens_types">
-        
-        </div>
-        <div class="select_row" id="lens_types1">
-            
-           
-              <input type="radio" name="lensType" value="1" id="lens-clear" checked="checked" />
-              <label class="whatever" for="lens-clear">
-                <div class="select_item text-center">
-                  <h4>Clear</h4>
-                  <p class="mb-0">Free</p>
-                </div>
-              </label>
-            
-              <input type="radio" name="lensType" value="1" id="lens-bl"/>
-              <label class="whatever" for="lens-bl">
-                  <div class="select_item text-center">
-                  <h4>Blue Light</h4>
-                  <p class="mb-0">+$40</p>
-                </div>
-              </label>
 
-              <input type="radio" name="lensType" value="1" id="lens-arc"/>
-              <label class="whatever" for="lens-arc">
-                  <div class="select_item text-center">
-                  <h4>A.R.C</h4>
-                  <p class="mb-0">+$40</p>
-                </div>
-              </label>
-
-              <input type="radio" name="lensType" value="1" id="lens-trans-arc"/>
-              <label class="whatever" for="lens-trans-arc">
-                  <div class="select_item text-center">
-                  <h4>Transitions & A.R.C.</h4>
-                  <p class="mb-0">+$55</p>
-                </div>
-              </label>
+          </div>
+          <div class="p-4">
+            <h4 class="text-black">Choose Lens</h4>
+          </div>
+          <div class="select_row" id="lens_options">
             
-        </div>
-        <div class="p-4">
-          <h4 class="text-black">.... or choose a Package</h4>
-        </div>
-        <div class="form-group row">
-          <input type="submit" class="btn btn-lg btn-block btn-primary mt-3" value="Add to Cart" />
-        </div>
+          </div>
+
+          <div class="p-4">
+            <h4 class="text-black" id="package_header">.... or choose a Package</h4>
+          </div>
+          <div class="select_row" id="lens_packages">
+          </div>
+          <div class="form-group row">
+            <input type="submit" class="btn btn-lg btn-block btn-primary mt-3" value="Add to Cart" />
+          </div>
         </form>
       </div>
       {# <div class="col-md-3">
         <div>Product</div>
       </div> #}
-     </div>
-      
     </div>
+
   </div>
+</div>
 
-  <script>
+<script>
 
-        $.getJSON("/assets/data/lens.json", function (data) {
+  $.getJSON("/assets/data/lens.json", function (data) {
 
-            console.log('lens catalog',data);
-            localStorage.setItem("lens",JSON.stringify(data))
-            //console.log(Object.values(data).filter(item=>item.type === 'single-vision'))
-            populateLensTypes(Object.values(data).filter(item=>item.type === 'single-vision'),'single-vision')
-            
-        });
+    console.log('lens catalog', data);
+    localStorage.setItem("lens", JSON.stringify(data))
+    //console.log(Object.values(data).filter(item=>item.type === 'single-vision'))
+    populateLensHeading(Object.values(data), 'heading')
+    populateLensOptions(Object.values(data), 'none')
+    populatePackages(Object.values(data).filter(item => item.category === 'single-vision'), 'single-vision')
 
-      var high_index = false
-      var high_index_right = false
-      var high_index_left = false
+  });
 
-      function checkIfHighIndex(event) {
-        if(event){
-          console.log(event.target.value)
+  var high_index = false
+  var high_index_right = false
+  var high_index_left = false
+
+  var total_price = 0
+
+  function checkIfHighIndex(event) {
+    if (event) {
+      console.log(event.target.value)
+    }
+
+  }
+
+
+  document.querySelector('#od_sph').addEventListener('change', function (event) {
+    //handle click
+    console.log(event.target.value)
+    if (event.target.value >= 3) {
+      high_index_right = true
+    } else {
+      high_index_right = false
+    }
+
+    var checkedValue = document.querySelector('.glassType:checked').value;
+    console.log(checkedValue)
+
+    var lens_catalog = JSON.parse(localStorage.getItem("lens"))
+    //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
+    //console.log(lens_catalog, lens_catalog.length)
+    //console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
+    var lens_array = Object.values(lens_catalog).filter(item => item.type === checkedValue)
+
+    populateLensHeading(Object.values(lens_catalog), 'heading')
+
+  })
+
+  document.querySelector('#os_sph').addEventListener('change', function (event) {
+    //handle click
+    console.log(event.target.value)
+    if (event.target.value >= 3) {
+      high_index_left = true
+    } else {
+      high_index_left = false
+    }
+    var checkedValue = document.querySelector('.glassType:checked').value;
+
+    var lens_catalog = JSON.parse(localStorage.getItem("lens"))
+    //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
+    //console.log(lens_catalog, lens_catalog.length)
+    //console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
+    var lens_array = Object.values(lens_catalog).filter(item => item.type === checkedValue)
+
+    populateLensHeading(Object.values(lens_catalog), 'heading')
+  })
+
+
+
+  function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function (m, key, value) {
+      vars[key] = value;
+    });
+    return vars;
+  }
+
+  function populateLensHeading(lens_array, selection) {
+    var lens_html = '';
+    console.log('headings', lens_array)
+
+    var od_sph = document.getElementById('od_sph').value;
+    var os_sph = document.getElementById('os_sph').value;
+
+    //console.log('values',od_sph, os_sph)
+    high_index = high_index_left || high_index_right
+    //console.log('high index',high_index_left, high_index_right, high_index)
+    for (var i = 0; i < lens_array.length; i++) {
+
+      //console.log(lens_array[i].id)
+      if (high_index) {
+        if (lens_array[i].id === 'sv-1-3') {
+          continue;
         }
-        
+      } else {
+        if (lens_array[i].id === 'sv-3-25-14-00') {
+          continue;
+        }
       }
-      {# document.getElementById('#od_sph').addEventListener('change',checkIfHighIndex())
-      document.getElementById('#od_cyl').addEventListener('change',checkIfHighIndex)
-      document.getElementById('#od_axis').addEventListener('change',checkIfHighIndex)
-      document.getElementById('#os_sph').addEventListener('change',checkIfHighIndex)
-      document.getElementById('#os_cyl').addEventListener('change',checkIfHighIndex)
-      document.getElementById('#os_axis').addEventListener('change',checkIfHighIndex) #}
-      document.querySelector('#od_sph').addEventListener('change', function(event) {
-        //handle click
-        //console.log(event.target.value)
-        if(event.target.value >= 3){
-          high_index_right = true
 
-          
-        }else{
-          high_index_right = false
-        }
-
-        var checkedValue = document.querySelector('.glassType:checked').value;
-        console.log(checkedValue)
-
-        var lens_catalog = JSON.parse(localStorage.getItem("lens"))
-        //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
-        //console.log(lens_catalog, lens_catalog.length)
-        //console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
-        var lens_array = Object.values(lens_catalog).filter(item=>item.type === checkedValue)
-
-        populateLensTypes(lens_array, checkedValue)
-        
-      })
-
-      document.querySelector('#os_sph').addEventListener('change', function(event) {
-        //handle click
-        //console.log(event.target.value)
-        if(event.target.value >= 3){
-          high_index_left = true
-
-          
-        }else{
-          high_index_left = false
-        }
-        var checkedValue = document.querySelector('.glassType:checked').value;
-
-        var lens_catalog = JSON.parse(localStorage.getItem("lens"))
-        //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
-        //console.log(lens_catalog, lens_catalog.length)
-        //console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
-        var lens_array = Object.values(lens_catalog).filter(item=>item.type === checkedValue)
-
-        populateLensTypes(lens_array, checkedValue)
-      })
-
-      {# document.querySelector('#od_sph').addEventListener('change', checkIfHighIndex(event)) #}
-
-      function getUrlVars() {
-          var vars = {};
-          var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-              vars[key] = value;
-          });
-          return vars;
-      }
-
-      function populatePackages(lens_array, selection){
-              var lens_html = '';
-
-              var od_sph = document.getElementById('od_sph').value;
-              var os_sph = document.getElementById('os_sph').value;
-
-              console.log('values',od_sph, os_sph)
-              high_index = high_index_left || high_index_right
-              console.log('high index',high_index_left, high_index_right, high_index)
-              for (var i =0; i < lens_array.length; i++){
-                
-                  console.log(lens_array[i].id)
-                  if(high_index){
-                    if(lens_array[i].id === 'sv-1-3'){
-                      continue;
-                    }
-                  }else{
-                    if(lens_array[i].id === 'sv-3-25-14-00'){
-                      continue;
-                    }
-                  }
-                  lens_html +=`<input type="radio" name="lensType" value="`+lens_array[i].id+`" id="`+lens_array[i].id+`" checked="checked" />
-                                <label class="whatever" for="`+lens_array[i].id+`">
+      if (lens_array[i].category == 'heading') {
+        lens_html += `<input type="radio" class="glassType" name="glassType" value="`+ lens_array[i].type + `" id="` + lens_array[i].id + `" data-price="` + lens_array[i].price + `" />
+                                <label class="whatever" for="`+ lens_array[i].id + `">
                                   <div class="select_item text-center">
-                                    <h4>`+lens_array[i].title+`
-                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+lens_array[i].description+`">  
+                                    <h5>`+ lens_array[i].title + `
+                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+ lens_array[i].description + `">  
                                         <span class="icon icon-info-circle"></span>
                                       </a>
-                                    </h4>
-                                    <p class="mb-0">`+lens_array[i].shipping+`</p>
-                                    <p class="mb-0">$ `+lens_array[i].price+`</p>
+                                    </h5>
+                                    
+                                    <p class="mb-0">$ `+ lens_array[i].price + `</p>
                                   </div>
                                 </label>`
-                
-              }
-              document.getElementById('lens_types').innerHTML = lens_html;
       }
 
-      function populateLensTypes(lens_array, selection){
-              var lens_html = '';
 
-              var od_sph = document.getElementById('od_sph').value;
-              var os_sph = document.getElementById('os_sph').value;
+    }
 
-              console.log('values',od_sph, os_sph)
-              high_index = high_index_left || high_index_right
-              console.log('high index',high_index_left, high_index_right, high_index)
-              for (var i =0; i < lens_array.length; i++){
-                
-                  console.log(lens_array[i].id)
-                  if(high_index){
-                    if(lens_array[i].id === 'sv-1-3'){
-                      continue;
-                    }
-                  }else{
-                    if(lens_array[i].id === 'sv-3-25-14-00'){
-                      continue;
-                    }
-                  }
-                  lens_html +=`<input type="radio" name="lensType" value="`+lens_array[i].id+`" id="`+lens_array[i].id+`" checked="checked" />
-                                <label class="whatever" for="`+lens_array[i].id+`">
+    lens_html += `<input type="radio" class="glassType" name="glassType" value="np" id="np" checked="checked" />
+                                <label class="whatever" for="np">
                                   <div class="select_item text-center">
-                                    <h4>`+lens_array[i].title+`
-                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+lens_array[i].description+`">  
+                                    <h5>Non-Prescription
+                                      <a href="#" data-toggle="tooltip" data-html="true" title="">  
                                         <span class="icon icon-info-circle"></span>
                                       </a>
-                                    </h4>
-                                    <p class="mb-0">`+lens_array[i].shipping+`</p>
-                                    <p class="mb-0">$ `+lens_array[i].price+`</p>
+                                    </h5>
+                                    
+                                    <p class="mb-0">Included</p>
                                   </div>
                                 </label>`
-                
-              }
-              document.getElementById('lens_types').innerHTML = lens_html;
+
+    document.getElementById('lens_heading').innerHTML = lens_html;
+  }
+
+  function populateLensOptions(lens_array, selection) {
+    var lens_html = '';
+    console.log('options', lens_array)
+
+    lens_html +=`<input type="checkbox" class="lensOptions" name="lensOptions" value="lens-clear" id="lens-clear" checked="checked" />
+            <label class="whatever" for="lens-clear">
+              <div class="select_item text-center">
+                <h5>CLEAR</h5>
+                <p class="mb-0">Included</p>
+              </div>
+            </label>`
+
+    //var od_sph = document.getElementById('od_sph').value;
+    //var os_sph = document.getElementById('os_sph').value;
+
+    //console.log('values',od_sph, os_sph)
+    //high_index = high_index_left || high_index_right
+    //console.log('high index',high_index_left, high_index_right, high_index)
+    for (var i = 0; i < lens_array.length; i++) {
+
+      var packagePrice = total_price + parseInt(lens_array[i].price)
+
+      if (lens_array[i].category == 'none') {
+        lens_html += `<input type="checkbox"  class="lensOptions" name="lensOptions" value="`+ lens_array[i].id + `" id="`+ lens_array[i].id + `" />
+                                <label class="whatever" for="`+ lens_array[i].id + `">
+                                  <div class="select_item text-center">
+                                    <h5>`+ lens_array[i].title + `
+                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+ lens_array[i].description + `">  
+                                        <span class="icon icon-info-circle"></span>
+                                      </a>
+                                    </h5>
+                                    <p class="mb-0">`+ lens_array[i].shipping + `</p>
+                                    <p class="mb-0">$ `+ packagePrice + `</p>
+                                  </div>
+                                </label>`
       }
 
-      if(getUrlVars()['id']){
-        var url_param = getUrlVars()['id'].replace('%20','-').replace('#/','').toLowerCase()
-        console.log('product id',url_param)
-        document.getElementById('product_id').value = url_param
-      }else{
-        //alert('problem')
-        window.location = 'shop.html'
-      }
 
-      var products = JSON.parse(localStorage.getItem('products'))
-      {# console.log('stored products', products) #}
-      console.log('current product', products[url_param])
+    }
+    document.getElementById('lens_options').innerHTML = lens_html;
+  }
 
+  function populatePackages(lens_array, selection) {
+    var lens_html = '';
+
+    if(lens_array.length > 0){
+      document.getElementById('package_header').style.display = 'block';
+    }else{
+      document.getElementById('package_header').style.display = 'none';
+    }
+    
+    for (var i = 0; i < lens_array.length; i++) {
+
+      var packagePrice = total_price + parseInt(lens_array[i].price)
       
+      lens_html += `<input type="radio" name="lensOptions" value="`+ lens_array[i].id + `" id="`+ lens_array[i].id + `" onclick=""/>
+                                <label class="whatever" for="`+ lens_array[i].id + `">
+                                  <div class="select_item text-center">
+                                    <h5>`+ lens_array[i].title + `
+                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+ lens_array[i].description + `">  
+                                        <span class="icon icon-info-circle"></span>
+                                      </a>
+                                    </h5>
+                                    <p class="mb-0">`+ lens_array[i].shipping + `</p>
+                                    <p class="mb-0">$ `+ packagePrice + `</p>
+                                  </div>
+                                </label>`
 
-      var radios = document.forms["prescription-form"].elements["glassType"];
-      for(var i = 0, max = radios.length; i < max; i++) {
-          radios[i].onclick = function() {
-              //alert(this.value);
-              var selection = this.value;
-              console.log(selection)
-              var lens_catalog = JSON.parse(localStorage.getItem("lens"))
-              //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
-              //console.log(lens_catalog, lens_catalog.length)
-              console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
-              var lens_array = Object.values(lens_catalog).filter(item=>item.type === selection)
+    }
+    document.getElementById('lens_packages').innerHTML = lens_html;
+  }
 
-              populateLensTypes(lens_array, selection)
+  /*function populateLensTypes(lens_array, selection) {
+    var lens_html = '';
 
-              
-          }
+    var od_sph = document.getElementById('od_sph').value;
+    var os_sph = document.getElementById('os_sph').value;
+
+    console.log('values', od_sph, os_sph)
+    high_index = high_index_left || high_index_right
+    console.log('high index', high_index_left, high_index_right, high_index)
+    for (var i = 0; i < lens_array.length; i++) {
+
+      console.log(lens_array[i].id)
+      if (high_index) {
+        if (lens_array[i].id === 'sv-1-3') {
+          continue;
+        }
+      } else {
+        if (lens_array[i].id === 'sv-3-25-14-00') {
+          continue;
+        }
       }
+      lens_html += `<input type="radio" name="lensOptions" value="` + lens_array[i].id + `" id="` + lens_array[i].id + `" checked="checked" />
+                                <label class="whatever" for="`+ lens_array[i].id + `">
+                                  <div class="select_item text-center">
+                                    <h5>`+ lens_array[i].title + `
+                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+ lens_array[i].description + `">  
+                                        <span class="icon icon-info-circle"></span>
+                                      </a>
+                                    </h4>
+                                    <p class="mb-0">`+ lens_array[i].shipping + `</p>
+                                    <p class="mb-0">$ `+ lens_array[i].price + `</p>
+                                  </div>
+                                </label>`
 
-  </script>
+    }
+    document.getElementById('lens_packages').innerHTML = lens_html;
+  }*/
+
+  if (getUrlVars()['id']) {
+    var url_param = getUrlVars()['id'].replace('%20', '-').replace('#/', '').toLowerCase()
+    console.log('product id', url_param)
+    document.getElementById('product_id').value = url_param
+  } else {
+    //alert('problem')
+    window.location = 'shop.html'
+  }
+
+  var products = JSON.parse(localStorage.getItem('products'))
+  {# console.log('stored products', products) #}
+  console.log('current product', products[url_param])
+
+
+  setTimeout(function(){
+
+    //var total_price = 0
+
+    var radios = document.forms["prescription-form"].elements["glassType"];
+    console.log(radios)
+    //var _selector = document.querySelector('.glassType');
+    //console.log(_selector)
+    for (var i = 0, max = radios.length; i < max; i++) {
+      radios[i].onclick = function () {
+        //alert(this.value);
+        var selection = this.value;
+        console.log(this.id,selection, this, $(this).attr('data-price'))
+        total_price = parseInt($(this).attr('data-price'))
+        var lens_catalog = JSON.parse(localStorage.getItem("lens"))
+        //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
+        //console.log(lens_catalog, lens_catalog.length)
+        console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
+        var lens_array = Object.values(lens_catalog).filter(item => item.category === selection)
+        console.log(lens_array)
+        populateLensOptions(Object.values(lens_catalog), 'none')
+        populatePackages(lens_array, selection)
+
+      }
+    }
+
+    const checkboxes = document.getElementsByClassName('lensOptions');
+    for (var i=0; i<checkboxes.length; i++) {
+        checkboxes[i].addEventListener('change', updateValue);
+    }
+
+    function updateValue(e){
+      console.log(e.target.value, e.target.checked)
+      var selected_checkbox = e.target.value
+      console.log(document.querySelectorAll('input[name=lensOptions]:checked'))
+
+      //if blue-light selected then transitions and arc should be disabled
+      if(e.target.checked && selected_checkbox === 'bl'){
+        console.log('disable trans and arc')
+        document.getElementById('trans').disabled = true
+        document.getElementById('a-r-c').disabled = true
+      }else if(e.target.checked && (selected_checkbox === 'a-r-c' || selected_checkbox === 'trans')){
+        console.log('disable bl')
+        document.getElementById('bl').disabled = true
+      }else{
+        if(selected_checkbox === 'a-r-c' || selected_checkbox === 'trans'){
+          //check if both arc and trans are disabled
+          console.log(document.getElementById('a-r-c').checked)
+          console.log(document.getElementById('trans').checked)
+          if(!document.getElementById('a-r-c').checked && !document.getElementById('trans').checked ){
+            document.getElementById('bl').disabled = false
+          }
+          
+        }else if(selected_checkbox === 'lens-clear'){
+          console.log('do nothing')
+        }else{
+          console.log('enable trans and arc')
+          document.getElementById('trans').disabled = false
+          document.getElementById('a-r-c').disabled = false
+        }
+        
+      }
+      
+    }
+
+  },2000)
+  
+
+  
+
+  const checkbox = document.getElementById('bl')
+
+  checkbox.addEventListener('change', (event) => {
+    if (event.target.checked) {
+      alert('checked');
+    } else {
+      alert('not checked');
+    }
+  })
+
+</script>
 
 {% endblock %}

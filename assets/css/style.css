@@ -764,9 +764,24 @@ a {
     display: none;
 }
 
+.select_row input[type=checkbox]{
+  display: none;
+}
+
 .select_row input[type=radio]:checked + .whatever{
     background-color: #a09cde; /*#7971ea;*/
     color:#fff
+}
+
+.select_row input[type=checkbox]:checked + .whatever{
+  background-color: #a09cde; /*#7971ea;*/
+  color:#fff
+}
+
+.select_row input[disabled] + .whatever{
+  background-color:#eee; /*#7971ea;*/
+  font-weight:bold;
+  color:#ccc
 }
   
   .select_row label {
@@ -790,10 +805,19 @@ a {
     height: 100px;
 }
 
-#checkboxes input[type=radio]{
-    display: none;
+
+.whatever div{
+  display:flex;
+  flex-direction:column;
+  min-height:150px;
 }
 
-#checkboxes input[type=radio]:checked + .whatever{
-    background-color: #a09cde; /*#7971ea;*/
+.whatever div h5{
+  text-transform:uppercase;
+  font-size:95%;
+  flex-grow:1
+}
+
+#package_header{
+  display:none;
 }
