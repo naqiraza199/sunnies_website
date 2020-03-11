@@ -3,13 +3,13 @@
   "material": "nil",
   "price": 100,
   "stripe_sku": "sku_Gsb7pfMidGU2hh",
-  "shipping": "nil",
+  "shipping": "Transitions - These lenses are smartly designed to quickly adjust from clear to dark (and vice versa). This allows eyeglasses and sunglasses to be one.\nAnti-Reflective Coating (a r c) - Reduces glare on the lens surface & improves glasses efficiency ",
   "currency": "BDS",
   "title": "transitions",
   "special": [
     "None"
   ],
-  "type": "Transitions - These lenses are smartly designed to quickly adjust from clear to dark (and vice versa). This allows eyeglasses and sunglasses to be one.\nAnti-Reflective Coating (a r c) - Reduces glare on the lens surface & improves glasses efficiency ",
+  "type": "transitions",
   "id": "trans",
   "measurement": "nil",
   "description": "These lenses are smartly designed to quickly adjust from clear to dark (and vice versa). This allows eyeglasses and sunglasses to be one.",
