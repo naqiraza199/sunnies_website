@@ -131,12 +131,62 @@
                 });
             });
 
+            //1. `sel` any collection of `form` and/or `input`, `select`, `textarea` 
+//2. we assign value `1` if not exists to radios and checkboxes
+// so that the server will receive `1` instead of `on` when checked
+//3. we assign empty value to unchecked checkboxes 
+function serialize(sel) {
+   var arr,
+       tmp,
+       i,
+       $nodes = $(sel);
+
+   // 1. collect form controls
+   $nodes = $nodes.map(function(ndx){
+      var $n = $(this);
+
+      if($n.is('form'))
+         return $n.find('input, select, textarea').get();
+      return this;
+    });
+
+   // 2. replace empty values of <input>s of type=["checkbox"|"radio"] with 1 
+   // or, we end up with "on" when checked
+   $nodes.each(function(ndx, el){
+      if ((el.nodeName.toUpperCase() == 'INPUT') && ((el.type.toUpperCase() == 'CHECKBOX') || (el.type.toUpperCase() == 'RADIO'))){
+         if((el.value === undefined) || (el.value == ''))
+            el.value = 1;
+      }
+   });
+
+   // 3. produce array of objects: {name: "field attribute name", value: "actual field value"}
+   arr = $nodes.serializeArray();
+   tmp = [];
+   for(i = 0; i < arr.length; i++)
+      tmp.push(arr[i].name);
+
+   // 4. include unchecked checkboxes
+    $nodes.filter('input[type="checkbox"]:not(:checked)').each(function(){
+      if(tmp.indexOf(this.name) < 0){
+         arr.push({name: this.name, value: ''});
+      }
+    });
+
+   return arr;
+}
+
             function getFormData(form){
-                var unindexed_array = $(form).serializeArray();
+                //var unindexed_array = $(form).serializeArray();
+                var unindexed_array = serialize(form)
                 var indexed_array = {};
 
                 $.map(unindexed_array, function(n, i){
-                    indexed_array[n['name']] = n['value'];
+                    if(indexed_array.hasOwnProperty(n['name'])){
+                        indexed_array[n['name']] += ','+n['value'];
+                    }else{
+                        indexed_array[n['name']] = n['value'];
+                    }
+                    
                 });
 
                 return indexed_array;
@@ -175,6 +225,10 @@
             }
 
             function savePrescriptionInfo(form){
+
+                console.log(serialize(form))
+
+                //return false; //don't submit
                 //var data = JSON.stringify($(form).serializeArray()); //  <-----------
                 var prescription_data = getFormData(form)
                 console.log(prescription_data)
@@ -190,25 +244,38 @@
                 
                 product_info.quantity = 1
                 product_info.title +=' ('+product_info.color+' | '+product_info.material+')'
-                
+                //return false;
                 updateCartItems(product_info)
 
-                
-
+                //return false;
+                var lensOptions = prescription_data.lensOptions.split(',')
+                console.log(lensOptions)
                 var lens = JSON.parse(localStorage.getItem('lens'))
-                var lens_info = lens[prescription_data.lensType]
-                console.log('lens info',lens_info)
+                var lens_info = lens[lensOptions[0]]
+                console.log(lens, lens_info, lens[lensOptions[1]],lensOptions.length)
+                //return false;
 
-                //return false
+                for(var x = 0; x< lensOptions.length; x++){
+                    console.log('count',x)
+                    var lens = JSON.parse(localStorage.getItem('lens'))
+                    var lens_info = lens[lensOptions[x]]
+                    //var lens_info = lens[prescription_data.lensType]
+                    console.log('lens info',lens_info)
 
-                prescription_data.id = lens_info.id
-                prescription_data.stripe_sku = lens_info.stripe_sku
-                prescription_data.price = lens_info.price
-                prescription_data.quantity = 1
-                prescription_data.title = lens_info.title+'('+lens_info.shipping+')'
-                updateCartItems(prescription_data)
+                    //return false
 
+                    prescription_data.id = lens_info.id
+                    prescription_data.stripe_sku = lens_info.stripe_sku
+                    prescription_data.price = lens_info.price
+                    prescription_data.quantity = 1
+                    prescription_data.title = lens_info.title+'('+lens_info.shipping+')'
+                    updateCartItems(prescription_data)
+                    console.log('prescrip data', prescription_data)
+                    //setTimeout(function(){ alert("Hello"); }, 10000);
+                }
                 
+                
+                //return false;
 
                 swal({
                     title: "Added to Cart!",

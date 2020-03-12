@@ -164,6 +164,7 @@
   var high_index_right = false
   var high_index_left = false
 
+  var selected_lens_id = ''
   var total_price = 0
 
   function checkIfHighIndex(event) {
@@ -266,7 +267,7 @@
 
     }
 
-    lens_html += `<input type="radio" class="glassType" name="glassType" value="np" id="np" checked="checked" />
+    lens_html += `<input type="radio" class="glassType" name="glassType" value="np" id="np" checked="checked" data-price="0"/>
                                 <label class="whatever" for="np">
                                   <div class="select_item text-center">
                                     <h5>Non-Prescription
@@ -286,8 +287,8 @@
     var lens_html = '';
     console.log('options', lens_array)
 
-    lens_html +=`<input type="checkbox" class="lensOptions" name="lensOptions" value="lens-clear" id="lens-clear" checked="checked" />
-            <label class="whatever" for="lens-clear">
+    lens_html +=`<input type="checkbox" class="lensOptions" name="lensOptions" value="`+selected_lens_id+`" id="`+selected_lens_id+`" checked="checked" />
+            <label class="whatever" for="`+selected_lens_id+`">
               <div class="select_item text-center">
                 <h5>CLEAR</h5>
                 <p class="mb-0">Included</p>
@@ -337,7 +338,7 @@
 
       var packagePrice = total_price + parseInt(lens_array[i].price)
       
-      lens_html += `<input type="radio" name="lensOptions" value="`+ lens_array[i].id + `" id="`+ lens_array[i].id + `" onclick=""/>
+      lens_html += `<input type="checkbox" class="lensPackages" name="lensPackages" value="`+ lens_array[i].id + `" id="`+ lens_array[i].id + `" />
                                 <label class="whatever" for="`+ lens_array[i].id + `">
                                   <div class="select_item text-center">
                                     <h5>`+ lens_array[i].title + `
@@ -418,6 +419,7 @@
       radios[i].onclick = function () {
         //alert(this.value);
         var selection = this.value;
+        selected_lens_id = this.id;
         console.log(this.id,selection, this, $(this).attr('data-price'))
         total_price = parseInt($(this).attr('data-price'))
         var lens_catalog = JSON.parse(localStorage.getItem("lens"))
@@ -431,6 +433,8 @@
 
       }
     }
+
+    
 
     const checkboxes = document.getElementsByClassName('lensOptions');
     for (var i=0; i<checkboxes.length; i++) {
@@ -476,15 +480,7 @@
 
   
 
-  const checkbox = document.getElementById('bl')
-
-  checkbox.addEventListener('change', (event) => {
-    if (event.target.checked) {
-      alert('checked');
-    } else {
-      alert('not checked');
-    }
-  })
+  
 
 </script>
 
