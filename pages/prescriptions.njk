@@ -129,10 +129,10 @@
                   <div class="card-header tab-card-header">
                     <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
                       <li class="nav-item">
-                          <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Choose a Package</a>
+                          <a class="nav-link" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true">Select a Package</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">Individual Options</a>
+                          <a class="nav-link" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false">Select Option(s)</a>
                       </li>
                       
                     </ul>
@@ -154,7 +154,7 @@
               </div>
             </div>
           </div>
-          <div class="p-4">
+          {# <div class="p-4">
             <h4 class="text-black" id="package_header">Choose a Package</h4>
           </div>
           <div class="select_row" id="lens_packages">
@@ -163,7 +163,7 @@
             <h4 class="text-black">or choose from the following options</h4>
           </div>
           <div class="select_row" id="lens_options">
-          </div>
+          </div> #}
 
           
           <div class="form-group row">
@@ -323,8 +323,7 @@
             <label class="whatever" for="`+selected_lens_id+`">
               <div class="select_item text-center">
                 <h5>CLEAR</h5>
-                <p class="mb-0">Lens for Everyday Use</p>
-                <p class="mb-0"><b>Included</b></p>
+                <p class="mb-0">Lens for Everyday Use<br />Included</p>
               </div>
             </label>`
 
@@ -347,8 +346,7 @@
                                         <span class="icon icon-info-circle"></span>
                                       </a>
                                     </h5>
-                                    <p class="mb-0">`+ lens_array[i].shipping + `</p>
-                                    <p class="mb-0"><b>+ $ `+ packagePrice + `</b></p>
+                                    <p class="mb-0">`+ lens_array[i].shipping + `<br> $ `+ packagePrice + `</p>
                                   </div>
                                 </label>`
       }
@@ -361,11 +359,11 @@
   function populatePackages(lens_array, selection) {
     var lens_html = '';
 
-    if(lens_array.length > 0){
+    /*if(lens_array.length > 0){
       document.getElementById('package_header').style.display = 'block';
     }else{
       document.getElementById('package_header').style.display = 'none';
-    }
+    }*/
     
     for (var i = 0; i < lens_array.length; i++) {
 
@@ -388,43 +386,7 @@
     document.getElementById('lens_packages').innerHTML = lens_html;
   }
 
-  /*function populateLensTypes(lens_array, selection) {
-    var lens_html = '';
-
-    var od_sph = document.getElementById('od_sph').value;
-    var os_sph = document.getElementById('os_sph').value;
-
-    console.log('values', od_sph, os_sph)
-    high_index = high_index_left || high_index_right
-    console.log('high index', high_index_left, high_index_right, high_index)
-    for (var i = 0; i < lens_array.length; i++) {
-
-      console.log(lens_array[i].id)
-      if (high_index) {
-        if (lens_array[i].id === 'sv-1-3') {
-          continue;
-        }
-      } else {
-        if (lens_array[i].id === 'sv-3-25-14-00') {
-          continue;
-        }
-      }
-      lens_html += `<input type="radio" name="lensOptions" value="` + lens_array[i].id + `" id="` + lens_array[i].id + `" checked="checked" />
-                                <label class="whatever" for="`+ lens_array[i].id + `">
-                                  <div class="select_item text-center">
-                                    <h5>`+ lens_array[i].title + `
-                                      <a href="#" data-toggle="tooltip" data-html="true" title="`+ lens_array[i].description + `">  
-                                        <span class="icon icon-info-circle"></span>
-                                      </a>
-                                    </h4>
-                                    <p class="mb-0">`+ lens_array[i].shipping + `</p>
-                                    <p class="mb-0">$ `+ lens_array[i].price + `</p>
-                                  </div>
-                                </label>`
-
-    }
-    document.getElementById('lens_packages').innerHTML = lens_html;
-  }*/
+ 
 
   if (getUrlVars()['id']) {
     var url_param = getUrlVars()['id'].replace('%20', '-').replace('#/', '').toLowerCase()
@@ -444,7 +406,7 @@
 
     //var total_price = 0
 
-    var radios = document.forms["prescription-form"].elements["glassType"];
+    /*var radios = document.forms["prescription-form"].elements["glassType"];
     console.log(radios)
     //var _selector = document.querySelector('.glassType');
     //console.log(_selector)
@@ -506,9 +468,86 @@
         
       }
       
-    }
+    }*/
 
   },2000)
+
+
+  var addCustomEventListener = function (selector, event, handler) {
+        let rootElement = document.querySelector('body');
+        //since the root element is set to be body for our current dealings
+        rootElement.addEventListener(event, function (evt) {
+                var targetElement = evt.target;
+                while (targetElement != null) {
+                    if (targetElement.matches(selector)) {
+                        handler(evt);
+                        return;
+                    }
+                    targetElement = targetElement.parentElement;
+                }
+            },
+            true
+        );
+    }
+
+    var handleSelectGlassType = (evt)=>{
+      console.log('clicked glass type', evt.target)
+      
+      var selection = evt.target.value;
+        selected_lens_id = evt.target.id;
+        console.log(evt.target.id,selection, evt.target, $(evt.target).attr('data-price'))
+        total_price = parseInt($(evt.target).attr('data-price'))
+        var lens_catalog = JSON.parse(localStorage.getItem("lens"))
+        //var filtered_lens = lens_catalog.filter((item) => item.type === selection)
+        //console.log(lens_catalog, lens_catalog.length)
+        console.log(Object.values(lens_catalog), Object.values(lens_catalog).length)
+        var lens_array = Object.values(lens_catalog).filter(item => item.category === selection)
+        console.log(lens_array)
+        populateLensOptions(Object.values(lens_catalog), 'none')
+        populatePackages(lens_array, selection)
+    }
+
+    function updateValue(e){
+      console.log(e.target.value, e.target.checked)
+      var selected_checkbox = e.target.value
+      console.log(document.querySelectorAll('input[name=lensOptions]:checked'))
+
+      //if blue-light selected then transitions and arc should be disabled
+      if(e.target.checked && selected_checkbox === 'bl'){
+        console.log('disable trans and arc')
+        document.getElementById('trans').disabled = true
+        document.getElementById('a-r-c').disabled = true
+      }else if(e.target.checked && (selected_checkbox === 'a-r-c' || selected_checkbox === 'trans')){
+        console.log('disable bl')
+        document.getElementById('bl').disabled = true
+      }else{
+        if(selected_checkbox === 'a-r-c' || selected_checkbox === 'trans'){
+          //check if both arc and trans are disabled
+          console.log(document.getElementById('a-r-c').checked)
+          console.log(document.getElementById('trans').checked)
+          if(!document.getElementById('a-r-c').checked && !document.getElementById('trans').checked ){
+            document.getElementById('bl').disabled = false
+          }
+          
+        }else if(selected_checkbox === 'lens-clear'){
+          console.log('do nothing')
+        }else{
+          console.log('enable trans and arc')
+          document.getElementById('trans').disabled = false
+          document.getElementById('a-r-c').disabled = false
+        }
+        
+      }
+    }
+
+    var handleSelectLensOption = function(){
+      console.log('clicked checkbox')
+    }
+
+  //adding the Event Listeners to all the li tasks
+  addCustomEventListener('.glassType','click',handleSelectGlassType);
+  addCustomEventListener('.lensOptions','click',updateValue);
+
   
 
   
