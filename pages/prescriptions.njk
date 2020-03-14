@@ -540,13 +540,21 @@
       }
     }
 
-    var handleSelectLensOption = function(){
+    var resetCheckboxes = function(evt){
       console.log('clicked checkbox')
+      $(".lensPackages").not(evt.target).prop('checked', false)
     }
 
   //adding the Event Listeners to all the li tasks
   addCustomEventListener('.glassType','click',handleSelectGlassType);
   addCustomEventListener('.lensOptions','click',updateValue);
+
+  addCustomEventListener('.lensPackages','change',resetCheckboxes);
+
+  {# $(".lensPackages").change(function(){
+    console.log('clickity')
+    $(".lensPackages").not(this).prop('checked', false)
+  }) #}
 
   
 
