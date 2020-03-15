@@ -51,7 +51,7 @@
 
             </div>
             <p>
-              {# <button type="button" role="link" class="btn btn-sm btn-success" onClick="tryItOn()">Try it On</button> #}
+              <button type="button" role="link" class="btn btn-sm btn-success"  data-toggle="modal" data-target="#tryItOnModal">Try it On</button>
               <a href="prescriptions.html" id="prescriptions-link" style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em;margin-right:12px">
                   Choose Lens
               </a>
@@ -65,6 +65,30 @@
             <p id="item_shipping"></p>
 
             <div id="error-message"></div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="tryItOnModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Try Glasses On</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <center><canvas id="canvas" height=360 width=480></canvas></center>
+                    <!-- <div style="display:none;"><img id="image" src="face1.jpg"></div> -->
+                    <p>Click the button below to select a photo of your face</p>
+                    <input type='file' onchange="readURL(this);" />
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+                    {# <button type="button" class="btn btn-primary">Save changes</button> #}
+                  </div>
+                </div>
+              </div>
+            </div>
 
           </div>
         </div>
@@ -106,6 +130,139 @@
       document.getElementById('item_currency').innerHTML = current_product.currency
       document.getElementById('item_image').src = current_product.photo
       document.getElementById('item_size').innerHTML = current_product.measurement
+
+      /*
+		download the face-detection cascade
+	*/
+	var facefinder_classify_region = function (r, c, s, pixels, ldim) { return -1.0; };
+	var cascadeurl = 'https://raw.githubusercontent.com/nenadmarkus/pico/c2e81f9d23cc11d1a612fd21e4f9de0921a5d0d9/rnt/cascades/facefinder';
+	fetch(cascadeurl).then(function (response) {
+		response.arrayBuffer().then(function (buffer) {
+			var bytes = new Int8Array(buffer);
+			facefinder_classify_region = pico.unpack_cascade(bytes);
+			console.log('* cascade loaded');
+		})
+	})
+	/*
+		prepare the image and canvas context
+	*/
+	var ctx = document.getElementById('canvas').getContext('2d');
+	var img = document.getElementById('image');
+	img.onload = () => ctx.drawImage(img, 0, 0);
+	/*
+		a function to transform an RGBA image to grayscale
+	*/
+	function rgba_to_grayscale(rgba, nrows, ncols) {
+		var gray = new Uint8Array(nrows * ncols);
+		for (var r = 0; r < nrows; ++r)
+			for (var c = 0; c < ncols; ++c)
+				// gray = 0.2*red + 0.7*green + 0.1*blue
+				gray[r * ncols + c] = (2 * rgba[r * 4 * ncols + 4 * c + 0] + 7 * rgba[r * 4 * ncols + 4 * c + 1] + 1 * rgba[r * 4 * ncols + 4 * c + 2]) / 10;
+		return gray;
+	}
+
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			var reader = new FileReader();
+
+			reader.onload = function (e) {
+				// document.getElementById('blah')
+				// 	.attr('src', e.target.result);
+				// document.getElementById('blah').src = e.target.result
+				let glass_img = document.createElement("img");
+				glass_img.src = e.target.result;
+				glass_img.addEventListener("load", () => {
+					// for (let x = 10; x < 200; x += 30) {
+					//drawImage(image, dx, dy, dWidth, dHeight)
+					// ctx.drawImage(glass_img, 0, 0, glass_img.width, glass_img.height);
+					ctx.drawImage(glass_img, 0, 0, 284, 366);
+					// }
+					button_callback()
+				})
+			};
+
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
+	/*
+		this function is called each time you press the button to detect the faces
+	*/
+	function button_callback() {
+		// re-draw the image to clear previous results and get its RGBA pixel data
+		// ctx.drawImage(img, 0, 0);
+		var rgba = ctx.getImageData(0, 0, 480, 360).data;
+		// prepare input to `run_cascade`
+		image = {
+			"pixels": rgba_to_grayscale(rgba, 360, 480),
+			"nrows": 360,
+			"ncols": 480,
+			"ldim": 480
+		}
+		params = {
+			"shiftfactor": 0.1, // move the detection window by 10% of its size
+			"minsize": 20,      // minimum size of a face (not suitable for real-time detection, set it to 100 in that case)
+			"maxsize": 1000,    // maximum size of a face
+			"scalefactor": 1.1  // for multiscale processing: resize the detection window by 10% when moving to the higher scale
+		}
+		// run the cascade over the image
+		// dets is an array that contains (r, c, s, q) quadruplets
+		// (representing row, column, scale and detection score)
+		dets = pico.run_cascade(image, facefinder_classify_region, params);
+		// cluster the obtained detections
+		dets = pico.cluster_detections(dets, 0.2); // set IoU threshold to 0.2
+		console.log(dets)
+		// draw results
+		qthresh = 5.0 // this constant is empirical: other cascades might require a different one
+		// console.log('load glasses')
+		// let glass_img = document.createElement("img");
+		// glass_img.src = "glasses_1.png";
+		// glass_img.addEventListener("load", () => {
+		// 	// for (let x = 10; x < 200; x += 30) {
+		// 	//drawImage(image, dx, dy, dWidth, dHeight)
+		// 	ctx.drawImage(glass_img, 30, 80, 200, 100);
+		// 	// }
+		// });
+
+		var x_coord = dets[0][1] - 70
+		var y_coord = dets[0][0] - 40
+		var width = dets[0][2] - 50
+		var height = 50
+
+		// ctx.beginPath();
+		// ctx.rect(x_coord, y_coord, width, height)
+		// ctx.lineWidth = 3;
+		// ctx.strokeStyle = 'blue';
+		// ctx.stroke();
+
+		for (i = 0; i < dets.length; ++i) {
+			// check the detection score
+			// if it's above the threshold, draw it
+			if (dets[i][3] > qthresh) {
+				// ctx.beginPath();
+				// // ctx.arc(dets[i][1], dets[i][0], dets[i][2] / 2, 0, 2 * Math.PI, false);
+				// ctx.rect(dets[i][1] - 100, dets[i][0] - 50, dets[i][2], 100)
+				// ctx.lineWidth = 3;
+				// ctx.strokeStyle = 'blue';
+				// ctx.stroke();
+
+
+
+				var x_coord = dets[i][1] - 70
+				var y_coord = dets[i][0] - 40
+				var width = dets[i][2] - 30
+				console.log(x_coord, y_coord)
+				// let cx = document.querySelector("canvas").getContext("2d");
+				let glass_img = document.createElement("img");
+				glass_img.src = "../assets/img/uploads/overlays/RLV00591.png";
+				glass_img.addEventListener("load", function () {
+
+					// ctx.drawImage(glass_img, dets[i][1] - glass_img.width / 2, dets[i][0] - glass_img.height / 2, glass_img.width, glass_img.height);
+					ctx.drawImage(glass_img, x_coord, y_coord, width, 60);
+
+				});
+			}
+		}
+	}
 
     </script>
 
