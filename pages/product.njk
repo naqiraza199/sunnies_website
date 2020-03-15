@@ -253,7 +253,8 @@
 				console.log(x_coord, y_coord)
 				// let cx = document.querySelector("canvas").getContext("2d");
 				let glass_img = document.createElement("img");
-				glass_img.src = "../assets/img/uploads/overlays/RLV00591.png";
+				//glass_img.src = "../assets/img/uploads/overlays/RLV00591.png";
+				glass_img.src = ".."+current_product.photo.replace('uploads','uploads/overlays');
 				glass_img.addEventListener("load", function () {
 
 					// ctx.drawImage(glass_img, dets[i][1] - glass_img.width / 2, dets[i][0] - glass_img.height / 2, glass_img.width, glass_img.height);
