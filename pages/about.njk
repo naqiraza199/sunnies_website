@@ -41,21 +41,24 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-4">
 
                     <div class="block-38 text-center">
                         <div class="block-38-img">
-                            <div class="block-38-header">
-                                <img src="{{founder_photo}}" alt="Image placeholder" class="img-fluid">
-                                <h3 class="block-38-heading h4">{{founder_name}}</h3>
+                            <div>
+                                <img style="clip-path: circle(100px at 50% 35%); margin-box;height:300px;margin-bottom:30px;" src="{{founder_photo}}" alt="Image placeholder" class="img-fluid">
+                                {# <h3 class="h4">{{founder_name}}</h3> #}
                                 {# <p class="block-38-subheading">Owner</p> #}
                             </div>
-                            <div class="block-38-body">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-8">
+                        <div class="block-38-body">
                                 <p>{{founder_bio}}
                                 </p>
                             </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- <div class="col-md-6 col-lg-3"> <div class="block-38 text-center"> <div class="block-38-img"> <div class="block-38-header"> <img src="/assets/images/person_2.jpg" alt="Image placeholder" class="mb-4"> <h3 class="block-38-heading h4">Jennifer Greive</h3> <p class="block-38-subheading">Co-Founder</p> </div> <div class="block-38-body"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p> </div> </div> </div> </div> <div class="col-md-6 col-lg-3"> <div class="block-38 text-center"> <div class="block-38-img"> <div class="block-38-header"> <img src="/assets/images/person_3.jpg" alt="Image placeholder" class="mb-4"> <h3 class="block-38-heading h4">Patrick Marx</h3> <p class="block-38-subheading">Marketing</p> </div> <div class="block-38-body"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p> </div> </div> </div> </div> <div class="col-md-6 col-lg-3"> <div class="block-38 text-center"> <div class="block-38-img"> <div class="block-38-header"> <img src="/assets/images/person_4.jpg" alt="Image placeholder" class="mb-4"> <h3 class="block-38-heading h4">Mike Coolbert</h3> <p class="block-38-subheading">Sales Manager</p> </div> <div class="block-38-body"> <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae aut minima nihil sit distinctio recusandae doloribus ut fugit officia voluptate soluta. </p> </div> </div> </div> </div> -->
             </div>
@@ -65,34 +68,36 @@
     <div class="site-section site-section-sm site-blocks-1 border-0" data-aos="fade">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
-                    <div class="icon mr-4 align-self-start">
-                        <span class="icon-truck"></span>
-                    </div>
-                    <div class="text">
-                        <h2 class="text-uppercase">Free Shipping</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="icon mr-4 align-self-start">
-                        <span class="icon-refresh2"></span>
-                    </div>
-                    <div class="text">
-                        <h2 class="text-uppercase">Free Returns</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="icon mr-4 align-self-start">
-                        <span class="icon-help"></span>
-                    </div>
-                    <div class="text">
-                        <h2 class="text-uppercase">Customer Support</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
-                    </div>
-                </div>
-            </div>
+        <div class="col-md-6 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="">
+          <div class="icon mr-4 align-self-start">
+            <span class="icon-truck"></span>
+          </div>
+          <div class="text">
+            <h2 class="text-uppercase">Shipping</h2>
+            <p>{{shipping}}</p>
+            {# <p>Your vision and your business is important to us. With our partners' laboratories, expert professional staff, and frame stock that are stored in-house, we can provide you not only with high quality glasses, but also with prompt processing times. By cutting out the middle man, we can produce your glasses and ship them to you in the shortest time span possible – all across the globe. </p> #}
+          </div>
+        </div>
+        <div class="col-md-6 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="icon mr-4 align-self-start">
+            <span class="icon-refresh2"></span>
+          </div>
+          <div class="text">
+            <h2 class="text-uppercase">Returns</h2>
+            <p>{{returns}}</p>
+            {# <p>Sunnies By Richie aims to provide you a perfect pair of eyeglasses at the best price. If you have any problems, please feel free to contact us. Our customer service will offer you a reasonable solution for all kinds of problems with the glasses in 10 days from the date you receive the glasses. Two weeks warranty for manufactures defects only.</p> #}
+          </div>
+        </div>
+        {# <div class="col-md-6 col-lg-4 d-lg-flex mb-4 mb-lg-0 pl-4" data-aos="fade-up" data-aos-delay="200">
+          <div class="icon mr-4 align-self-start">
+            <span class="icon-help"></span>
+          </div>
+          <div class="text">
+            <h2 class="text-uppercase">Customer Support</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus at iaculis quam. Integer accumsan tincidunt fringilla.</p>
+          </div>
+        </div> #}
+      </div>
         </div>
     </div>
     <!-- /.container -->
