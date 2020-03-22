@@ -41,16 +41,16 @@
                 {% if (item.category !== "Prescriptions Lens") and (item.category !== "Add-Ons") %}
                   <div class="col-sm-6 col-lg-4 mb-4" data-aos="fade-up">
                     <div class="block-4 text-center border">
-                      <figure class="block-4-image">
+                      <div class="block-4-image" style="background-color:#fefdfe; height:200px;display:flex;align-items:center;justify-content:center;">
                         <a href="product.html?id={{item.id}}">
                         
                         {% if item.photo.length > 0 %}
-                            <img class="img-fluid" src="{{item.photo}}" alt=""/>
+                            <img class="img-fluid" style=""src="{{item.photo}}" alt=""/>
                         {% else %}
                             <img class="img-fluid" src="assets/images/notfound.png" alt=""/>
                         {% endif %}
                         </a>
-                      </figure>
+                      </div>
                       <div class="block-4-text p-4">
                         <h3><a href="product.html?id={{item.id}}">{{ item.title }}</a></h3>
                         <p class="mb-0">{{item.description}} {{item.material}} {{item.color}}</p>
