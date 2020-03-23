@@ -7,7 +7,7 @@
   "currency": "BDS",
   "title": "PRISM",
   "special": "None",
-  "type": "NONE",
+  "type": "prism",
   "id": "prism",
   "measurement": "NIL",
   "description": "Prism is prescriped to correct an imbalance between the eyes. If nothing appears in this column, you have no need for Prism.",
