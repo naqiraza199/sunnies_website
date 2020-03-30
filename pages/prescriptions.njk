@@ -112,13 +112,27 @@
                   </p>
                 </div>
                 <div class="col-md-3">
-                  <input type="number" class="form-control" id="pd" name="pd" value="" data-decimals="2"min="-200" max="200" step="0.1" placeholder="0.00">
+                  {# <input type="number" class="form-control" id="pd" name="pd" value="" data-decimals="2"min="-200" max="200" step="0.1" placeholder="0.00"> #}
+                  <select class="form-control" id="pd" name="pd"></select>
+                </div>
+                <div class="col-md-3" id="displaySecondPD" style="display:none">
+                  {# <input type="number" class="form-control" id="pd" name="pd" value="" data-decimals="2"min="-200" max="200" step="0.1" placeholder="0.00"> #}
+                  <select class="form-control" id="pd_2" name="pd_2"></select>
+                </div>
+                <div class="col-md-3 px-3">
+                  <input type="checkbox" id="triggerSecondPD" onclick="toggleSecondPD()">
+                  <label for="prism">I have 2 numbers for my PD
+                    {# <a href="#" data-toggle="tooltip" data-html="true"
+                      title="Prism is prescribed to correct a muscle imbalance between the two eyes so it should help make your vision more comfortable.">
+                      <span class="icon icon-info-circle"></span>
+                    </a> #}
+                  </label>
                 </div>
               </div>
               <div class="form-group row">
                 <div class="ml-5">
                   <input type="checkbox" class="form-check-input" id="prism" name="prism">
-                  <label for="prism">Do you have Prism?
+                  <label for="prism">Add Prism? (+ $ 40)
                     <a href="#" data-toggle="tooltip" data-html="true"
                       title="Prism is prescribed to correct a muscle imbalance between the two eyes so it should help make your vision more comfortable.">
                       <span class="icon icon-info-circle"></span>
@@ -214,12 +228,32 @@
 
   }
 
-  const fillRange = (start, end) => {
+  function toggleSecondPD() {
+    // Get the checkbox
+    var checkBox = document.getElementById("triggerSecondPD");
+    // Get the output text
+    var text = document.getElementById("displaySecondPD");
+
+    // If the checkbox is checked, display the output text
+    if (checkBox.checked == true){
+      text.style.display = "block";
+    } else {
+      text.style.display = "none";
+    }
+  }
+
+  const fillRangeByQuarter = (start, end) => {
     return Array((end - start + 1)*4).fill().map((item, index) => start + index/4);
   };
 
-  const allLines = fillRange(-14,9);
+  const fillRange = (start, end) => {
+    return Array(end - start + 1).fill().map((item, index) => start + index);
+  };
+
+  const allLines = fillRangeByQuarter(-14,9);
   allLines.splice(allLines.indexOf(0.25),0,...["00 plano","None","SPH","DS","Balance"])
+  const pdValues = fillRange(40,80);
+  pdValues.unshift('None')
   {# allLines.splice(allLines, allLines.indexOf(0), ...["00 plano","None"]) #}
   ///console.log('generated',allLines)
   
@@ -242,10 +276,17 @@
       $('#os_cyl').append($('<option></option>').val(p).html(p));
   });
 
+  $.each(pdValues, function(i, p) {
+      $('#pd').append($('<option></option>').val(p).html(p));
+      $('#pd_2').append($('<option></option>').val(p).html(p));
+  });
+
   $('#od_sph').val('None');
   $('#od_cyl').val('None');
   $('#os_sph').val('None');
   $('#os_cyl').val('None');
+  $('#pd').val(62);
+  $('#pd_2').val(62);
 
   document.querySelector('#od_sph').addEventListener('change', function (event) {
     //handle click
