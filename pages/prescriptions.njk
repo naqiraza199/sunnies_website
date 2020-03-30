@@ -19,6 +19,11 @@
 
     <div class="row">
       <div class="col-md-12">
+
+          <div class="alert alert-primary text-center" role="alert">
+            Please note that all prices are in Barbadian dollars!
+          </div>
+
         <div class="p-4">
           <h4 class="text-black">What do you use for your glasses?</h4>
         </div>
@@ -32,7 +37,7 @@
 
           </div>
 
-
+          
 
           <div class="p-4">
             <h4 class="text-black">Enter your Prescription</h4>
@@ -64,12 +69,14 @@
                   <p>Right (OD)</p>
                 </div>
                 <div class="col-md-3">
-                  <input type="number" class="form-control" id="od_sph" name="right_sph" data-decimals="2" min="-200"
-                    max="200" step="0.1" placeholder="0.00">
+                  {# <input type="number" class="form-control" id="od_sph" name="right_sph" data-decimals="2" min="-200"
+                    max="200" step="0.1" placeholder="0.00"> #}
+                    <select class="form-control" id="od_sph" name="right_sph"></select>
                 </div>
                 <div class="col-md-3">
-                  <input type="number" class="form-control" id="od_cyl" name="right_cyl" data-decimals="2" min="-200"
-                    max="200" step="0.1" placeholder="0.00">
+                  {# <input type="number" class="form-control" id="od_cyl" name="right_cyl" data-decimals="2" min="-200"
+                    max="200" step="0.1" placeholder="0.00"> #}
+                     <select class="form-control" id="od_cyl" name="right_sph"></select>
                 </div>
                 <div class="col-md-3">
                   <input type="number" class="form-control" id="od_axis" name="right_axis" data-decimals="2" min="-200"
@@ -81,12 +88,14 @@
                   <p>Left (OS)</p>
                 </div>
                 <div class="col-md-3">
-                  <input type="number" class="form-control" id="os_sph" name="left_sph" value="" data-decimals="2"
-                    min="-200" max="200" step="0.1" placeholder="0.00">
+                  {# <input type="number" class="form-control" id="os_sph" name="left_sph" value="" data-decimals="2"
+                    min="-200" max="200" step="0.1" placeholder="0.00"> #}
+                     <select class="form-control" id="os_sph" name="right_sph"></select>
                 </div>
                 <div class="col-md-3">
-                  <input type="number" class="form-control" id="os_cyl" name="left_cyl" value="" data-decimals="2"
-                    min="-200" max="200" step="0.1" placeholder="0.00">
+                  {# <input type="number" class="form-control" id="os_cyl" name="left_cyl" value="" data-decimals="2"
+                    min="-200" max="200" step="0.1" placeholder="0.00"> #}
+                     <select class="form-control" id="os_cyl" name="right_sph"></select>
                 </div>
                 <div class="col-md-3">
                   <input type="number" class="form-control" id="os_axis" name="left_axis" value="" data-decimals="2"
@@ -205,6 +214,38 @@
 
   }
 
+  const fillRange = (start, end) => {
+    return Array((end - start + 1)*4).fill().map((item, index) => start + index/4);
+  };
+
+  const allLines = fillRange(-14,9);
+  allLines.splice(allLines.indexOf(0.25),0,...["00 plano","None","SPH","DS","Balance"])
+  {# allLines.splice(allLines, allLines.indexOf(0), ...["00 plano","None"]) #}
+  ///console.log('generated',allLines)
+  
+  var select = document.getElementById("od_sph"); 
+  var options = ["1", "2", "3", "4", "5"]; 
+  /*if(allLines.length > 0){
+    for(var i = 0; i < allLines.length; i++) {
+      var opt = options[i];
+      var el = document.createElement("option");
+      el.textContent = opt;
+      el.value = opt;
+      select.appendChild(el);
+  }
+  }*/
+  $('#od_sph').empty();
+  $.each(allLines, function(i, p) {
+      $('#od_sph').append($('<option></option>').val(p).html(p));
+      $('#od_cyl').append($('<option></option>').val(p).html(p));
+      $('#os_sph').append($('<option></option>').val(p).html(p));
+      $('#os_cyl').append($('<option></option>').val(p).html(p));
+  });
+
+  $('#od_sph').val('None');
+  $('#od_cyl').val('None');
+  $('#os_sph').val('None');
+  $('#os_cyl').val('None');
 
   document.querySelector('#od_sph').addEventListener('change', function (event) {
     //handle click
@@ -336,7 +377,7 @@
 
       var packagePrice = parseInt(lens_array[i].price)
 
-      if (lens_array[i].category == 'none') {
+      if (lens_array[i].category == 'none' && lens_array[i].title.toLowerCase() !== 'prism') {
         lens_html += `<input type="checkbox"  class="lensOptions" name="lensOptions" value="`+ lens_array[i].id + `" id="`+ lens_array[i].id + `" />
                                 <label class="whatever" for="`+ lens_array[i].id + `">
                                   <div class="select_item text-center">
