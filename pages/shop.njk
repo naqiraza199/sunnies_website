@@ -35,7 +35,23 @@
                 </div>
               </div>
             </div>
+
+            {# <script>
+            var ctx = {x: 'foo'}
+            </script>
+            <div>
+            
+             {% for category, products in products | groupby("category") %}
+              <h1>{{ category }}</h1> :
+              {% for item in products %}
+                  <p>{{ item.title }}</p>
+              {% endfor %}<br>
+            {% endfor %}
+            </div> #}
+            {{ getContext()}}
             <div class="row mb-5">
+
+           
 
               {% for item in products %}
                 {% if (item.category !== "Prescriptions Lens") and (item.category !== "Add-Ons") %}
@@ -45,7 +61,7 @@
                         <a href="product.html?id={{item.id}}">
                         
                         {% if item.photo.length > 0 %}
-                            <img class="img-fluid" style=""src="{{item.photo}}" alt=""/>
+                            <img class="img-fluid" style="" data-src="{{item.photo}}" alt=""/>
                         {% else %}
                             <img class="img-fluid" src="assets/images/notfound.png" alt=""/>
                         {% endif %}

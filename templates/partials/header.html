@@ -37,12 +37,30 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
 
   <!-- Include the script that builds the page and powers Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
   <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    if (window.netlifyIdentity) {
+      window
+        .netlifyIdentity
+        .on("init", user => {
+          if (!user) {
+            window
+              .netlifyIdentity
+              .on("login", () => {
+                document.location.href = "/admin/";
+              });
+          }
+        });
+    }
+  </script>
 
   <script src="/assets/js/jquery-3.3.1.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <script src="/assets/js/pico.js"></script>
+
+  <script type="text/javascript" src="/assets/js/jquery.lazy.min.js"></script>
+
 
 
 

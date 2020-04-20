@@ -40,35 +40,25 @@
         <script src="/assets/js/owl.carousel.min.js"></script>
         <script src="/assets/js/jquery.magnific-popup.min.js"></script>
         <script src="/assets/js/aos.js"></script>
+
+        
         
         {# <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/8.11.8/sweetalert2.all.min.js"></script> #}
 
         <script src="/assets/js/main.js"></script>
+        
         <script>
-            if (window.netlifyIdentity) {
-                window
-                    .netlifyIdentity
-                    .on("init", user => {
-                        if (!user) {
-                            window
-                                .netlifyIdentity
-                                .on("login", () => {
-                                    document.location.href = "/admin/";
-                                });
-                        }
-                    });
-            }
-        </script>
-        <script>
+
+        $(function() {
+        $('img').Lazy({effect: 'fadeIn',});
+    });
 
             $("input[type='number']").inputSpinner();
 
             console.log('{{site_title}}')
-            {# console.log('{{stripe_key}}') #}
-            {# swal("Good job!", "You clicked the button! {{site_title}}", "success"); #}
             var items = [];
             var products = [];
-            $.getJSON("/assets/data/products.json", function (data) {
+            {# $.getJSON("/assets/data/products.json", function (data) {
 
                 console.log('json data',data);
                 localStorage.setItem('products',JSON.stringify(data))
@@ -79,7 +69,7 @@
                 //console.log(items)
                 //products = items[0].products;
                 //console.log(products)
-            });
+            }); #}
 
             
 
@@ -505,7 +495,7 @@
         <script>
             
             //DISPLAY ITEMS IN CART
-            console.log('display items in cart')
+            {# console.log('display items in cart')
             var data_array = JSON.parse(localStorage.getItem("cart_items"))
             console.log(data_array)
 
@@ -554,7 +544,7 @@
             console.log(total_cost)
 
             document.getElementById('sub_total').innerHTML = "$ "+parseFloat(total_cost).toFixed(2)
-            document.getElementById('final_total').innerHTML = "$ "+parseFloat(total_cost).toFixed(2)
+            document.getElementById('final_total').innerHTML = "$ "+parseFloat(total_cost).toFixed(2) #}
 
             
         </script>
@@ -692,5 +682,7 @@
               });
             })();
           </script>
+
+          
     </body>
 </html>

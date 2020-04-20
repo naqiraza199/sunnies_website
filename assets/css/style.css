@@ -786,11 +786,12 @@ a {
   
   .select_row label {
     background: #fff none repeat scroll 0 0;
-    flex: 1 1 18%;
+    /* flex: 1 1 18%; */
+    flex:1;
     height: auto;
     margin: 4px;
     padding: 20px;
-    width: auto;
+    /* width: auto; */
     /* width: 20%;
     height: auto;
     margin: 2px;
@@ -799,9 +800,10 @@ a {
   }
 
   .whatever{
+    flex:1;
     background-color: #fff;
     display: inline-block;
-    width: 100px;
+    /* width: 100px; */
     height: 100px;
 }
 

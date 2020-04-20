@@ -174,7 +174,7 @@
         <div class="col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0" data-aos="fade" data-aos-delay="">
           <a class="block-2-item" href="shop.html?category='women'">
             <figure class="image">
-              <img src="/assets/images/collections_women.jpeg" alt="" class="img-fluid">
+              <img data-src="/assets/images/collections_women.jpeg" alt="" class="img-fluid">
             </figure>
             <div class="text">
               <span class="text-uppercase">Collections</span>
@@ -186,7 +186,7 @@
         <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="200">
           <a class="block-2-item" href="shop.html?category='men'">
             <figure class="image">
-              <img src="/assets/images/collections_men.jpeg" alt="" class="img-fluid">
+              <img data-src="/assets/images/collections_men.jpeg" alt="" class="img-fluid">
             </figure>
             <div class="text">
               <span class="text-uppercase">Collections</span>
@@ -197,7 +197,7 @@
         <div class="col-sm-6 col-md-6 col-lg-4 mb-5 mb-lg-0" data-aos="fade" data-aos-delay="100">
           <a class="block-2-item" href="shop.html?category='children'">
             <figure class="image">
-              <img src="/assets/images/collections_children.jpeg" alt="" class="img-fluid">
+              <img data-src="/assets/images/collections_children.jpeg" alt="" class="img-fluid">
             </figure>
             <div class="text">
               <span class="text-uppercase">Collections</span>
@@ -223,13 +223,14 @@
                 <div class="item">
               <div class="block-4 text-center">
                 <figure class="block-4-image">
-                  <img src="{{item.photo}}" alt="" height="200" >
+                  <img data-src="{{item.photo}}" alt="" height="200" >
                 </figure>
                 <div class="block-4-text p-4">
                   <h3>
                     <a href="/blog.html?id={{item.publishedOn}}">{{item.title}}</a>
                   </h3>
-                  <p class="mb-0">{{item.body.slice(0,100)}}</p>
+                  {# <p>{{ "foo\n\nbar" | striptags(true) | escape | nl2br }}</p> #}
+                  <p class="mb-0">{{item.body.slice(0,100) | replace(r/\\n/g, " ") }}</p>
                   <a href="blog.html?id={{item.publishedOn}}" class="text-primary font-weight-bold">Read More</a>
                 </div>
               </div>

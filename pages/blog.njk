@@ -28,7 +28,7 @@
                                     </figure>
                                     <div class="block-4-text p-4">
                                         
-                                        <p class="mb-0" id="blog_post"></p>
+                                        <p class="mb-0" id="blog_post" style="text-align:left"></p>
                                     {# <p class="text-primary font-weight-bold">Read More</p> #}
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@
 
                 document.getElementById('blog_photo').src = selected_post[0].photo
                 document.getElementById('blog_title').innerHTML = selected_post[0].title
-                document.getElementById('blog_post').innerHTML = selected_post[0].body
+                document.getElementById('blog_post').innerHTML = selected_post[0].body.replace(/\\n/g, "<br/>")
                 document.getElementById('blog_publishedDate').innerHTML = selected_post[0].publishedOn
 
 

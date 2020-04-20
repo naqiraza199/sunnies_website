@@ -8,12 +8,26 @@ var fs = require("fs");
 var netlify = require("gulp-netlify");
 var merge = require("gulp-merge-json");
 var jsonConcat = require('gulp-json-concat');
+var request = require('request');
 
 var git = require("gulp-git");
 
 const imagemin = require("gulp-imagemin");
 
 var manageEnvironment = function (env) {
+  // env.addFilter('setSelf', function () {
+  //   var self = this;
+  //   this.ctx.self = function () { return self }
+  // })
+  // env.addGlobal('request', request)
+  env.addGlobal('getContext', function () {
+    console.log(request)
+    return request;
+    // return env.renderString(
+    //   "{{ filterArgument | " + filterExpression + " }}",
+    //   { filterArgument: value }
+    // );
+  })
   env.addFilter("split", function (str, seperator) {
     return str.split(seperator);
   });
